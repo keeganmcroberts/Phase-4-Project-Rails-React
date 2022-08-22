@@ -3,15 +3,16 @@ import './App.css';
 import styled from "styled-components";
 
 import LoginForm from './components/Log_in_Form'
-import HomePage from "./components/Main_page";
+import HomePage from "./components/Home_page";
 import LandingPage from './components/Landing_page'
 import GameTablesList from './components/Game_tables_list'
 import Leaderboard from './components/Leaderboard'
 import UserInfo from './components/User_information'
 import ActiveGame from "./components/Active_Game_Table";
 
-const Container = styled.div`
 
+
+const Container = styled.div`
 
 `
 
