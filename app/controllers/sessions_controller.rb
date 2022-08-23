@@ -4,8 +4,14 @@ class SessionsController < ApplicationController
     end
     # login information for username
     def create
-        user = User.find_by(username: params[:username])
-        sessions[:user_id] = user.id
-        render json: user
+        player = Player.find_by(username: params[:username])
+        sessions[:player_id] = Player.id
+        byebug
+        if player
+            render json: player
+        else
+            render json: {error: "player does not exist"}, status: :unprocessable_entity
+        end
+        
     end
 end
