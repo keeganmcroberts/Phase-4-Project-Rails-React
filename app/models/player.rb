@@ -1,4 +1,6 @@
 class Player < ApplicationRecord
-    belongs_to :card
+    has_many :cards
     belongs_to :game_table
+
+    validates :user_name, uniqueness: true
 end

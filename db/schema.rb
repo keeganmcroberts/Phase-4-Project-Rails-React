@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2022_08_23_171753) do
 
   create_table "cards", force: :cascade do |t|
     t.string "emblem"
-    t.integer "number"
+    t.string "value"
     t.integer "player_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -23,17 +23,18 @@ ActiveRecord::Schema.define(version: 2022_08_23_171753) do
 
   create_table "game_tables", force: :cascade do |t|
     t.string "name"
-    t.integer "player_id", null: false
+    t.string "player_1"
+    t.string "player_2"
+    t.string "player_3"
+    t.string "player_4"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["player_id"], name: "index_game_tables_on_player_id"
   end
 
   create_table "leader_boards", force: :cascade do |t|
-    t.integer "player_id", null: false
+    t.integer "player_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["player_id"], name: "index_leader_boards_on_player_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -41,17 +42,12 @@ ActiveRecord::Schema.define(version: 2022_08_23_171753) do
     t.string "password"
     t.integer "rounds_won"
     t.integer "rounds_lost"
-    t.integer "card_id", null: false
     t.integer "game_table_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["card_id"], name: "index_players_on_card_id"
     t.index ["game_table_id"], name: "index_players_on_game_table_id"
   end
 
   add_foreign_key "cards", "players"
-  add_foreign_key "game_tables", "players"
-  add_foreign_key "leader_boards", "players"
-  add_foreign_key "players", "cards"
   add_foreign_key "players", "game_tables"
 end
