@@ -150,7 +150,7 @@ Card.create!([{ :value => "0", :emblem => "druid" },
     {  :value => "image_url", :emblem => "illusionist_add_2" },
     {  :value => "image_url", :emblem => "illusionist_reverse" },
     {  :value => "image_url", :emblem => "illusionist_reverse" },
-) 
+]) 
 
     puts "cards FUCKING seeded!"
 
