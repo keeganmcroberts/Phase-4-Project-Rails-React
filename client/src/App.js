@@ -19,6 +19,7 @@ const Container = styled.div`
 function App() {
   return (
     <Container>
+      {/* <Card/> */}
       <Routes>
         <Route path="/" element={<LandingPage/>}>
         </Route>
@@ -35,10 +36,10 @@ function App() {
         <Route path='/leaderboard' element={<Leaderboard/>}>
         </Route>
 
-        <Route path='/${username}' element={<UserInfo/>}>
+        <Route path='/user' element={<UserInfo/>}>
         </Route>
 
-        <Route path='/${GameName}' element={<ActiveGame/>}>
+        <Route path='/game' element={<ActiveGame/>}>
         </Route>
 
       </Routes>
