@@ -1,9 +1,13 @@
-import { Routes, Route } from "react-router-dom";
+import { Switch, Routes, Route } from "react-router-dom";
 import "./App.css";
 import styled from "styled-components";
 
+import SignUp from "./SignUp";
 import LoginForm from "./components/Log_in_Form";
+import NavBar from "./components/Nav_bar";
 import HomePage from "./components/Home_page";
+import React, {useEffect, useState} from "react";
+
 import LandingPage from "./components/Landing_page";
 import GameTablesList from "./components/Game_tables_list";
 import Leaderboard from "./components/Leaderboard";

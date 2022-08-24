@@ -6,12 +6,23 @@ const Container = styled.div`
 
 `
 
-function HomePage (){
-    return(
-        <Container>
-            <NavBar/>
+function HomePage({ player }) {
+    if (user) {
+      return <h1>Welcome, {player.username}!</h1>;
+    } else {
+      return <h1>Please Login or Sign Up</h1>;
+    }
+  }
+  
+  export default HomePage;
 
-        </Container>
-    )
-}
-export default HomePage
+
+// function HomePage (){
+//     return(
+//         <Container>
+//             <NavBar/>
+
+//         </Container>
+//     )
+// }
+// export default HomePage

@@ -15,26 +15,61 @@ function LoginForm({ onLogin }) {
       },
       body: JSON.stringify({ username, password }),
     })
-      .then((response) => response.json())
-      .then((playerData) => console.log(playerData));
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((player) => setPlayer(player));
+        }
+      });
   }
 
   return (
-    <Container>
+    <div>
       <form onSubmit={handleSubmit}>
+        <h1>Login</h1>
+        <label htmlFor="username">Username</label>
         <input
           type="text"
+          id="username"
+          autoComplete="off"
+          value={username}
           onChange={(e) => setUsername(e.target.value)}
-          placeholder="enter Username/email here"
         />
+        <label htmlFor="password">Password</label>
         <input
-          type="text"
+          type="password"
+          id="password"
+          autoComplete="current-password"
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder=" enter password/here"
         />
-        <button> Submit </button>
+        <button type="submit">Login</button>
       </form>
-    </Container>
+    </div>
   );
 }
+
 export default LoginForm;
+
+
+
+
+
+  //   return (
+//     <Container>
+//       <form onSubmit={handleSubmit}>
+//         <input
+//           type="text"
+//           onChange={(e) => setUsername(e.target.value)}
+//           placeholder="enter Username/email here"
+//         />
+//         <input
+//           type="text"
+//           onChange={(e) => setPassword(e.target.value)}
+//           placeholder=" enter password/here"
+//         />
+//         <button> Submit </button>
+//       </form>
+//     </Container>
+//   );
+// }
+// export default LoginForm;
