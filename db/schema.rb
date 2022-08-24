@@ -21,10 +21,6 @@ ActiveRecord::Schema.define(version: 2022_08_23_171753) do
 
   create_table "game_tables", force: :cascade do |t|
     t.string "name"
-    t.string "player_1"
-    t.string "player_2"
-    t.string "player_3"
-    t.string "player_4"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
