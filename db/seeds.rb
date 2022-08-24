@@ -123,7 +123,7 @@ puts "initialized player"
 player1 = Player.create(
     user_name: Faker::Name.first_name,
     # password: ManuallyWrite,
-    password: "123",
+    password_digest: "123",
     rounds_won: Faker::Number.number(digits: 1),
     rounds_lost: Faker::Number.number(digits: 1),
     # card_id: Card.all.sample.id,

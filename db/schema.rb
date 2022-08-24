@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2022_08_23_171753) do
 
   create_table "players", force: :cascade do |t|
     t.string "user_name"
-    t.string "password"
+    t.string "password_digest"
     t.integer "rounds_won"
     t.integer "rounds_lost"
     t.boolean "private_account"

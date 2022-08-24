@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import LoginForm from "./components/Log_in_Form";
 import HomePage from "./components/Home_page";
+import SignUp from "./components/Sign_up_Form";
 import LandingPage from "./components/Landing_page";
 import GameTablesList from "./components/Game_tables_list";
 import Leaderboard from "./components/Leaderboard";
@@ -25,6 +26,8 @@ function App() {
         <Route path="/" element={<LandingPage onLogin={onLogin} />}></Route>
 
         <Route path="/log_in" element={<LoginForm onLogin={onLogin} />}></Route>
+
+        <Route path="/sign_up" element={<SignUp onLogin={onLogin} />}></Route>
 
         <Route path="/home" element={<HomePage />}></Route>
 
