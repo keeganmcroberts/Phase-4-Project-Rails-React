@@ -15,24 +15,17 @@ ActiveRecord::Schema.define(version: 2022_08_23_171753) do
   create_table "cards", force: :cascade do |t|
     t.string "emblem"
     t.string "value"
-    t.integer "player_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["player_id"], name: "index_cards_on_player_id"
   end
 
   create_table "game_tables", force: :cascade do |t|
     t.string "name"
-    t.string "player_1"
-    t.string "player_2"
-    t.string "player_3"
-    t.string "player_4"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "leader_boards", force: :cascade do |t|
-    t.integer "player_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -42,12 +35,15 @@ ActiveRecord::Schema.define(version: 2022_08_23_171753) do
     t.string "password"
     t.integer "rounds_won"
     t.integer "rounds_lost"
-    t.integer "game_table_id", null: false
+    t.boolean "private_account"
+    t.integer "game_table_id"
+    t.integer "leader_board_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["game_table_id"], name: "index_players_on_game_table_id"
+    t.index ["leader_board_id"], name: "index_players_on_leader_board_id"
   end
 
-  add_foreign_key "cards", "players"
   add_foreign_key "players", "game_tables"
+  add_foreign_key "players", "leader_boards"
 end
