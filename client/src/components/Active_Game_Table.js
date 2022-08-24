@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState} from "react";
 
+
 import My_Hand from "./My_Hand";
 import Other_Player2 from './other_players_hands/Other_Player2'
 import Other_Player3 from './other_players_hands/Other_Player3'
@@ -91,83 +92,9 @@ function ActiveGame(){
         const topCardOfDrawingDeck = getArandomCard()
         return topCardOfDrawingDeck
     }
-    
-    function putDownACard(){
-            const cardToPlay = "selected card"
-            //  hands aren't being persisted so im not 
-                // sure for the url or the updated date
-            function patchtoUpdateNextPlayerHand(){
-                fetch("url/${player.id}", {
-                    method: "PATCH", 
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify("next player hand state")
-                })
-                .then( res =>res.json)
-                .then()
-            }
-            function adding2s(){
-                if (cardToPlay === "thief_add_2")
-                    return patchtoUpdateNextPlayerHand()
-                else if (cardToPlay === "bard_add_2")
-                    return patchtoUpdateNextPlayerHand()
-                else if (cardToPlay === "illusionist_add_2")
-                    return patchtoUpdateNextPlayerHand()
-                else if (cardToPlay === "druid_add_2")
-                    return patchtoUpdateNextPlayerHand()
-            }
-            function skipping(){
-            //  need to look at last card played and current player turn 
-            }
-            function reversing(){
-            //  need to look at last card played and current player turn 
-            }
-            function wild_add4(){
-            //  not stackable so just needs to know current player turn to add cards to next player 
-            }
-        if (currentEmblem === cardToPlay.emblem)
-            return cardToPlay
-        else if(currentValue === cardToPlay.vlaue)
-            return cardToPlay
-        else if (currentEmblem === "thief_reverse")
-            return reversing()
-        else if (currentEmblem === "bard_reverse")
-            return reversing()
-        else if (currentEmblem === "illusionist_reverse")
-            return reversing()
-        else if (currentEmblem === "druid_reverse")
-        return reversing()
-        else if (currentEmblem === "thief_add_2")
-            return adding2s()
-        else if (currentEmblem === "bard_add_2")
-            return adding2s()
-        else if (currentEmblem === "illusionist_add_2")
-            return adding2s()
-        else if (currentEmblem === "druid_add_2")
-        return adding2s()
-        else if (currentEmblem === "thief_skip")
-            return skipping()
-        else if (currentEmblem === "bard_skip")
-            return skipping()
-        else if (currentEmblem === "illusionist_skip")
-            return skipping()
-        else if (currentEmblem === "druid_skip")
-        return skipping()
-        else if(selectedCard.emblem === "wild" )
-            return cardToPlay, "something that announces the new emblem"
-        else if (selectedCard.emblem === "draw 4")
-            return wild_add4()
-        else if (selectedCard != currentEmblem)
-            return "A card must match in color or value. Otherwise play a wild card."
-        else if (selectedCard != currentValue)
-            return "A card must match in color or value. Otherwise play a wild card."
-    }
- 
     */
 
-    /* 
-    moving between players 
-    - 
-    */ 
+    /* moving between players  */ 
 
     const players = ["player_1", "player_2", "player_3", "player_4"]
 
@@ -178,7 +105,30 @@ function ActiveGame(){
     function seeingBackofCard(){
        return setFrontOfCard(false)
     }
-
+    const CardsPlayed = []
+    const [myCards, setMyCards] = useState([MyHand])
+    const MyHand = []
+        function addingNewCardstoMyHand(){
+            const newCard = getARandomCard
+            if ("player_1" === playerTurn)
+            return [newCard, ...myCards]
+        }
+        function playingACard(){
+            const selectedCard = card.id
+            if ("player_1" === playerTurn && selectedCard.emblem === )
+            setMyCards 
+        }
+    const [player2Cards, setPlayer2Cards]= useState ([Player_2_Hand])
+    const Player_2_Hand = []
+    function addingNewCardstoP2Hand(){
+        const newCard = getARandomCard
+        if ("player_2" === playerTurn)
+        return [newCard, ...player2Cards]
+    }
+    function playingACard(){
+        if ("player_2" === playerTurn)
+        return setPlayer2Cards -1
+    }
     
     
     console.log("playerTurn:", playerTurn)
@@ -258,12 +208,16 @@ function ActiveGame(){
     return(
         <Container>
             {/* <h3> Its my turn: {playerTurn} </h3>  */}
+            <div>
+                <button> Drawing Deck </button>
+            </div>
             <div >
                 {/* <My_Hand seethecards={frontOfCard} 
                         player1Turn={player1Turn} 
                         player1Skip={player1Skip} 
                         player1Reverse={player1Reverse}/>  */}
                 <h2> Player 1</h2>
+                    <My_Hand seethecards={frontOfCard} />
                 <button onClick={player1Turn}> Next </button>
                 <button onClick={player1Skip}> Skip </button> 
                 <button onClick={player1Reverse}> Reverse </button>   
@@ -276,6 +230,7 @@ function ActiveGame(){
                     player2Skip={player2Skip} 
                     player2Reverse={player2Reverse}/> */}
                 <h2> Player 2</h2> 
+                    <Other_Player2 dontseeCards={seeingBackofCard}/>
                     <button onClick={player2Turn}> Next </button>
                     <button onClick={player2Skip}> Skip </button> 
                     <button onClick={player2Reverse}> Reverse </button> 
