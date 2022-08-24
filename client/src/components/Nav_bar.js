@@ -1,9 +1,7 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
-`
-
-const Link = styled.link`
 `
 
 
@@ -14,7 +12,7 @@ function NavBar(){
                 Home
             </Link>
             <Link to="/${Username interpotalion}">
-                User Information
+                User Info
             </Link>
             <Link to="games">
                 Games List 
