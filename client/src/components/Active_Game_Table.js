@@ -187,23 +187,30 @@ function ActiveGame(){
     
     function player1Turn(){
         console.log("click")
-        if ("player_1" === playerTurn)
+        if ("player_1" === playerTurn && clockWise === true)
             return setPlayerTurn("player_2") 
+        else if ("player_1" ===playerTurn && clockWise === false)
+            return setPlayerTurn("player_4")
     }
     function player2Turn(){
-       if ("player_2" === playerTurn)
-        return setPlayerTurn("player_3") 
+       if ("player_2" === playerTurn && clockWise === true)
+            return setPlayerTurn("player_3") 
+        else if ("player_2" === playerTurn && clockWise === false)
+            return setPlayerTurn("player_1")
+        
     }
    function player3Turn(){
-        if ("player_3" === playerTurn)
+        if ("player_3" === playerTurn && clockWise === true)
             return setPlayerTurn("player_4")
+        else if ("player_3" === playerTurn && clockWise === false)
+            return setPlayerTurn("player_2")
    }
 
-   function player4Turn(){
-    if ("player_4" === playerTurn && clockWise === true )
-       return setPlayerTurn("player_1")  
-    else if ("player_4" === playerTurn && clockWise === false)
-       return setPlayerTurn("player_3")      
+    function player4Turn(){
+        if ("player_4" === playerTurn && clockWise === true )
+            return setPlayerTurn("player_1")  
+        else if ("player_4" === playerTurn && clockWise === false)
+            return setPlayerTurn("player_3")      
 }
 
    function player1Reverse(){
