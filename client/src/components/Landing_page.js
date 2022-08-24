@@ -6,7 +6,7 @@ const Container = styled.div`
 `
 
 
-function LandingPage(){
+function LandingPage({onLogin}){
     return(
         <Container>
             <h4> UM a Game of Skill, Luck, and endless Patience </h4>
