@@ -5,13 +5,11 @@ class SessionsController < ApplicationController
     # login information for username
     def create
         player = Player.find_by(username: params[:username])
-        sessions[:player_id] = Player.id
-        byebug
-        if player
-            render json: player
+        if user&.authenticate(params[:password])
+            sessions[:player_id] = Player.id
+            render json: player, status: :created
         else
-            render json: {error: "player does not exist"}, status: :unprocessable_entity
+            render json: { error: "Invalid username or password" }, status: :unauthorized
         end
-        
     end
 end

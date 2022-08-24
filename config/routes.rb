@@ -10,4 +10,7 @@ Rails.application.routes.draw do
 
   # Login route
   post "/login", to: "sessions#create"
+
+  # staying logged in
+  get "/me", to: "players#show"
 end
