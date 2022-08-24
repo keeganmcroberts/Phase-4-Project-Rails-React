@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useState} from "react";
 
-
 import My_Hand from "./My_Hand";
 import Other_Player2 from './other_players_hands/Other_Player2'
 import Other_Player3 from './other_players_hands/Other_Player3'
@@ -100,35 +99,13 @@ function ActiveGame(){
 
     const [playerTurn, setPlayerTurn] = useState(players[0]) 
     const [clockWise, setClockwise]= useState(true)
+    const [initialTurn, setInitialTurn] = useState(true)
     // const [playerTurn, setPlayerTurn] = useState({gametable.player_1})
     const [frontOfCard, setFrontOfCard] = useState(true)
     function seeingBackofCard(){
        return setFrontOfCard(false)
     }
-    const CardsPlayed = []
-    const [myCards, setMyCards] = useState([MyHand])
-    const MyHand = []
-        function addingNewCardstoMyHand(){
-            const newCard = getARandomCard
-            if ("player_1" === playerTurn)
-            return [newCard, ...myCards]
-        }
-        function playingACard(){
-            const selectedCard = card.id
-            if ("player_1" === playerTurn && selectedCard.emblem === )
-            setMyCards 
-        }
-    const [player2Cards, setPlayer2Cards]= useState ([Player_2_Hand])
-    const Player_2_Hand = []
-    function addingNewCardstoP2Hand(){
-        const newCard = getARandomCard
-        if ("player_2" === playerTurn)
-        return [newCard, ...player2Cards]
-    }
-    function playingACard(){
-        if ("player_2" === playerTurn)
-        return setPlayer2Cards -1
-    }
+
     
     
     console.log("playerTurn:", playerTurn)
@@ -137,19 +114,22 @@ function ActiveGame(){
     
     function player1Turn(){
         console.log("click")
+        setInitialTurn(false)
         if ("player_1" === playerTurn && clockWise === true)
             return setPlayerTurn("player_2") 
         else if ("player_1" ===playerTurn && clockWise === false)
             return setPlayerTurn("player_4")
     }
     function player2Turn(){
+       
        if ("player_2" === playerTurn && clockWise === true)
             return setPlayerTurn("player_3") 
         else if ("player_2" === playerTurn && clockWise === false)
             return setPlayerTurn("player_1")
         
     }
-   function player3Turn(){
+    function player3Turn(){
+       
         if ("player_3" === playerTurn && clockWise === true)
             return setPlayerTurn("player_4")
         else if ("player_3" === playerTurn && clockWise === false)
@@ -157,50 +137,72 @@ function ActiveGame(){
    }
 
     function player4Turn(){
+        
         if ("player_4" === playerTurn && clockWise === true )
             return setPlayerTurn("player_1")  
         else if ("player_4" === playerTurn && clockWise === false)
             return setPlayerTurn("player_3")      
 }
 
-   function player1Reverse(){
-        if ("player_1" === playerTurn)
-            setClockwise(!clockWise)
-            return setPlayerTurn("player_4")        
+    console.log("order direction:", clockWise)
+    
+    /// REVERSE CARD LOGIC 
+
+    useEffect(()=>{
+        console.log("useEffect happening")
+        if (initialTurn)
+            return "hi"
+        else if ("player_4" === playerTurn && clockWise === false)
+            return setPlayerTurn("player_1") 
+        else if ("player_4" === playerTurn && clockWise === true)
+            return setPlayerTurn("player_3")
+        else if ("player_3" === playerTurn && clockWise === false)
+            return setPlayerTurn("player_2") 
+        else if ("player_3" === playerTurn && clockWise === true)
+            return setPlayerTurn("player_4")
+        else if ("player_2" === playerTurn && clockWise === false)
+            return setPlayerTurn("player_1")
+        else if ("player_2" === playerTurn && clockWise === true)
+            return setPlayerTurn("player_3")
+        else if ("player_1" === playerTurn && clockWise === false)
+            return setPlayerTurn("player_4")   
+        else if ("player_1" === playerTurn && clockWise === true)     
+            return setPlayerTurn("player_2")
+    }, [clockWise]) 
+
+    function handleReverse(){
+        setClockwise(!clockWise)
+        setInitialTurn(false)
     }
 
-    console.log("order direction:", clockWise)
-    function player4Reverse(){
-        if ("player_4" === playerTurn)
-            setClockwise(!clockWise)
-        return setPlayerTurn("player_3") 
-    }
-    function player3Reverse(){
-        if ("player_3" === playerTurn)
-            setClockwise(!clockWise)
-            return setPlayerTurn("player_2") 
-    }
-    function player2Reverse(){
-        if ("player_2" === playerTurn)
-            setClockwise(!clockWise)
-            return setPlayerTurn("player_1")
-    }
+        
 
     function player1Skip(){
-        if ("player_1" === playerTurn)
-           return setPlayerTurn("player_3")        
+        setInitialTurn(false)
+        if ("player_1" === playerTurn && clockWise === true)
+           return setPlayerTurn("player_3") 
+        else if ("player_1" === playerTurn && clockWise === false)    
+            return setPlayerTurn("player_3")   
    }
    function player2Skip(){
-       if ("player_2" === playerTurn)
+       
+       if ("player_2" === playerTurn && clockWise === true)
            return setPlayerTurn("player_4") 
+        else if ("player_2" === playerTurn && clockWise === false)
+            return setPlayerTurn("player_4") 
    }
    function player3Skip(){
-      if ("player_3" === playerTurn)
-       return setPlayerTurn("player_1") 
+        if ("player_3" === playerTurn && clockWise === true)
+            return setPlayerTurn("player_1") 
+        else if ("player_3" === playerTurn && clockWise === false)
+            return setPlayerTurn("player_1") 
    }
-  function player4Skip(){
-       if ("player_4" === playerTurn)
+  
+   function player4Skip(){
+       if ("player_4" === playerTurn && clockWise === true)
            return setPlayerTurn("player_2")
+        else if ("player_4" === playerTurn && clockWise === false)
+        return setPlayerTurn("player_2")
   }
 
     
@@ -219,8 +221,8 @@ function ActiveGame(){
                 <h2> Player 1</h2>
                     <My_Hand seethecards={frontOfCard} />
                 <button onClick={player1Turn}> Next </button>
-                <button onClick={player1Skip}> Skip </button> 
-                <button onClick={player1Reverse}> Reverse </button>   
+                <button onClick={player1Skip}> Skip </button>
+                <button onClick={handleReverse}> Reverse </button>
             </div> 
 
             <div>
@@ -233,7 +235,7 @@ function ActiveGame(){
                     <Other_Player2 dontseeCards={seeingBackofCard}/>
                     <button onClick={player2Turn}> Next </button>
                     <button onClick={player2Skip}> Skip </button> 
-                    <button onClick={player2Reverse}> Reverse </button> 
+                    <button onClick={handleReverse}> Reverse </button>
             </div> 
 
             <div>
@@ -245,7 +247,7 @@ function ActiveGame(){
                 <h2> Player 3</h2> 
                     <button onClick={player3Turn}> Next </button>
                     <button onClick={player3Skip}> Skip </button> 
-                    <button onClick={player3Reverse}> Reverse </button> 
+                    <button onClick={handleReverse}> Reverse </button>
             </div> 
 
             <div>
@@ -257,7 +259,7 @@ function ActiveGame(){
                 <h2> Player 4 </h2>
                     <button onClick={player4Turn}> Next </button>
                     <button onClick={player4Skip}> Skip </button> 
-                    <button onClick={player4Reverse}> Reverse </button>   
+                    <button onClick={handleReverse}> Reverse </button>
             </div> 
 
             {/* <myPlayerHand cardsInHand/>
