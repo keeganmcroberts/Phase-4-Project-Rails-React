@@ -177,7 +177,7 @@ function ActiveGame(){
     // const [playerTurn, setPlayerTurn] = useState({gametable.player_1})
     const [frontOfCard, setFrontOfCard] = useState(true)
     function seeingBackofCard(){
-       return setFrontOfCard(false)
+       return setFrontOfCard(false) 
     }
 
     console.log("playerTurn:", playerTurn)
