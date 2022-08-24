@@ -180,6 +180,49 @@ function ActiveGame(){
        return setFrontOfCard(false) 
     }
 
+//     function getArandomCard(){
+//         return cards.Math.floor(Math.random()*cards.length)
+//    }
+
+//    function myStartingSevenCards(){ // setMyHand state to this array
+//     const card1 = getArandomCard()
+//     const card2 = getArandomCard()
+//     const card3 = getArandomCard()
+//     const card4 = getArandomCard()
+//     const card5 = getArandomCard()
+//     const card6 = getArandomCard()
+//     const card7 = getArandomCard()
+
+//     return([card1, card2, card3, card4, card5, card6, card7])
+// }
+    const Player4Hand =[]
+    const [player4HandState, setPlayer4HandState] = useState([Player4Hand])
+    const Player3Hand = []
+    const [player3HandState, setPlayer3HandState] = useState([Player3Hand])
+    const Player2Hand = []
+    const [ player2HandState, setPlayer2HandState] = useState([Player2Hand])
+    const MyHand = []
+    const [myHandState, setMyHandState] = useState(MyHand)
+    
+    function addsCardToHand(){
+        const newCard = getARandomCard
+        if ("player_1" === playerTurn)
+            return [newCard, ...myHandState]
+
+        else if ("player_2" === playerTurn)
+            return [newCard, ...player2HandState]
+
+        else if ("player_3" === playerTurn)
+            return [newCard, ...player3HandState]
+
+        else if ("player_4" === playerTurn)
+            return [newCard, ...player4HandState]
+        
+    }
+
+
+   
+//     TO Determine Player Turn 
     console.log("playerTurn:", playerTurn)
     console.log("first player:", players[0])
 
@@ -328,6 +371,7 @@ function ActiveGame(){
                     <button onClick={player4Skip}> Skip </button> 
                     <button onClick={handleReverse}> Reverse </button>
             </div> 
+            <button onClick={addsCardToHand}> DRAW CARD</button>
 
             {/* <myPlayerHand cardsInHand/>
 
