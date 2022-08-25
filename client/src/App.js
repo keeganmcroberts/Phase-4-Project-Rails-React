@@ -54,7 +54,7 @@ function App() {
 
   return (
     <Container>
-      <Switch>
+      <Routes>
         <Route path="/home" element={<HomePage />}></Route>
 
         <Route path="/games" element={<GameTablesList />}></Route>
@@ -77,7 +77,7 @@ function App() {
           path="/auth"
           element={<SignUp setCurrentPlayer={setCurrentPlayer} />}
         ></Route>
-      </Switch>
+      </Routes>
     </Container>
   );
 }

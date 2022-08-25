@@ -1,17 +1,26 @@
 class SessionsController < ApplicationController
-    before_action :authorized, only: :create
-    # for session and cookie management
+    skip_before_action :authorize, only: [:index, :create]
+    # # for session and cookie management
     def index
+        session[:player_id] ||= "hello"
+        render json: {session: session}
+
     end
     # login information for username
     def create
-        player = Player.find_by(user_name: params[:username])
-        byebug
-        if user&.authenticate(params[:password])
-            sessions[:player_id] = player.id
-            render json: player, status: :created
+        player = Player.find_by!(user_name: params[:username])
+        # byebug
+        if player&.authenticate(params[:password])
+            session[:player_id] = player.id
+            byebug
+            render json: player, status: :ok
         else
             render json: { error: "Invalid username or password" }, status: :unauthorized
         end
     end
+
+    # private
+    # def player_params
+    #     params.permit(:username, :password, :sessions)
+    # end
 end

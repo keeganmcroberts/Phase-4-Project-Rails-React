@@ -9,8 +9,13 @@ class PlayersController < ApplicationController
     end
 
     # creates a new player
+
+
+
+    
+
     def create
-        player = Player.create(player_params)
+        player = Player.create!(player_params)
         if player.valid?
             render json: player, status: :created
         else
@@ -24,4 +29,7 @@ class PlayersController < ApplicationController
         params.permit(:username, :password, :password_confirmation )
     end
 end
+
+
+
 end
