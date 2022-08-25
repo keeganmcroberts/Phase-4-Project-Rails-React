@@ -17,24 +17,6 @@ function ActiveGame(){
     //  in each componenet of player hands each player starts with seven cards
     //  update request to add and delete cards from each hand as theyre picked up and played
  /*
-   useEffect(()=> {
-    fetch("to local host")
-    .then(res => res.json())
-    .then (cards => getArandomCard(cards),
-
-    setMyHand(myStartingSevenCards()), 
-
-    playedDeckStartCard(),
-
-    // setEmblemColor(playedDeckStartCard.emblem),
-
-    setCurrentValue(playedDeckStartCard.value),
-
-    setPlayerTurn(myPlayerHand)
-    
-    
-
-    
     )
     // shuffle cards DONE 
     // 7 random cards for each player to start DONE
@@ -43,14 +25,9 @@ function ActiveGame(){
         //  to infinitely shuffle through all the fetched cards)
     // set currentColor and currentNumber states to the card played in the playedDeck 
     // set playerTurn state to player 1 DONE 
-   }, [])
    */
     
     // const [activeGame, setActiveGame] = useState(false)
-    // const [myHand, setMyHand] = useState([])
-    // const [otherPlayer1Hand, setOtherPlayer1Hand] = useState([])
-    // const [otherPlayer2Hand, setOtherPlayer2Hand] = useState([])
-    // const [otherPlayer3Hand, setOtherPlayer3Hand] = useState([])
     // const [drawingDeck, setDrawingDeck] = useState([])
     // const [playedDeck, setPlayedDeck] = useState([])
     // // const [playerTurn, setPlayerTurn] = useState('')
@@ -62,21 +39,6 @@ function ActiveGame(){
     //  the suffled deck is the drawing deck, the shuffle deck function is current just giving a random card
     // nned two function one to shuffle the deck, and one to dish out a single card 
     /*
-    function getArandomCard(){
-         return cards.Math.floor(Math.random()*cards.length)
-    }
-
-    function myStartingSevenCards(){ // setMyHand state to this array
-        const card1 = getArandomCard()
-        const card2 = getArandomCard()
-        const card3 = getArandomCard()
-        const card4 = getArandomCard()
-        const card5 = getArandomCard()
-        const card6 = getArandomCard()
-        const card7 = getArandomCard()
-
-        return([card1, card2, card3, card4, card5, card6, card7])
-    }
 
     function playedDeckStartCard(){ //setPlayedDeck to this card
         const firstCard = getArandomCard()
@@ -101,13 +63,11 @@ function ActiveGame(){
     const [clockWise, setClockwise]= useState(true)
     const [initialTurn, setInitialTurn] = useState(true)
     // const [playerTurn, setPlayerTurn] = useState({gametable.player_1})
-    const [frontOfCard, setFrontOfCard] = useState(true)
+    const [displayCard, setDisplayCard] = useState(true)
     function seeingBackofCard(){
        return setFrontOfCard(false)
     }
 
-    
-    
     console.log("playerTurn:", playerTurn)
     console.log("first player:", players[0])
 
@@ -210,57 +170,59 @@ function ActiveGame(){
     return(
         <Container>
             {/* <h3> Its my turn: {playerTurn} </h3>  */}
-            <div>
-                <button> Drawing Deck </button>
-            </div>
             <div >
                 {/* <My_Hand seethecards={frontOfCard} 
                         player1Turn={player1Turn} 
                         player1Skip={player1Skip} 
                         player1Reverse={player1Reverse}/>  */}
                 <h2> Player 1</h2>
-                    <My_Hand seethecards={frontOfCard} />
                 <button onClick={player1Turn}> Next </button>
                 <button onClick={player1Skip}> Skip </button>
                 <button onClick={handleReverse}> Reverse </button>
             </div> 
 
             <div>
-                {/* < Other_Player2
-                    dontSeeTheCards={setFrontOfCard} 
+                
+                    <Other_Player2 
+                    completeDeck={completeDeck}
+                    dontSeeTheCards={seeingBackofCard} 
                     player2Turn={player2Turn} 
                     player2Skip={player2Skip} 
                     player2Reverse={player2Reverse}/> */}
                 <h2> Player 2</h2> 
-                    <Other_Player2 dontseeCards={seeingBackofCard}/>
                     <button onClick={player2Turn}> Next </button>
                     <button onClick={player2Skip}> Skip </button> 
                     <button onClick={handleReverse}> Reverse </button>
             </div> 
 
             <div>
-                {/* <Other_Player3 
-                    dontSeeTheCards={setFrontOfCard} 
-                    player3Skip={player3Skip} 
+                
+                    <Other_Player3 
+                    completeDeck={completeDeck}
+                    dontSeeTheCards={seeingBackofCard} 
                     player3Turn={player3Turn} 
-                    player3Reverse={player3Reverse}/> */}
-                <h2> Player 3</h2> 
-                    <button onClick={player3Turn}> Next </button>
-                    <button onClick={player3Skip}> Skip </button> 
-                    <button onClick={handleReverse}> Reverse </button>
+                    player3Skip={player3Skip} 
+                    handleReverse={handleReverse} 
+                    player3HandState={player3HandState}/>
+                    
             </div> 
 
             <div>
-                {/* <Other_Player4
-                    dontSeeTheCards={setFrontOfCard} 
-                    player4Skip={player4Skip} 
+                
+                    <Other_Player4 
+                    completeDeck={completeDeck}
+                    dontSeeTheCards={seeingBackofCard} 
                     player4Turn={player4Turn} 
-                    player4Reverse={player4Reverse}/> */}
-                <h2> Player 4 </h2>
-                    <button onClick={player4Turn}> Next </button>
-                    <button onClick={player4Skip}> Skip </button> 
-                    <button onClick={handleReverse}> Reverse </button>
+                    player1Skip={player4Skip} 
+                    handleReverse={handleReverse}
+                    player4HandState={player4HandState}/>
+                    
             </div> 
+            <br></br>
+            <div>
+                <button onClick={addsCardToHand}>Draw Card</button>
+            </div>
+
 
             {/* <myPlayerHand cardsInHand/>
 

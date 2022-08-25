@@ -1,0 +1,2 @@
+class GameTablesController < ApplicationController
+end
