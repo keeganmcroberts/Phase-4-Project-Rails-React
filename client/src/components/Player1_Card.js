@@ -73,191 +73,185 @@ import illusionist_1 from '../cards/Red_1.png'
 import illusionist_0 from '../cards/Red_0.png'
 
 
-function Player1Card({ eachCard, myHandState, player2HandState, player3HandState, player4HandState, seethecards, card}){
+function Player1Card({player1Turn, player1Skip, player1HandleReverse, player1Add2, emblem, value, eachCard, myHandState, displayCard, card}){
     
 
-//  for start state 
-// if ( myHandState.length > 7 && player2HandState > 7 && player3HandState > 7 && player4HandState > 7)
-//     return setStartState(true)
-
-
-
-    const [testcard, setTestCard] = useState({"emblem": "druid", "number": "5" })
-
+    // const [testcard, setTestCard] = useState({"emblem": "druid", "number": "5" })
+console.log("player 1 ADD 2:", player1Add2)
     function cardImageAssignment(){
-        console.log("THE HAND:", eachCard)
+        // console.log("THE HAND:", eachCard)
         
         // if (myHandState > 1 && player2HandState > 1 && player3HandState > 1 && player4HandState > 1)
-        if (myHandState> 0)  
+        // if (myHandState > 0)  
   
-        return eachCard.map( eachCard =>{
+        return myHandState.map( eachCard =>{
             
-        if (eachCard.emblem === "thief" && eachCard.value === "0")
-            return <img src={thief_0} height={100} width={75} alt="thief 0"/>
-        else if (eachCard.emblem === "thief" && eachCard.value === "1")
-            return <img src={thief_1} height={100} width={75} alt="thief 1"/>
-        else if (eachCard.emblem === "thief" && eachCard.value === "2")
-            return <img src={thief_2} height={100} width={75} alt="thief 2"/>
-        else if (eachCard.emblem === "thief" && eachCard.value === "3")
-            return <img src={thief_3} height={100} width={75} alt="thief 3"/>
-        else if (eachCard.emblem === "thief" && eachCard.value === "4")
-            return <img src={thief_4} height={100} width={75} alt="thief 4"/>
-        else if (eachCard.emblem === "thief" && eachCard.value === "5")
-            return <img src={thief_5} height={100} width={75} alt ="thief 5"/>
-        else if (eachCard.emblem === "thief" && eachCard.value === "6")
-            return <img src={thief_6} height={100} width={75} alt="thief 6"/>
-        else if (eachCard.emblem === "thief" && eachCard.value === "7")
-            return <img src={thief_7} height={100} width={75} alt="thief 7"/>
-        else if (eachCard.emblem === "thief" && eachCard.value === "8")
-            return <img src={thief_8} height={100} width={75} alt="thief 8"/>
-        else if (eachCard.emblem === "thief" && eachCard.value === "9")
-            return <img src={thief_9} height={100} width={75} alt="thief 9"/>
-        else if (eachCard.emblem === "thief" && eachCard.value === "10")
-            return <img src={thief_10} height={100} width={75} alt="thief 10"/>
-        else if (eachCard.emblem === "thief" && eachCard.value === "11")
-            return <img src={thief_11} height={100} width={75} alt="thief 11"/>
-        else if (eachCard.emblem === "thief" && eachCard.value === "12")
-            return <img src={thief_12} height={100} width={75} alt="thief 12"/>
+        if (eachCard.emblem === "thief_0" && eachCard.value === "0")
+            return <img onClick={()=>player1Turn(eachCard)}src={thief_0} height={100} width={75} alt="thief 0"/>
+        else if (eachCard.emblem === "thief_1")
+            return <img onClick={()=>player1Turn(eachCard)} src={thief_1} height={100} width={75} alt="thief 1"/>
+        else if (eachCard.emblem === "thief_2")
+            return <img onClick={()=>player1Turn(eachCard)} src={thief_2} height={100} width={75} alt="thief 2"/>
+        else if (eachCard.emblem === "thief_3" )
+            return <img onClick={()=>player1Turn(eachCard)} src={thief_3} height={100} width={75} alt="thief 3"/>
+        else if (eachCard.emblem === "thief_4")
+            return <img onClick={()=>player1Turn(eachCard)} src={thief_4} height={100} width={75} alt="thief 4"/>
+        else if (eachCard.emblem === "thief_5")
+            return <img onClick={()=>player1Turn(eachCard)} src={thief_5} height={100} width={75} alt ="thief 5"/>
+        else if (eachCard.emblem === "thief_6")
+            return <img onClick={()=>player1Turn(eachCard)} src={thief_6} height={100} width={75} alt="thief 6"/>
+        else if (eachCard.emblem === "thief_7")
+            return <img onClick={()=>player1Turn(eachCard)} src={thief_7} height={100} width={75} alt="thief 7"/>
+        else if (eachCard.emblem === "thief_8")
+            return <img onClick={()=>player1Turn(eachCard)} src={thief_8} height={100} width={75} alt="thief 8"/>
+        else if (eachCard.emblem === "thief_9")
+            return <img onClick={()=>player1Turn(eachCard)} src={thief_9} height={100} width={75} alt="thief 9"/>
+        else if (eachCard.emblem === "thief_10")
+            return <img onClick={()=>player1Turn(eachCard)} src={thief_10} height={100} width={75} alt="thief 10"/>
+        else if (eachCard.emblem === "thief_11")
+            return <img onClick={()=>player1Turn(eachCard)} src={thief_11} height={100} width={75} alt="thief 11"/>
+        else if (eachCard.emblem === "thief_12")
+            return <img onClick={()=>player1Turn(eachCard)} src={thief_12} height={100} width={75} alt="thief 12"/>
         else if (eachCard.emblem === "thief_skip")
-            return <img src={thief_skip} height={100} width={75} alt="thief skip"/>
+            return <img onClick={()=>player1Skip(eachCard)}src={thief_skip} height={100} width={75} alt="thief skip"/>
         else if (eachCard.emblem === "thief_reverse")
-            return <img src={thief_reverse} height={100} width={75} alt="thief reverse"/>
+            return <img onClick={()=>player1HandleReverse(eachCard)}src={thief_reverse} height={100} width={75} alt="thief reverse"/>
         else if (eachCard.emblem === "thief_add_2")
-            return <img src={thief_add_2} height={100} width={75} alt="thief add 2"/>
+            return <img onClick={()=> {player1Add2(); player1Turn(eachCard)}} src={thief_add_2} height={100} width={75} alt="thief add 2"/>
 
         
-        else if (eachCard.emblem === "druid" && eachCard.value === "0")
-            return <img src={druid_0} height={100} width={75} alt="druid 0"/>
-        else if (eachCard.emblem === "druid" && eachCard.value === "1")
-            return <img src={druid_1} height={100} width={75} alt="druid 1"/>
-        else if (eachCard.emblem === "druid" && eachCard.value === "2")
-            return <img src={druid_2} height={100} width={75} alt="druid 2"/>
-        else if (eachCard.emblem === "druid" && eachCard.value === "3")
-            return <img src={druid_3} height={100} width={75} alt="druid 3"/>
-        else if (eachCard.emblem === "druid" && eachCard.value === "4")
-            return <img src={druid_4} height={100} width={75} alt="druid 4"/>
-        else if (eachCard.emblem === "druid" && eachCard.value === "5")
-            return <img src={druid_5} height={100} width={75} alt="druid 5"/>
-        else if (eachCard.emblem === "druid" && eachCard.value === "6")
-            return <img src={druid_6} height={100} width={75} alt="druid 6"/>
-        else if (eachCard.emblem === "druid" && eachCard.value === "7")
-            return <img src={druid_7} height={100} width={75} alt="druid 7"/>
-        else if (eachCard.emblem === "druid" && eachCard.value === "8")
-            return <img src={druid_8} height={100} width={75} alt="druid 8"/>
-        else if (eachCard.emblem === "druid" && eachCard.value === "9")
-            return <img src={druid_9} height={100} width={75} alt="druid 9"/>
-        else if (eachCard.emblem === "druid" && eachCard.value === "10")
-            return <img src={druid_10} height={100} width={75} alt="druid 10"/>
-        else if (eachCard.emblem === "druid" && eachCard.value === "11")
-            return <img src={druid_11} height={100} width={75} alt="druid 11"/>
-        else if (eachCard.emblem === "druid" && eachCard.value === "12")
-            return <img src={druid_12} height={100} width={75} alt="druid 12"/>
+        else if (eachCard.emblem === "druid_0")
+            return <img onClick={()=>player1Turn(eachCard)} src={druid_0} height={100} width={75} alt="druid 0"/>
+        else if (eachCard.emblem === "druid_1")
+            return <img onClick={()=>player1Turn(eachCard)} src={druid_1} height={100} width={75} alt="druid 1"/>
+        else if (eachCard.emblem === "druid_2")
+            return <img onClick={()=>player1Turn(eachCard)} src={druid_2} height={100} width={75} alt="druid 2"/>
+        else if (eachCard.emblem === "druid_3" )
+            return <img onClick={()=>player1Turn(eachCard)} src={druid_3} height={100} width={75} alt="druid 3"/>
+        else if (eachCard.emblem === "druid_4")
+            return <img onClick={()=>player1Turn(eachCard)} src={druid_4} height={100} width={75} alt="druid 4"/>
+        else if (eachCard.emblem === "druid_5")
+            return <img onClick={()=>player1Turn(eachCard)} src={druid_5} height={100} width={75} alt="druid 5"/>
+        else if (eachCard.emblem === "druid_6")
+            return <img onClick={()=>player1Turn(eachCard)} src={druid_6} height={100} width={75} alt="druid 6"/>
+        else if (eachCard.emblem === "druid_7")
+            return <img onClick={()=>player1Turn(eachCard)} src={druid_7} height={100} width={75} alt="druid 7"/>
+        else if (eachCard.emblem === "druid_8")
+            return <img onClick={()=>player1Turn(eachCard)} src={druid_8} height={100} width={75} alt="druid 8"/>
+        else if (eachCard.emblem === "druid_9")
+            return <img onClick={()=>player1Turn(eachCard)} src={druid_9} height={100} width={75} alt="druid 9"/>
+        else if (eachCard.emblem === "druid_10" )
+            return <img onClick={()=>player1Turn(eachCard)} src={druid_10} height={100} width={75} alt="druid 10"/>
+        else if (eachCard.emblem === "druid_11" )
+            return <img onClick={()=>player1Turn(eachCard)} src={druid_11} height={100} width={75} alt="druid 11"/>
+        else if (eachCard.emblem === "druid_12" )
+            return <img onClick={()=>player1Turn(eachCard)} src={druid_12} height={100} width={75} alt="druid 12"/>
         else if (eachCard.emblem === "druid_skip")
-            return <img src={druid_skip} height={100} width={75} alt="druid skip"/>
+            return <img onClick={()=>player1Skip(eachCard)}src={druid_skip} height={100} width={75} alt="druid skip"/>
         else if (eachCard.emblem === "druid_reverse")
-            return <img src={druid_reverse} height={100} width={75} alt="druid reverse"/>
+            return <img onClick={()=>player1HandleReverse(eachCard)}src={druid_reverse} height={100} width={75} alt="druid reverse"/>
         else if (eachCard.emblem === "druid_add_2")
-            return <img src={druid_add_2} height={100} width={75} alt="druid add 2" />
+            return <img onClick={()=> {player1Add2(); player1Turn(eachCard)}} src={druid_add_2} height={100} width={75} alt="druid add 2" />
 
-        else if (eachCard.emblem === "illusionist" && eachCard.value === "0")
-            return <img src={illusionist_0} height={100} width={75} alt=" illusionist 0"/>
-        else if (eachCard.emblem === "illusionist" && eachCard.value === "1")
-            return <img src={illusionist_1} height={100} width={75} alt=" illusionist 1"/>
-        else if (eachCard.emblem === "illusionist" && eachCard.value === "2")
-            return <img src={illusionist_2} height={100} width={75} alt=" illusionist 2"/>
-        else if (eachCard.emblem === "illusionist" && eachCard.value === "3")
-            return <img src={illusionist_3} height={100} width={75} alt=" illusionist 3"/>
-        else if (eachCard.emblem === "illusionist" && eachCard.value === "4")
-            return <img src={illusionist_4} height={100} width={75} alt=" illusionist 4" />
-        else if (eachCard.emblem === "illusionist" && eachCard.value === "5")
-            return <img src={illusionist_5} height={100} width={75} alt=" illusionist 5"/>
-        else if (eachCard.emblem === "illusionist" && eachCard.value === "6")
-            return <img src={illusionist_6} height={100} width={75} alt=" illusionist 6"/>
-        else if (eachCard.emblem === "illusionist" && eachCard.value === "7")
-            return <img src={illusionist_7} height={100} width={75} alt=" illusionist 7"/>
-        else if (eachCard.emblem === "illusionist" && eachCard.value === "8")
-            return <img src={illusionist_8} height={100} width={75} alt=" illusionist 8"/>
-        else if (eachCard.emblem === "illusionist" && eachCard.value === "9")
-            return <img src={illusionist_9} height={100} width={75} alt=" illusionist 9"/>
-        else if (eachCard.emblem === "illusionist" && eachCard.value === "10")
-            return <img src={illusionist_10} height={100} width={75} alt=" illusionist 10"/>
-        else if (eachCard.emblem === "illusionist" && eachCard.value === "11")
-            return <img src={illusionist_11} height={100} width={75} alt=" illusionist 11"/>
-        else if (eachCard.emblem === "illusionist" && eachCard.value === "12")
-            return <img src={illusionist_12} height={100} width={75} alt=" illusionist 12"/>
+        else if (eachCard.emblem === "illusionist_0")
+            return <img onClick={()=>player1Turn(eachCard)} src={illusionist_0} height={100} width={75} alt=" illusionist 0"/>
+        else if (eachCard.emblem === "illusionist_1")
+            return <img onClick={()=>player1Turn(eachCard)} src={illusionist_1} height={100} width={75} alt=" illusionist 1"/>
+        else if (eachCard.emblem === "illusionist_2")
+            return <img onClick={()=>player1Turn(eachCard)} src={illusionist_2} height={100} width={75} alt=" illusionist 2"/>
+        else if (eachCard.emblem === "illusionist_3")
+            return <img onClick={()=>player1Turn(eachCard)} src={illusionist_3} height={100} width={75} alt=" illusionist 3"/>
+        else if (eachCard.emblem === "illusionist_4")
+            return <img onClick={()=>player1Turn(eachCard)} src={illusionist_4} height={100} width={75} alt=" illusionist 4" />
+        else if (eachCard.emblem === "illusionist_5")
+            return <img onClick={()=>player1Turn(eachCard)} src={illusionist_5} height={100} width={75} alt=" illusionist 5"/>
+        else if (eachCard.emblem === "illusionist_6")
+            return <img onClick={()=>player1Turn(eachCard)} src={illusionist_6} height={100} width={75} alt=" illusionist 6"/>
+        else if (eachCard.emblem === "illusionist_7")
+            return <img onClick={()=>player1Turn(eachCard)} src={illusionist_7} height={100} width={75} alt=" illusionist 7"/>
+        else if (eachCard.emblem === "illusionist_8")
+            return <img onClick={()=>player1Turn(eachCard)} src={illusionist_8} height={100} width={75} alt=" illusionist 8"/>
+        else if (eachCard.emblem === "illusionist_9")
+            return <img onClick={()=>player1Turn(eachCard)} src={illusionist_9} height={100} width={75} alt=" illusionist 9"/>
+        else if (eachCard.emblem === "illusionist_10")
+            return <img onClick={()=>player1Turn(eachCard)} src={illusionist_10} height={100} width={75} alt=" illusionist 10"/>
+        else if (eachCard.emblem === "illusionist_11")
+            return <img onClick={()=>player1Turn(eachCard)} src={illusionist_11} height={100} width={75} alt=" illusionist 11"/>
+        else if (eachCard.emblem === "illusionist_12")      
+              return <img onClick={()=>player1Turn(eachCard)} src={illusionist_12} height={100} width={75} alt=" illusionist 12"/>
         else if (eachCard.emblem === "illusionist_skip")
-            return <img src={illusionist_skip} height={100} width={75}  alt=" illusionist skip"/>
+            return <img onClick={()=>player1Skip(eachCard)} src={illusionist_skip} height={100} width={75}  alt=" illusionist skip"/>
         else if (eachCard.emblem === "illusionist_reverse")
-            return <img src={illusionist_reverse} height={100} width={75} alt=" illusionist reverse"/>
+            return <img onClick={()=>player1HandleReverse(eachCard)}src={illusionist_reverse} height={100} width={75} alt=" illusionist reverse"/>
         else if (eachCard.emblem === "illusionist_add_2")
-            return <img src={illusionist_add_2} height={100} width={75} alt=" illusionist add 2"/>
+            return <img onClick={()=> {player1Add2(); player1Turn(eachCard)}} src={illusionist_add_2} height={100} width={75} alt=" illusionist add 2"/>
 
-        else if (eachCard.emblem === "bard" && eachCard.value === "0")
-            return <img src={bard_0} height={100} width={75} alt=" bard 0"/>
-        else if (eachCard.emblem === "bard" && eachCard.value === "1")
-            return <img src={bard_1} height={100} width={75} alt=" bard 1"/>
-        else if (eachCard.emblem === "bard" && eachCard.value === "2")
-            return <img src={bard_2} height={100} width={75} alt=" bard 2"/>
-        else if (eachCard.emblem === "bard" && eachCard.value === "3")
-            return <img src={bard_3} height={100} width={75} alt=" bard 3"/>
-        else if (eachCard.emblem === "bard" && eachCard.value === "4")
-            return <img src={bard_4} height={100} width={75} alt=" bard 4"/>
-        else if (eachCard.emblem === "bard" && eachCard.value === "5")
-            return <img src={bard_5} height={100} width={75} alt=" bard 5"/>
-        else if (eachCard.emblem === "bard" && eachCard.value === "6")
-            return <img src={bard_6} height={100} width={75}  alt=" bard 6"/>
-        else if (eachCard.emblem === "bard" && eachCard.value === "7")
-            return <img src={bard_7} height={100} width={75} alt=" bard 7"/>
-        else if (eachCard.emblem === "bard" && eachCard.value === "8")
-            return <img src={bard_8} height={100} width={75} alt=" bard 8"/>
-        else if (eachCard.emblem === "bard" && eachCard.value === "9")
-            return <img src={bard_9} height={100} width={75} alt=" bard 9"/>
-        else if (eachCard.emblem === "bard" && eachCard.value === "10")
-            return <img src={bard_10} height={100} width={75} alt=" bard 10"/>
-        else if (eachCard.emblem === "bard" && eachCard.value === "11")
-            return <img src={bard_11} height={100} width={75} alt=" bard 11"/>
-        else if (eachCard.emblem === "bard" && eachCard.value === "12")
-            return <img src={bard_12} height={100} width={75} alt=" bard 12" />
+        else if (eachCard.emblem === "bard_0")
+            return <img onClick={()=>player1Turn(eachCard)} src={bard_0} height={100} width={75} alt=" bard 0"/>
+        else if (eachCard.emblem === "bard_1")
+            return <img onClick={()=>player1Turn(eachCard)} src={bard_1} height={100} width={75} alt=" bard 1"/>
+        else if (eachCard.emblem === "bard_2")
+            return <img onClick={()=>player1Turn(eachCard)} src={bard_2} height={100} width={75} alt=" bard 2"/>
+        else if (eachCard.emblem === "bard_3")
+            return <img onClick={()=>player1Turn(eachCard)} src={bard_3} height={100} width={75} alt=" bard 3"/>
+        else if (eachCard.emblem === "bard_4")
+            return <img onClick={()=>player1Turn(eachCard)} src={bard_4} height={100} width={75} alt=" bard 4"/>
+        else if (eachCard.emblem === "bard_5")
+            return <img onClick={()=>player1Turn(eachCard)} src={bard_5} height={100} width={75} alt=" bard 5"/>
+        else if (eachCard.emblem === "bard_6")
+            return <img onClick={()=>player1Turn(eachCard)} src={bard_6} height={100} width={75}  alt=" bard 6"/>
+        else if (eachCard.emblem === "bard_7")
+            return <img onClick={()=>player1Turn(eachCard)} src={bard_7} height={100} width={75} alt=" bard 7"/>
+        else if (eachCard.emblem === "bard_8")
+            return <img onClick={()=>player1Turn(eachCard)} src={bard_8} height={100} width={75} alt=" bard 8"/>
+        else if (eachCard.emblem === "bard_9")
+            return <img onClick={()=>player1Turn(eachCard)} src={bard_9} height={100} width={75} alt=" bard 9"/>
+        else if (eachCard.emblem === "bard_10")
+            return <img onClick={()=>player1Turn(eachCard)} src={bard_10} height={100} width={75} alt=" bard 10"/>
+        else if (eachCard.emblem === "bard_11")
+            return <img onClick={()=>player1Turn(eachCard)} src={bard_11} height={100} width={75} alt=" bard 11"/>
+        else if (eachCard.emblem === "bard_12")
+            return <img onClick={()=>player1Turn(eachCard)} src={bard_12} height={100} width={75} alt=" bard 12" />
         else if (eachCard.emblem === "bard_skip")
-            return <img src={bard_skip} height={100} width={75} alt=" bard skip"/>
+            return <img onClick={()=>player1Skip(eachCard)} src={bard_skip} height={100} width={75} alt=" bard skip"/>
         else if (eachCard.emblem === "bard_reverse")
-            return <img src={bard_reverse} height={100} width={75} alt=" bard reverse" />
+            return <img onClick={()=>player1HandleReverse(eachCard)} src={bard_reverse} height={100} width={75} alt=" bard reverse" />
         else if (eachCard.emblem === "bard_add_2")
-            return <img src={bard_add_2} height={100} width={75} alt="bard add 2"/>
+            return <img onClick={()=> {player1Add2(); player1Turn(eachCard)}} src={bard_add_2} height={100} width={75} alt="bard add 2"/>
 
         else if (eachCard.emblem === "draw_4")
             return <img src={wild_draw4} height={100} width={75} alt=" wild draw 4"/>
         else if (eachCard.emblem === "wild")
             return <img src={wild} height={100} width={75} alt="wild"/>     
-        })
+        // })
         else 
-            return null
-    
-    }
+            console.log("Player 1 messed up card:", eachCard)
+        
+    })}
+    // function toSeeCard(){
+    //     if (myHandState > 0)
+    //     return cardImageAssignment()
+    // }
 
     function assigningBackofCard(){
-        return < img src={backOfCard} height={100} width={75} alt="This is the back" />
-    }
-console.log("my hand state in card component:", myHandState)
+    
+        return < img src={backOfCard} height={100} width={75} alt="This is the back" /> }
+    // }
+// console.log("my hand state in card component:", myHandState)
 // console.log("player 2 state in card component:", player2HandState)
 // console.log("player 3 state in card component:", player3HandState)
 // console.log("player 4 state in card component:", player4HandState)
 
-    // if card.name === number 
-    //     return nextturn()
-    return(
-        <>
-    { seethecards ? 
-            //  assigningBackofCard()
-            cardImageAssignment() 
-        :
-            
-            // cardImageAssignment()
-            assigningBackofCard() 
-        
-    }    
-        </>
-    )
+   console.log("displayCard:", displayCard)
+     
+     return(
+         <>{displayCard ? cardImageAssignment() : assigningBackofCard} </>
+         
+
+     )
+     
+            //  assigningBackofCard()  
+    
 }
 export default Player1Card;
 

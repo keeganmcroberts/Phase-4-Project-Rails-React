@@ -6,130 +6,78 @@ import Other_Player2 from './other_players_hands/Other_Player2'
 import Other_Player3 from './other_players_hands/Other_Player3'
 import Other_Player4 from './other_players_hands/Other_Player4'
 
-const Container = styled.div` 
+const Container = styled.div`
 
 `
 
+
 function ActiveGame(){
-    // set minimum and max number of players in each game 
-    //  player hands are dependant on the number of players
 
-    //  in each componenet of player hands each player starts with seven cards
-    //  update request to add and delete cards from each hand as theyre picked up and played
- /*
-    )
-    // shuffle cards DONE 
-    // 7 random cards for each player to start DONE
-    // 1 random card for the playedDeck pile (this starts this game ) DONE
-    // add remaining cards to the drawingDeck (i dont think we need to do this, as we've set the drawing deck
-        //  to infinitely shuffle through all the fetched cards)
-    // set currentColor and currentNumber states to the card played in the playedDeck 
-    // set playerTurn state to player 1 DONE 
-   */
-    
-    // const [activeGame, setActiveGame] = useState(false)
-    // const [drawingDeck, setDrawingDeck] = useState([])
-    // const [playedDeck, setPlayedDeck] = useState([])
-    // // const [playerTurn, setPlayerTurn] = useState('')
-    // //  this is going to be a part of the reverse and the skip cards 
-    // const [currentEmblem, setCurrentEmblem] = useState('')
-    // const [currentValue, setCurrentValue] = useState('')
-    //  this is going to be for played cards, if card - state next player, otherwise error  
-    
-    //  the suffled deck is the drawing deck, the shuffle deck function is current just giving a random card
-    // nned two function one to shuffle the deck, and one to dish out a single card 
-    /*
-
-    function playedDeckStartCard(){ //setPlayedDeck to this card
-        const firstCard = getArandomCard()
-        return firstCard
-    }
-    
-    //  i think this goes on the onclick function for the drawing deck
-    //  still need an update request here to add it to the hand 
-
-    //  figure out how not to shuffle every time  (might need to do reverse then pop)
-    function pickUpACard(){
-        const topCardOfDrawingDeck = getArandomCard()
-        return topCardOfDrawingDeck
-    }
-    
-    function putDownACard(){
-            const cardToPlay = "selected card"
-            //  hands aren't being persisted so im not 
-                // sure for the url or the updated date
-            function patchtoUpdateNextPlayerHand(){
-                fetch("url/${player.id}", {
-                    method: "PATCH", 
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify("next player hand state")
-                })
-                .then( res =>res.json)
-                .then()
-            }
-            function adding2s(){
-                if (cardToPlay === "thief_add_2")
-                    return patchtoUpdateNextPlayerHand()
-                else if (cardToPlay === "bard_add_2")
-                    return patchtoUpdateNextPlayerHand()
-                else if (cardToPlay === "illusionist_add_2")
-                    return patchtoUpdateNextPlayerHand()
-                else if (cardToPlay === "druid_add_2")
-                    return patchtoUpdateNextPlayerHand()
-            }
-            function skipping(){
-            //  need to look at last card played and current player turn 
-            }
-            function reversing(){
-            //  need to look at last card played and current player turn 
-            }
-            function wild_add4(){
-            //  not stackable so just needs to know current player turn to add cards to next player 
-            }
-        if (currentEmblem === cardToPlay.emblem)
-            return cardToPlay
-        else if(currentValue === cardToPlay.vlaue)
-            return cardToPlay
-        else if (currentEmblem === "thief_reverse")
-            return reversing()
-        else if (currentEmblem === "bard_reverse")
-            return reversing()
-        else if (currentEmblem === "illusionist_reverse")
-            return reversing()
-        else if (currentEmblem === "druid_reverse")
-        return reversing()
-        else if (currentEmblem === "thief_add_2")
-            return adding2s()
-        else if (currentEmblem === "bard_add_2")
-            return adding2s()
-        else if (currentEmblem === "illusionist_add_2")
-            return adding2s()
-        else if (currentEmblem === "druid_add_2")
-        return adding2s()
-        else if (currentEmblem === "thief_skip")
-            return skipping()
-        else if (currentEmblem === "bard_skip")
-            return skipping()
-        else if (currentEmblem === "illusionist_skip")
-            return skipping()
-        else if (currentEmblem === "druid_skip")
-        return skipping()
-        else if(selectedCard.emblem === "wild" )
-            return cardToPlay, "something that announces the new emblem"
-        else if (selectedCard.emblem === "draw 4")
-            return wild_add4()
-        else if (selectedCard != currentEmblem)
-            return "A card must match in color or value. Otherwise play a wild card."
-        else if (selectedCard != currentValue)
-            return "A card must match in color or value. Otherwise play a wild card."
-    }
+    // function putDownACard(){
+    //         const cardToPlay = "selected card"
+    //         //  hands aren't being persisted so im not 
+    //             // sure for the url or the updated date
+    //         }
+    //         function adding2s(){
+    //             if (cardToPlay === "thief_add_2")
+    //                 return patchtoUpdateNextPlayerHand()
+    //             else if (cardToPlay === "bard_add_2")
+    //                 return patchtoUpdateNextPlayerHand()
+    //             else if (cardToPlay === "illusionist_add_2")
+    //                 return patchtoUpdateNextPlayerHand()
+    //             else if (cardToPlay === "druid_add_2")
+    //                 return patchtoUpdateNextPlayerHand()
+    //         }
+    //         function skipping(){
+    //         //  need to look at last card played and current player turn 
+    //         }
+    //         function reversing(){
+    //         //  need to look at last card played and current player turn 
+    //         }
+    //         function wild_add4(){
+    //         //  not stackable so just needs to know current player turn to add cards to next player 
+    //         }
+    //     if (currentEmblem === cardToPlay.emblem)
+    //         return cardToPlay
+    //     else if(currentValue === cardToPlay.vlaue)
+    //         return cardToPlay
+    //     else if (currentEmblem === "thief_reverse" || currentEmblem ==== thief_1 || thief_2, 3, 4, 5, 6, 7, 8, 9 ,10, 11, 12|| curentEmblem === bard_reverse)
+    //         return reversing()
+    //     else if (currentEmblem === "bard_reverse")
+    //         return reversing()
+    //     else if (currentEmblem === "illusionist_reverse")
+    //         return reversing()
+    //     else if (currentEmblem === "druid_reverse")
+    //     return reversing()
+    //     else if (currentEmblem === "thief_add_2")
+    //         return adding2s()
+    //     else if (currentEmblem === "bard_add_2")
+    //         return adding2s()
+    //     else if (currentEmblem === "illusionist_add_2")
+    //         return adding2s()
+    //     else if (currentEmblem === "druid_add_2")
+    //     return adding2s()
+    //     else if (currentEmblem === "thief_skip")
+    //         return skipping()
+    //     else if (currentEmblem === "bard_skip")
+    //         return skipping()
+    //     else if (currentEmblem === "illusionist_skip")
+    //         return skipping()
+    //     else if (currentEmblem === "druid_skip")
+    //     return skipping()
+    //     else if(selectedCard.emblem === "wild" )
+    //         return cardToPlay, "something that announces the new emblem"
+    //     else if (selectedCard.emblem === "draw 4")
+    //         return wild_add4()
+    //     else if (selectedCard != currentEmblem)
+    //         return "A card must match in color or value. Otherwise play a wild card."
+    //     else if (selectedCard != currentValue)
+    //         return "A card must match in color or value. Otherwise play a wild card."
+    // }
  
-    */
 
-    /* 
-    moving between players 
-    - 
-    */ 
+
+    /* moving between players */
 
     const players = ["player_1", "player_2", "player_3", "player_4"]
 
@@ -137,13 +85,16 @@ function ActiveGame(){
     const [clockWise, setClockwise]= useState(true)
     const [initialTurn, setInitialTurn] = useState(true)
     // const [playerTurn, setPlayerTurn] = useState({gametable.player_1})
-    const [displayCard, setDisplayCard] = useState(true)
-    function seeingBackofCard(){
-       return setDisplayCard(false) 
-    }
+    const [displayCard, setDisplayCard] = useState(false)
+    // function onceGamehasStartedSeeCards(){
+    //    return setDisplayCard(true) 
+    // }
 
 //     
     const [completeDeck, setCompleteDeck] = useState([])
+    const [drawingDeck, setDrawingDeck] = useState([])
+    const [playedCards, setPlayedCards] = useState([])
+    const thePlayedCardsArray = []
     const Player4Hand =[]
     const [player4HandState, setPlayer4HandState] = useState([Player4Hand])
     const Player3Hand = []
@@ -159,9 +110,6 @@ function ActiveGame(){
         fetch("http://localhost:3000/cards")
         .then(res => res.json())
         .then(data => setCompleteDeck(data))
-        
-        
-
     }, [])
 
    console.log("complete deck:", completeDeck)
@@ -180,8 +128,97 @@ function ActiveGame(){
         const randomCard = arrayOfCards[randomIndex]
         return randomCard
     }
+    
 
-    console.log("The random card:", getARandomCard(completeDeck))
+    function drawingFromUpdatedDeck(){
+        const cardToAddToHand = addsCardToHand()
+        const updatedDrawingDeck = drawingDeck.filter((card) =>{
+            return card.id != cardToAddToHand.id
+        })
+        setDrawingDeck([updatedDrawingDeck])
+    }
+
+        function whenDrawingDeckisZero(){
+            if (drawingDeck < 1)
+            setDrawingDeck([completeDeck])
+        }
+
+
+     function addsCardToHand(){
+        // const newCard = getARandomCard(completeDeck)
+        const newCard = getARandomCard(drawingDeck)
+        console.log("NEWCARD:", newCard)
+        if ("player_1" === playerTurn)
+            return setMyHandState([newCard, ...myHandState])
+
+        else if ("player_2" === playerTurn)
+            return setPlayer2HandState([newCard, ...player2HandState])
+
+        else if ("player_3" === playerTurn)
+            return setPlayer3HandState([newCard, ...player3HandState])
+
+        else if ("player_4" === playerTurn)
+            return setPlayer4HandState([newCard, ...player4HandState])
+    }
+    
+    // function draw4WildPlayer1(){
+    //     const Card1=getARandomCard(updatedDeck)
+    //     const Card2=getARandomCard(updatedDeck)
+    //     const Card3=getARandomCard(updatedDeck)
+    //     const Card4=getARandomCard(updatedDeck)
+        
+    //      if ("player_1" === playerTurn && clockWise === true)
+           
+    //         return setPlayer2HandState([card1, card2, card3, card4, ...player2HandState])
+    //     if ("player_1" === playerTurn && clockWise === false)
+          
+    //         return setPlayer4HandState ([card1, card2, card3, card4, ...player4HandState])
+    // }
+
+    // function draw4WildPlayer2(){
+    //     const Card1=getARandomCard(updatedDeck)
+    //     const Card2=getARandomCard(updatedDeck)
+    //     const Card3=getARandomCard(updatedDeck)
+    //     const Card4=getARandomCard(updatedDeck)
+        
+    //      if ("player_2" === playerTurn && clockWise === true)
+           
+    //         return setPlayer3HandState([card1, card2, card3, card4, ...player3HandState])
+    //     if ("player_2" === playerTurn && clockWise === false)
+          
+    //         return setmyHandState ([card1, card2, card3, card4, ...myHandState])
+    // }
+
+    // function draw4WildPlayer3(){
+    //     const Card1=getARandomCard(updatedDeck)
+    //     const Card2=getARandomCard(updatedDeck)
+    //     const Card3=getARandomCard(updatedDeck)
+    //     const Card4=getARandomCard(updatedDeck)
+        
+    //      if ("player_3" === playerTurn && clockWise === true)
+           
+    //         return setPlayer4HandState([card1, card2, card3, card4, ...player4HandState])
+    //     if ("player_2" === playerTurn && clockWise === false)
+          
+    //         return setplayer2HandState ([card1, card2, card3, card4, ...player2HandState])
+    // }
+
+    // function draw4WildPlayer2(){
+    //     const Card1=getARandomCard(updatedDeck)
+    //     const Card2=getARandomCard(updatedDeck)
+    //     const Card3=getARandomCard(updatedDeck)
+    //     const Card4=getARandomCard(updatedDeck)
+        
+    //      if ("player_4" === playerTurn && clockWise === true)
+           
+    //         return setMyHandState([card1, card2, card3, card4, ...myHandState])
+    //     if ("player_4" === playerTurn && clockWise === false)
+          
+    //         return setPlayer3HandState ([card1, card2, card3, card4, ...player3HandState])
+    // }
+    
+
+    // console.log("The random card:", getARandomCard(completeDeck))
     
     
     function StartingSevenCards(){ // setMyHand state to this array
@@ -203,7 +240,7 @@ function ActiveGame(){
         setPlayer3HandState(StartingSevenCards)
         setPlayer4HandState(StartingSevenCards)
 
-        
+        setDisplayCard(true)  
     }
 
     
@@ -215,7 +252,8 @@ function ActiveGame(){
 
 
     function addsCardToHand(){
-        const newCard = getARandomCard(completeDeck)
+        const newCard = getARandomCard(drawingDeck)
+        // const newCard = getARandomCard(drawingDeck)
         console.log("NEWCARD:", newCard)
         if ("player_1" === playerTurn)
             return setMyHandState([newCard, ...myHandState])
@@ -238,19 +276,36 @@ function ActiveGame(){
 
    
 //     TO Determine Player Turn 
-    console.log("playerTurn:", playerTurn)
-    console.log("first player:", players[0])
-
+    console.log("PLAYER TURN:", playerTurn)
+    // console.log("first player:", players[0])
+console.log("played cards pile:", playedCards)
     
-    function player1Turn(){
-        console.log("click")
+
+
+
+    function player1Turn(card){
+        console.log("click:", card)
+        const cardToDelete = myHandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+        })
+         const deleteSpecificIndex = myHandState.indexOf(cardToDelete)
+            myHandState.splice(deleteSpecificIndex, 1)
+            playedCards.push(cardToDelete)
+
         setInitialTurn(false)
         if ("player_1" === playerTurn && clockWise === true)
             return setPlayerTurn("player_2") 
         else if ("player_1" ===playerTurn && clockWise === false)
             return setPlayerTurn("player_4")
+        
     }
-    function player2Turn(){
+    function player2Turn(card){
+        const cardToDelete = player2HandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+        })
+         const deleteSpecificIndex = player2HandState.indexOf(cardToDelete)
+            player2HandState.splice(deleteSpecificIndex, 1)
+            playedCards.push(cardToDelete)
        
        if ("player_2" === playerTurn && clockWise === true)
             return setPlayerTurn("player_3") 
@@ -258,7 +313,13 @@ function ActiveGame(){
             return setPlayerTurn("player_1")
         
     }
-    function player3Turn(){
+    function player3Turn(card){
+        const cardToDelete = player3HandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+        })
+         const deleteSpecificIndex = player3HandState.indexOf(cardToDelete)
+            player3HandState.splice(deleteSpecificIndex, 1)
+            playedCards.push(cardToDelete)
        
         if ("player_3" === playerTurn && clockWise === true)
             return setPlayerTurn("player_4")
@@ -266,7 +327,13 @@ function ActiveGame(){
             return setPlayerTurn("player_2")
    }
 
-    function player4Turn(){
+    function player4Turn(card){
+        const cardToDelete = player4HandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+        })
+         const deleteSpecificIndex = player4HandState.indexOf(cardToDelete)
+            player4HandState.splice(deleteSpecificIndex, 1)
+            playedCards.push(cardToDelete)
         
         if ("player_4" === playerTurn && clockWise === true )
             return setPlayerTurn("player_1")  
@@ -274,7 +341,87 @@ function ActiveGame(){
             return setPlayerTurn("player_3")      
 }
 
-    console.log("order direction:", clockWise)
+    function player1Add2(card){
+        const cardToDelete = myHandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+        })
+         const deleteSpecificIndex = myHandState.indexOf(cardToDelete)
+            myHandState.splice(deleteSpecificIndex, 1)
+            playedCards.push(cardToDelete)
+        
+        const card1 = getARandomCard(completeDeck)
+        const card2 = getARandomCard(completeDeck)
+        
+        if ("player_1" === playerTurn && clockWise === true)
+           
+            return setPlayer2HandState([card1, card2, ...player2HandState])
+        if ("player_1" === playerTurn && clockWise === false)
+          
+            return setPlayer4HandState ([card1, card2, ...player4HandState])
+    }
+
+    
+    function player2Add2(card){
+        const cardToDelete = player2HandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+        })
+         const deleteSpecificIndex = player2HandState.indexOf(cardToDelete)
+            player2HandState.splice(deleteSpecificIndex, 1)
+            playedCards.push(cardToDelete)
+        
+        const card1 = getARandomCard(completeDeck)
+        const card2 = getARandomCard(completeDeck)
+        
+        if ("player_2" === playerTurn && clockWise === true)
+           
+            return setPlayer3HandState([card1, card2, ...player3HandState])
+        if ("player_2" === playerTurn && clockWise === false)
+          
+            return setMyHandState ([card1, card2, ...myHandState])
+    }
+    
+
+    function player3Add2(card){
+        const cardToDelete = player3HandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+        })
+         const deleteSpecificIndex = player3HandState.indexOf(cardToDelete)
+            player3HandState.splice(deleteSpecificIndex, 1)
+            playedCards.push(cardToDelete)
+        
+        const card1 = getARandomCard(completeDeck)
+        const card2 = getARandomCard(completeDeck)
+        
+        if ("player_3" === playerTurn && clockWise === true)
+           
+            return setPlayer4HandState([card1, card2, ...player4HandState])
+        if ("player_3" === playerTurn && clockWise === false)
+          
+            return setPlayer2HandState ([card1, card2, ...player2HandState])
+    }
+
+    function player4Add2(card){
+        const cardToDelete = player4HandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+        })
+         const deleteSpecificIndex = player4HandState.indexOf(cardToDelete)
+            player4HandState.splice(deleteSpecificIndex, 1)
+            playedCards.push(cardToDelete)
+        
+        const card1 = getARandomCard(completeDeck)
+        const card2 = getARandomCard(completeDeck)
+        
+        if ("player_4" === playerTurn && clockWise === true)
+           
+            return setMyHandState([card1, card2, ...myHandState])
+        if ("player_4" === playerTurn && clockWise === false)
+          
+            return setPlayer3HandState ([card1, card2, ...player3HandState])
+    }
+    
+    
+
+    console.log("CLOCKWISE:", clockWise)
     
     /// REVERSE CARD LOGIC 
 
@@ -283,9 +430,9 @@ function ActiveGame(){
         if (initialTurn)
             return "hi"
         else if ("player_4" === playerTurn && clockWise === false)
-            return setPlayerTurn("player_1") 
+            return setPlayerTurn("player_3") 
         else if ("player_4" === playerTurn && clockWise === true)
-            return setPlayerTurn("player_3")
+            return setPlayerTurn("player_1")
         else if ("player_3" === playerTurn && clockWise === false)
             return setPlayerTurn("player_2") 
         else if ("player_3" === playerTurn && clockWise === true)
@@ -300,39 +447,109 @@ function ActiveGame(){
             return setPlayerTurn("player_2")
     }, [clockWise]) 
 
-    function handleReverse(){
+    function player1HandleReverse(card){
+        const cardToDelete = myHandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+        })
+         const deleteSpecificIndex = myHandState.indexOf(cardToDelete)
+            myHandState.splice(deleteSpecificIndex, 1)
+            playedCards.push(cardToDelete)
+        
+        setClockwise(!clockWise)
+        setInitialTurn(false)
+    }
+    
+    function player2HandleReverse(card){
+        const cardToDelete = player2HandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+    })
+        const deleteSpecificIndex = player2HandState.indexOf(cardToDelete)
+            player2HandState.splice(deleteSpecificIndex, 1)
+            playedCards.push(cardToDelete)
+        
+        setClockwise(!clockWise)
+        setInitialTurn(false)
+    }
+    
+    function player3HandleReverse(card){
+        const cardToDelete = player3HandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+})
+        const deleteSpecificIndex = player3HandState.indexOf(cardToDelete)
+            player3HandState.splice(deleteSpecificIndex, 1)
+            playedCards.push(cardToDelete)
+        
+        setClockwise(!clockWise)
+        setInitialTurn(false)
+    }
+
+    function player4HandleReverse(card){
+        const cardToDelete = player4HandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+})
+        const deleteSpecificIndex = player4HandState.indexOf(cardToDelete)
+            player4HandState.splice(deleteSpecificIndex, 1)
+            playedCards.push(cardToDelete)
+        
         setClockwise(!clockWise)
         setInitialTurn(false)
     }
 
         
 
-    function player1Skip(){
+    function player1Skip(card){
+        const cardToDelete = myHandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+        })
+         const deleteSpecificIndex = myHandState.indexOf(cardToDelete)
+            myHandState.splice(deleteSpecificIndex, 1)
+            playedCards.push(cardToDelete)
+        
         setInitialTurn(false)
         if ("player_1" === playerTurn && clockWise === true)
            return setPlayerTurn("player_3") 
         else if ("player_1" === playerTurn && clockWise === false)    
             return setPlayerTurn("player_3")   
    }
-   function player2Skip(){
+    function player2Skip(card){
+        const cardToDelete = player2HandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+    })
+        const deleteSpecificIndex = player2HandState.indexOf(cardToDelete)
+            player2HandState.splice(deleteSpecificIndex, 1)
+            playedCards.push(cardToDelete)
        
        if ("player_2" === playerTurn && clockWise === true)
            return setPlayerTurn("player_4") 
         else if ("player_2" === playerTurn && clockWise === false)
             return setPlayerTurn("player_4") 
    }
-   function player3Skip(){
+    function player3Skip(card){
+        const cardToDelete = player3HandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+})
+        const deleteSpecificIndex = player3HandState.indexOf(cardToDelete)
+            player3HandState.splice(deleteSpecificIndex, 1)
+            playedCards.push(cardToDelete)
+        
         if ("player_3" === playerTurn && clockWise === true)
             return setPlayerTurn("player_1") 
         else if ("player_3" === playerTurn && clockWise === false)
             return setPlayerTurn("player_1") 
    }
   
-   function player4Skip(){
-       if ("player_4" === playerTurn && clockWise === true)
+   function player4Skip(card){
+        const cardToDelete = player4HandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+})
+        const deleteSpecificIndex = player4HandState.indexOf(cardToDelete)
+            player4HandState.splice(deleteSpecificIndex, 1)
+            playedCards.push(cardToDelete)
+       
+         if ("player_4" === playerTurn && clockWise === true)
            return setPlayerTurn("player_2")
         else if ("player_4" === playerTurn && clockWise === false)
-        return setPlayerTurn("player_2")
+            return setPlayerTurn("player_2")
   }
 
     
@@ -348,77 +565,71 @@ function ActiveGame(){
     
                     <My_Hand 
                     completeDeck={completeDeck}
-                    seethecards={displayCard} 
+                    displayCard={displayCard} 
+                    // onceGamehasStartedSeeCards={onceGamehasStartedSeeCards}
                     player1Turn={player1Turn} 
                     player1Skip={player1Skip} 
-                    handleReverse={handleReverse} 
-                    myHandState={myHandState}/>
+                    player1HandleReverse={player1HandleReverse} 
+                    myHandState={myHandState}
+                    player1Add2={player1Add2}
+                    />
+                    
         
             </div> 
 
             <div>
                 
                     <Other_Player2 
+                    displayCard={displayCard} 
                     completeDeck={completeDeck}
-                    dontSeeTheCards={seeingBackofCard} 
+                    // dontSeeTheCards={seeingBackofCard} 
                     player2Turn={player2Turn} 
                     player2Skip={player2Skip} 
-                    handleReverse={handleReverse} 
-                    player2HandState={player2HandState}/>
+                    player2HandleReverse={player2HandleReverse} 
+                    player2HandState={player2HandState}
+                    player2Add2={player2Add2}/>
+                    
                     
             </div> 
 
             <div>
                 
                     <Other_Player3 
+                    displayCard={displayCard} 
                     completeDeck={completeDeck}
-                    dontSeeTheCards={seeingBackofCard} 
+                    // dontSeeTheCards={seeingBackofCard} 
                     player3Turn={player3Turn} 
                     player3Skip={player3Skip} 
-                    handleReverse={handleReverse} 
-                    player3HandState={player3HandState}/>
+                    player3HandleReverse={player3HandleReverse} 
+                    player3HandState={player3HandState}
+                    player3Add2={player3Add2}/>
                     
             </div> 
 
             <div>
                 
                     <Other_Player4 
+                    displayCard={displayCard} 
                     completeDeck={completeDeck}
-                    dontSeeTheCards={seeingBackofCard} 
+                    // dontSeeTheCards={seeingBackofCard} 
                     player4Turn={player4Turn} 
-                    player1Skip={player4Skip} 
-                    handleReverse={handleReverse}
-                    player4HandState={player4HandState}/>
+                    player4Skip={player4Skip} 
+                    player4HandleReverse={player4HandleReverse}
+                    player4HandState={player4HandState}
+                    player4Add2={player4Add2} />
                     
             </div> 
             <br></br>
             <div>
                 <button onClick={addsCardToHand}>Draw Card</button>
             </div>
-
-
-            {/* <myPlayerHand cardsInHand/>
-
-            <OtherPlayer1>
-                passing player ID for player
-            </OtherPlayer1>
-            
-            <OtherPlayer2>
-                passing id for player and player cards 
-            </OtherPlayer2> 
-            
-            <OtherPlayer3>
-                passing id for player 
-            </OtherPlayer3>
-
-            <div className="drawingDeck">
-                "fetched cards data" 
+            <div> 
+                <h6> Played Cards</h6>
+                - make an empty array
+                - add cards that array in click on card, and [card1, ...playedCard]
             </div>
-            <div className="playedCards">
-                "submitted cards from each playerhand"
-            </div> 
-            
-            */}
+
+
             </Container>
     )
 }
