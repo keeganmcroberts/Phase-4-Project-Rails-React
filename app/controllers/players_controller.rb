@@ -11,6 +11,7 @@ class PlayersController < ApplicationController
     # creates a new player/signup
     def create
         player = Player.create!(player_params)
+        byebug
         if player.valid?
             render json: player, status: :created
         else

@@ -31,7 +31,7 @@ function LoginForm({ onLogin, setCurrentPlayer }) {
           placeholder="enter Username/email here"
         />
         <input
-          type="text"
+          type="password"
           onChange={(e) => setPassword(e.target.value)}
           placeholder=" enter password/here"
         />

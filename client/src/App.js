@@ -13,6 +13,7 @@ import UserInfo from "./components/User_information";
 import ActiveGame from "./components/Active_Game_Table";
 import React from "react";
 import { useState, useEffect } from "react";
+import NavBar from "./components/Nav_bar";
 
 const Container = styled.div``;
 
@@ -21,7 +22,7 @@ function App() {
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [games, setGames] = useState([]);
 
-  // signup function
+  // stay logged in function
   useEffect(() => {
     fetch("/auth").then((res) => {
       if (res.ok) {
@@ -43,15 +44,27 @@ function App() {
     });
   }, []);
 
+  // logging out
+  function onLogOut() {
+    setCurrentPlayer(null);
+  }
+
   if (!currentPlayer)
     return (
       <>
+        <h1>Welcome to Um!</h1>
+        <LandingPage />
+        <h2>Login:</h2>
         <LoginForm error={"please login"} setCurrentPlayer={setCurrentPlayer} />
+        <h2>Sign-up:</h2>
+        <SignUp setCurrentPlayer={setCurrentPlayer} />
       </>
     );
 
   return (
     <Container>
+      <h1>Welcome back to Um,{currentPlayer.user_name} </h1>
+      <NavBar onLogOut={onLogOut} />
       <Routes>
         <Route path="/home" element={<HomePage />}></Route>
 

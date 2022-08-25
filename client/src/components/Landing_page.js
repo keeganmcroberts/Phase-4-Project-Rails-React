@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import SignUp from "./Sign_up_Form";
-import LoginForm from "./Log_in_Form";
+// import SignUp from "./Sign_up_Form";
+// import LoginForm from "./Log_in_Form";
+import NavBar from "./Nav_bar";
 
 const Container = styled.div``;
 
