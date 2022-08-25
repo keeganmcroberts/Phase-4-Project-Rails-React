@@ -18,17 +18,17 @@ const Container = styled.div``;
 
 function App() {
   const [currentPlayer, setCurrentPlayer] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [games, setGames] = useState([]);
 
-  // login function
+  // signup function
   useEffect(() => {
     fetch("/auth").then((res) => {
       if (res.ok) {
         res
           .json()
           .then((player) => {
-            setIsAuthenticated(true);
+            // setIsAuthenticated(true);
             setCurrentPlayer(player);
           })
           .then(() => {
@@ -43,13 +43,11 @@ function App() {
     });
   }, []);
 
-  if (!isAuthenticated)
+  if (!currentPlayer)
     return (
-      <LoginForm
-        error={"please login"}
-        setIsAuthenticated={setIsAuthenticated}
-        setCurrentPlayer={setCurrentPlayer}
-      />
+      <>
+        <LoginForm error={"please login"} setCurrentPlayer={setCurrentPlayer} />
+      </>
     );
 
   return (

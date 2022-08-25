@@ -8,12 +8,7 @@ class PlayersController < ApplicationController
       render json: { error: "Not authorized" }, status: :unauthorized
     end
 
-    # creates a new player
-
-
-
-    
-
+    # creates a new player/signup
     def create
         player = Player.create!(player_params)
         if player.valid?

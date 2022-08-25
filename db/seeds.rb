@@ -121,14 +121,16 @@ puts "game_table seeded!"
 puts "initialized player"
 # 15.times do 
 player1 = Player.create(
-    user_name: Faker::Name.first_name,
+    # user_name: Faker::Name.first_name,
+    user_name: "Poop",
     # password: ManuallyWrite,
-    password_digest: "123",
+    # password_digest: "123",
+    password: "123",
     rounds_won: Faker::Number.number(digits: 1),
     rounds_lost: Faker::Number.number(digits: 1),
     # card_id: Card.all.sample.id,
-    game_table_id: game_table1.id,
-    leader_board_id: leader_board1.id
+    game_table_id: GameTable.first.id,
+    leader_board_id: LeaderBoard.first.id
 
 )
 # end

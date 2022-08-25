@@ -8,8 +8,6 @@ function LandingPage({ setCurrentPlayer }) {
   return (
     <Container>
       <h4> UM a Game of Skill, Luck, and endless Patience </h4>
-      <LoginForm className="log-in" setCurrentPlayer={setCurrentPlayer} />
-      <SignUp setCurrentPlayer={setCurrentPlayer}/>
     </Container>
   );
 }
