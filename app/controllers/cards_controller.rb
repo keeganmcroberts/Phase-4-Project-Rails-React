@@ -1,6 +1,6 @@
 class CardsController < ApplicationController
 
-    def Index 
-        render JSON: Cards.all 
+    def index 
+        render json: Card.all 
     end 
 end

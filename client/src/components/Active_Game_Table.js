@@ -17,24 +17,6 @@ function ActiveGame(){
     //  in each componenet of player hands each player starts with seven cards
     //  update request to add and delete cards from each hand as theyre picked up and played
  /*
-   useEffect(()=> {
-    fetch("to local host")
-    .then(res => res.json())
-    .then (cards => getArandomCard(cards),
-
-    setMyHand(myStartingSevenCards()), 
-
-    playedDeckStartCard(),
-
-    // setEmblemColor(playedDeckStartCard.emblem),
-
-    setCurrentValue(playedDeckStartCard.value),
-
-    setPlayerTurn(myPlayerHand)
-    
-    
-
-    
     )
     // shuffle cards DONE 
     // 7 random cards for each player to start DONE
@@ -43,14 +25,9 @@ function ActiveGame(){
         //  to infinitely shuffle through all the fetched cards)
     // set currentColor and currentNumber states to the card played in the playedDeck 
     // set playerTurn state to player 1 DONE 
-   }, [])
    */
     
     // const [activeGame, setActiveGame] = useState(false)
-    // const [myHand, setMyHand] = useState([])
-    // const [otherPlayer1Hand, setOtherPlayer1Hand] = useState([])
-    // const [otherPlayer2Hand, setOtherPlayer2Hand] = useState([])
-    // const [otherPlayer3Hand, setOtherPlayer3Hand] = useState([])
     // const [drawingDeck, setDrawingDeck] = useState([])
     // const [playedDeck, setPlayedDeck] = useState([])
     // // const [playerTurn, setPlayerTurn] = useState('')
@@ -62,21 +39,6 @@ function ActiveGame(){
     //  the suffled deck is the drawing deck, the shuffle deck function is current just giving a random card
     // nned two function one to shuffle the deck, and one to dish out a single card 
     /*
-    function getArandomCard(){
-         return cards.Math.floor(Math.random()*cards.length)
-    }
-
-    function myStartingSevenCards(){ // setMyHand state to this array
-        const card1 = getArandomCard()
-        const card2 = getArandomCard()
-        const card3 = getArandomCard()
-        const card4 = getArandomCard()
-        const card5 = getArandomCard()
-        const card6 = getArandomCard()
-        const card7 = getArandomCard()
-
-        return([card1, card2, card3, card4, card5, card6, card7])
-    }
 
     function playedDeckStartCard(){ //setPlayedDeck to this card
         const firstCard = getArandomCard()
@@ -175,26 +137,13 @@ function ActiveGame(){
     const [clockWise, setClockwise]= useState(true)
     const [initialTurn, setInitialTurn] = useState(true)
     // const [playerTurn, setPlayerTurn] = useState({gametable.player_1})
-    const [frontOfCard, setFrontOfCard] = useState(true)
+    const [displayCard, setDisplayCard] = useState(true)
     function seeingBackofCard(){
-       return setFrontOfCard(false) 
+       return setDisplayCard(false) 
     }
 
-//     function getArandomCard(){
-//         return cards.Math.floor(Math.random()*cards.length)
-//    }
-
-//    function myStartingSevenCards(){ // setMyHand state to this array
-//     const card1 = getArandomCard()
-//     const card2 = getArandomCard()
-//     const card3 = getArandomCard()
-//     const card4 = getArandomCard()
-//     const card5 = getArandomCard()
-//     const card6 = getArandomCard()
-//     const card7 = getArandomCard()
-
-//     return([card1, card2, card3, card4, card5, card6, card7])
-// }
+//     
+    const [completeDeck, setCompleteDeck] = useState([])
     const Player4Hand =[]
     const [player4HandState, setPlayer4HandState] = useState([Player4Hand])
     const Player3Hand = []
@@ -204,22 +153,80 @@ function ActiveGame(){
     const MyHand = []
     const [myHandState, setMyHandState] = useState(MyHand)
     
-    function addsCardToHand(){
-        const newCard = getARandomCard
-        if ("player_1" === playerTurn)
-            return [newCard, ...myHandState]
 
-        else if ("player_2" === playerTurn)
-            return [newCard, ...player2HandState]
-
-        else if ("player_3" === playerTurn)
-            return [newCard, ...player3HandState]
-
-        else if ("player_4" === playerTurn)
-            return [newCard, ...player4HandState]
+    useEffect( ()=>{
+        fetch("http://localhost:3000/cards")
+        .then(res => res.json())
+        .then(data => setCompleteDeck(data))
         
+    
+
+    }, [])
+
+   console.log("complete deck:", completeDeck)
+
+
+
+    // let randomArray = [1, 5, 7, 68, 43, 35, 2, 10]
+
+    function getARandomCard(arrayOfCards){
+        const randomIndex = Math.floor(Math.random()* arrayOfCards.length)
+        const randomCard = arrayOfCards[randomIndex]
+        return randomCard
     }
 
+    console.log("The random card:", getARandomCard(completeDeck))
+    
+    
+    function StartingSevenCards(){ // setMyHand state to this array
+     const card1 = getARandomCard(completeDeck)
+     const card2 = getARandomCard(completeDeck)
+     const card3 = getARandomCard(completeDeck)
+     const card4 = getARandomCard(completeDeck)
+     const card5 = getARandomCard(completeDeck)
+     const card6 = getARandomCard(completeDeck)
+     const card7 = getARandomCard(completeDeck)
+    
+     return([card1, card2, card3, card4, card5, card6, card7])     
+    }
+    console.log("Starting Hand:", StartingSevenCards())
+
+    function startingHands(){
+        setMyHandState(StartingSevenCards)
+        setPlayer2HandState(StartingSevenCards)
+        setPlayer3HandState(StartingSevenCards)
+        setPlayer4HandState(StartingSevenCards)
+    }
+
+    
+
+    console.log("my hand:", myHandState)
+    console.log("player 2 hand:", player2HandState)
+    console.log("player 3 hand:", player3HandState)
+    console.log("player 4 hand:", player4HandState)
+
+
+    function addsCardToHand(){
+        const newCard = getARandomCard(completeDeck)
+        console.log("NEWCARD:", newCard)
+        if ("player_1" === playerTurn)
+            return setMyHandState([newCard, ...myHandState])
+
+        else if ("player_2" === playerTurn)
+            return setPlayer2HandState([newCard, ...player2HandState])
+
+        else if ("player_3" === playerTurn)
+            return setPlayer3HandState([newCard, ...player3HandState])
+
+        else if ("player_4" === playerTurn)
+            return setPlayer4HandState([newCard, ...player4HandState])
+    }
+    // console.log("adding card to hand:", addsCardToHand)
+    console.log("New Hand For My Player:", myHandState)
+    console.log("New Hand For Playerc 3:", player3HandState)
+    console.log("NewHand For Player2", player2HandState)
+    console.log("New Hand For Playerc 4:", player4HandState)
+    
 
    
 //     TO Determine Player Turn 
@@ -324,54 +331,62 @@ function ActiveGame(){
 
     return(
         <Container>
-            {/* <h3> Its my turn: {playerTurn} </h3>  */}
+            <h3> Its my turn: {playerTurn} </h3> 
+            <div>
+                <button onClick={startingHands}>Start Game</button>
+            </div>
             <div >
-                {/* <My_Hand seethecards={frontOfCard} 
-                        player1Turn={player1Turn} 
-                        player1Skip={player1Skip} 
-                        player1Reverse={player1Reverse}/>  */}
-                <h2> Player 1</h2>
-                <button onClick={player1Turn}> Next </button>
-                <button onClick={player1Skip}> Skip </button>
-                <button onClick={handleReverse}> Reverse </button>
+    
+                    <My_Hand 
+                    completeDeck={completeDeck}
+                    seethecards={displayCard} 
+                    player1Turn={player1Turn} 
+                    player1Skip={player1Skip} 
+                    handleReverse={handleReverse} 
+                    myHandState={myHandState}/>
+        
             </div> 
 
             <div>
-                {/* < Other_Player2
-                    dontSeeTheCards={setFrontOfCard} 
+                
+                    <Other_Player2 
+                    completeDeck={completeDeck}
+                    dontSeeTheCards={seeingBackofCard} 
                     player2Turn={player2Turn} 
                     player2Skip={player2Skip} 
-                    player2Reverse={player2Reverse}/> */}
-                <h2> Player 2</h2> 
-                    <button onClick={player2Turn}> Next </button>
-                    <button onClick={player2Skip}> Skip </button> 
-                    <button onClick={handleReverse}> Reverse </button>
+                    handleReverse={handleReverse} 
+                    player2HandState={player2HandState}/>
+                    
             </div> 
 
             <div>
-                {/* <Other_Player3 
-                    dontSeeTheCards={setFrontOfCard} 
-                    player3Skip={player3Skip} 
+                
+                    <Other_Player3 
+                    completeDeck={completeDeck}
+                    dontSeeTheCards={seeingBackofCard} 
                     player3Turn={player3Turn} 
-                    player3Reverse={player3Reverse}/> */}
-                <h2> Player 3</h2> 
-                    <button onClick={player3Turn}> Next </button>
-                    <button onClick={player3Skip}> Skip </button> 
-                    <button onClick={handleReverse}> Reverse </button>
+                    player3Skip={player3Skip} 
+                    handleReverse={handleReverse} 
+                    player3HandState={player3HandState}/>
+                    
             </div> 
 
             <div>
-                {/* <Other_Player4
-                    dontSeeTheCards={setFrontOfCard} 
-                    player4Skip={player4Skip} 
+                
+                    <Other_Player4 
+                    completeDeck={completeDeck}
+                    dontSeeTheCards={seeingBackofCard} 
                     player4Turn={player4Turn} 
-                    player4Reverse={player4Reverse}/> */}
-                <h2> Player 4 </h2>
-                    <button onClick={player4Turn}> Next </button>
-                    <button onClick={player4Skip}> Skip </button> 
-                    <button onClick={handleReverse}> Reverse </button>
+                    player1Skip={player4Skip} 
+                    handleReverse={handleReverse}
+                    player4HandState={player4HandState}/>
+                    
             </div> 
-            <button onClick={addsCardToHand}> DRAW CARD</button>
+            <br></br>
+            <div>
+                <button onClick={addsCardToHand}>Draw Card</button>
+            </div>
+
 
             {/* <myPlayerHand cardsInHand/>
 

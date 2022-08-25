@@ -1,23 +1,244 @@
-import Card_back from '../public/card.images/cards/Back_of_Card'
+import { useState } from 'react'
 
-function Card(){
+import backOfCard from '../cards/Back_of_Card.png'
+import wild from '../cards/Wild.png'
+import wild_draw4 from '../cards/Wild_draw4.png'
+
+import thief_skip from '../cards/Green_skip.png'
+import thief_reverse from '../cards/Green_Reverse.png'
+import thief_add_2 from '../cards/Green_add2.png'
+import thief_12 from '../cards/Green_12.png'
+import thief_11 from '../cards/Green_11.png'
+import thief_10 from '../cards/Green_10.png'
+import thief_9 from '../cards/Green_9.png'
+import thief_8 from '../cards/Green_8.png'
+import thief_7 from '../cards/Green_7.png'
+import thief_6 from '../cards/Green_6.png'
+import thief_5 from '../cards/Green_5.png'
+import thief_4 from '../cards/Greeen_4.png'
+import thief_3 from '../cards/Green_3.png'
+import thief_2 from '../cards/Green_2.png'
+import thief_1 from '../cards/Green_1.png'
+import thief_0 from '../cards/Green_0.png'
+
+import bard_skip from '../cards/Blue_skip.png'
+import bard_reverse from '../cards/Blue_Reverse.png'
+import bard_add_2 from '../cards/Blue_add2.png'
+import bard_12 from '../cards/Blue_12.png'
+import bard_11 from '../cards/Blue_11.png'
+import bard_10 from '../cards/Blue_10.png'
+import bard_9 from '../cards/Blue_9.png'
+import bard_8 from '../cards/Blue_8.png'
+import bard_7 from '../cards/Blue_7.png'
+import bard_6 from '../cards/Blue_6.png'
+import bard_5 from '../cards/Blue_5.png'
+import bard_4 from '../cards/Blue_4.png'
+import bard_3 from '../cards/Blue_3.png'
+import bard_2 from '../cards/Blue_2.png'
+import bard_1 from '../cards/Blue_1.png'
+import bard_0 from '../cards/Blue_0.png'
+
+import druid_skip from '../cards/Pink_skip.png'
+import druid_reverse from '../cards/Pink_Reverse.png'
+import druid_add_2 from '../cards/Pink_add2.png'
+import druid_12 from '../cards/Pink_12.png'
+import druid_11 from '../cards/Pink_11.png'
+import druid_10 from '../cards/Pink_10.png'
+import druid_9 from '../cards/Pink_9.png'
+import druid_8 from '../cards/Pink_8.png'
+import druid_7 from '../cards/Pink_7.png'
+import druid_6 from '../cards/Pink_6.png'
+import druid_5 from '../cards/Pink_5.png'
+import druid_4 from '../cards/Pink_4.png'
+import druid_3 from '../cards/Pink_3.png'
+import druid_2 from '../cards/Pink_2.png'
+import druid_1 from '../cards/Pink_1.png'
+import druid_0 from '../cards/Pink_0.png'
+
+import illusionist_skip from '../cards/Red_skip.png'
+import illusionist_reverse from '../cards/Red_Reverse.png'
+import illusionist_add_2 from '../cards/Red_add2.png'
+import illusionist_12 from '../cards/Red_12.png'
+import illusionist_11 from '../cards/Red_11.png'
+import illusionist_10 from '../cards/Red_10.png'
+import illusionist_9 from '../cards/Red_9.png'
+import illusionist_8 from '../cards/Red_8.png'
+import illusionist_7 from '../cards/Red_7.png'
+import illusionist_6 from '../cards/Red_6.png'
+import illusionist_5 from '../cards/Red_5.png'
+import illusionist_4 from '../cards/Red_4.png'
+import illusionist_3 from '../cards/Red_3.png'
+import illusionist_2 from '../cards/Red_2.png'
+import illusionist_1 from '../cards/Red_1.png'
+import illusionist_0 from '../cards/Red_0.png'
+
+
+function Card({myHandState, player2HandState, player3HandState, player4HandState, seethecards, card}){
     
 
     const [testcard, setTestCard] = useState({"emblem": "druid", "number": "5" })
 
-    const [openCard, setOpenCard] = useState(false)
+    function cardImageAssignment(){
+        if (card.emblem === "thief" && card.value === "0")
+            return <img src={thief_0} height={100} width={75} alt="thief 0"/>
+        else if (card.emblem === "thief" && card.value === "1")
+            return <img src={thief_1} height={100} width={75} alt="thief 1"/>
+        else if (card.emblem === "thief" && card.value === "2")
+            return <img src={thief_2} height={100} width={75} alt="thief 2"/>
+        else if (card.emblem === "thief" && card.value === "3")
+            return <img src={thief_3} height={100} width={75} alt="thief 3"/>
+        else if (card.emblem === "thief" && card.value === "4")
+            return <img src={thief_4} height={100} width={75} alt="thief 4"/>
+        else if (card.emblem === "thief" && card.value === "5")
+            return <img src={thief_5} height={100} width={75} alt ="thief 5"/>
+        else if (card.emblem === "thief" && card.value === "6")
+            return <img src={thief_6} height={100} width={75} alt="thief 6"/>
+        else if (card.emblem === "thief" && card.value === "7")
+            return <img src={thief_7} height={100} width={75} alt="thief 7"/>
+        else if (card.emblem === "thief" && card.value === "8")
+            return <img src={thief_8} height={100} width={75} alt="thief 8"/>
+        else if (card.emblem === "thief" && card.value === "9")
+            return <img src={thief_9} height={100} width={75} alt="thief 9"/>
+        else if (card.emblem === "thief" && card.value === "10")
+            return <img src={thief_10} height={100} width={75} alt="thief 10"/>
+        else if (card.emblem === "thief" && card.value === "11")
+            return <img src={thief_11} height={100} width={75} alt="thief 11"/>
+        else if (card.emblem === "thief" && card.value === "12")
+            return <img src={thief_12} height={100} width={75} alt="thief 12"/>
+        else if (card.emblem === "thief_skip")
+            return <img src={thief_skip} height={100} width={75} alt="thief skip"/>
+        else if (card.emblem === "thief_reverse")
+            return <img src={thief_reverse} height={100} width={75} alt="thief reverse"/>
+        else if (card.emblem === "thief_add_2")
+            return <img src={thief_add_2} height={100} width={75} alt="thief add 2"/>
 
-    function testCardStatetoDetermineOpenCardState(){
-        // testcard ? setOpenCard(true) : null 
-        {openCard ? <img src={Card_back} alt="open-card"/> : <img src="" alt="closed"/>}
+        
+        else if (card.emblem === "druid" && card.value === "0")
+            return <img src={druid_0} height={100} width={75} alt="druid 0"/>
+        else if (card.emblem === "druid" && card.value === "1")
+            return <img src={druid_1} height={100} width={75} alt="druid 1"/>
+        else if (card.emblem === "druid" && card.value === "2")
+            return <img src={druid_2} height={100} width={75} alt="druid 2"/>
+        else if (card.emblem === "druid" && card.value === "3")
+            return <img src={druid_3} height={100} width={75} alt="druid 3"/>
+        else if (card.emblem === "druid" && card.value === "4")
+            return <img src={druid_4} height={100} width={75} alt="druid 4"/>
+        else if (card.emblem === "druid" && card.value === "5")
+            return <img src={druid_5} height={100} width={75} alt="druid 5"/>
+        else if (card.emblem === "druid" && card.value === "6")
+            return <img src={druid_6} height={100} width={75} alt="druid 6"/>
+        else if (card.emblem === "druid" && card.value === "7")
+            return <img src={druid_7} height={100} width={75} alt="druid 7"/>
+        else if (card.emblem === "druid" && card.value === "8")
+            return <img src={druid_8} height={100} width={75} alt="druid 8"/>
+        else if (card.emblem === "druid" && card.value === "9")
+            return <img src={druid_9} height={100} width={75} alt="druid 9"/>
+        else if (card.emblem === "druid" && card.value === "10")
+            return <img src={druid_10} height={100} width={75} alt="druid 10"/>
+        else if (card.emblem === "druid" && card.value === "11")
+            return <img src={druid_11} height={100} width={75} alt="druid 11"/>
+        else if (card.emblem === "druid" && card.value === "12")
+            return <img src={druid_12} height={100} width={75} alt="druid 12"/>
+        else if (card.emblem === "druid_skip")
+            return <img src={druid_skip} height={100} width={75} alt="druid skip"/>
+        else if (card.emblem === "druid_reverse")
+            return <img src={druid_reverse} height={100} width={75} alt="druid reverse"/>
+        else if (card.emblem === "druid_add_2")
+            return <img src={druid_add_2} height={100} width={75} alt="druid add 2" />
+
+        else if (card.emblem === "illusionist" && card.value === "0")
+            return <img src={illusionist_0} height={100} width={75} alt=" illusionist 0"/>
+        else if (card.emblem === "illusionist" && card.value === "1")
+            return <img src={illusionist_1} height={100} width={75} alt=" illusionist 1"/>
+        else if (card.emblem === "illusionist" && card.value === "2")
+            return <img src={illusionist_2} height={100} width={75} alt=" illusionist 2"/>
+        else if (card.emblem === "illusionist" && card.value === "3")
+            return <img src={illusionist_3} height={100} width={75} alt=" illusionist 3"/>
+        else if (card.emblem === "illusionist" && card.value === "4")
+            return <img src={illusionist_4} height={100} width={75} alt=" illusionist 4" />
+        else if (card.emblem === "illusionist" && card.value === "5")
+            return <img src={illusionist_5} height={100} width={75} alt=" illusionist 5"/>
+        else if (card.emblem === "illusionist" && card.value === "6")
+            return <img src={illusionist_6} height={100} width={75} alt=" illusionist 6"/>
+        else if (card.emblem === "illusionist" && card.value === "7")
+            return <img src={illusionist_7} height={100} width={75} alt=" illusionist 7"/>
+        else if (card.emblem === "illusionist" && card.value === "8")
+            return <img src={illusionist_8} height={100} width={75} alt=" illusionist 8"/>
+        else if (card.emblem === "illusionist" && card.value === "9")
+            return <img src={illusionist_9} height={100} width={75} alt=" illusionist 9"/>
+        else if (card.emblem === "illusionist" && card.value === "10")
+            return <img src={illusionist_10} height={100} width={75} alt=" illusionist 10"/>
+        else if (card.emblem === "illusionist" && card.value === "11")
+            return <img src={illusionist_11} height={100} width={75} alt=" illusionist 11"/>
+        else if (card.emblem === "illusionist" && card.value === "12")
+            return <img src={illusionist_12} height={100} width={75} alt=" illusionist 12"/>
+        else if (card.emblem === "illusionist_skip")
+            return <img src={illusionist_skip} height={100} width={75}  alt=" illusionist skip"/>
+        else if (card.emblem === "illusionist_reverse")
+            return <img src={illusionist_reverse} height={100} width={75} alt=" illusionist reverse"/>
+        else if (card.emblem === "illusionist_add_2")
+            return <img src={illusionist_add_2} height={100} width={75} alt=" illusionist add 2"/>
+
+        else if (card.emblem === "bard" && card.value === "0")
+            return <img src={bard_0} height={100} width={75} alt=" bard 0"/>
+        else if (card.emblem === "bard" && card.value === "1")
+            return <img src={bard_1} height={100} width={75} alt=" bard 1"/>
+        else if (card.emblem === "bard" && card.value === "2")
+            return <img src={bard_2} height={100} width={75} alt=" bard 2"/>
+        else if (card.emblem === "bard" && card.value === "3")
+            return <img src={bard_3} height={100} width={75} alt=" bard 3"/>
+        else if (card.emblem === "bard" && card.value === "4")
+            return <img src={bard_4} height={100} width={75} alt=" bard 4"/>
+        else if (card.emblem === "bard" && card.value === "5")
+            return <img src={bard_5} height={100} width={75} alt=" bard 5"/>
+        else if (card.emblem === "bard" && card.value === "6")
+            return <img src={bard_6} height={100} width={75}  alt=" bard 6"/>
+        else if (card.emblem === "bard" && card.value === "7")
+            return <img src={bard_7} height={100} width={75} alt=" bard 7"/>
+        else if (card.emblem === "bard" && card.value === "8")
+            return <img src={bard_8} height={100} width={75} alt=" bard 8"/>
+        else if (card.emblem === "bard" && card.value === "9")
+            return <img src={bard_9} height={100} width={75} alt=" bard 9"/>
+        else if (card.emblem === "bard" && card.value === "10")
+            return <img src={bard_10} height={100} width={75} alt=" bard 10"/>
+        else if (card.emblem === "bard" && card.value === "11")
+            return <img src={bard_11} height={100} width={75} alt=" bard 11"/>
+        else if (card.emblem === "bard" && card.value === "12")
+            return <img src={bard_12} height={100} width={75} alt=" bard 12" />
+        else if (card.emblem === "bard_skip")
+            return <img src={bard_skip} height={100} width={75} alt=" bard skip"/>
+        else if (card.emblem === "bard_reverse")
+            return <img src={bard_reverse} height={100} width={75} alt=" bard reverse" />
+        else if (card.emblem === "bard_add_2")
+            return <img src={bard_add_2} height={100} width={75} alt="bard add 2"/>
+
+        else if (card.emblem === "draw_4")
+            return <img src={wild_draw4} height={100} width={75} alt=" wild draw 4"/>
+        else if (card.emblem === "wild")
+            return <img src={wild} height={100} width={75} alt="wild"/>     
     }
 
+    function assigningBackofCard(){
+        return < img src={backOfCard} height={100} width={75} alt="This is the back" />
+    }
+// console.log("my hand state in card component:", myHandState)
+// console.log("player 2 state in card component:", player2HandState)
+// console.log("player 3 state in card component:", player3HandState)
+// console.log("player 4 state in card component:", player4HandState)
+
+    // if card.name === number 
+    //     return nextturn()
     return(
         <>
-
-         {opencard ? <img src={Card_back} alt="open-card"/> : <img src="" alt="closed"/>}
+    { seethecards ? 
+             cardImageAssignment()
+        :
+            assigningBackofCard() 
         
+                 
+    }    
         </>
     )
 }
 export default Card;
+
