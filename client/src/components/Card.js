@@ -1,4 +1,6 @@
 import { useState } from "react"
+import backOfCard from '../cards/Back_of_Card.png'
+import blueReverse from '../cards/Blue_Reverse.png'
 function Card({seeCard, dontSeeCard}){
     
 
@@ -47,12 +49,12 @@ function Card({seeCard, dontSeeCard}){
     */
     return(
         <>
-        {seeCard? <img src="/public/card.images/cards/Back_of_Card.png" 
+        {seeCard? <img src={backOfCard} 
                     height={100} 
                     width={75} 
                     alt={testcard} />
                     :
-                <img src="/public/card.images/cards/Back_of_Card.png" 
+                <img src={blueReverse} 
                     height={100} 
                     width={75} 
                     alt="back of card"

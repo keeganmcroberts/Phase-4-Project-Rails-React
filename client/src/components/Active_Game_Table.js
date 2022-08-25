@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState} from "react";
+import { useState, useEffect} from "react";
 
 import My_Hand from "./My_Hand";
 import Other_Player2 from './other_players_hands/Other_Player2'
