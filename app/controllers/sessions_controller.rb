@@ -9,8 +9,8 @@ class SessionsController < ApplicationController
     # login information for username
     def create
         player = Player.find_by!(user_name: params[:username])
-        # byebug
-        if player&.authenticate(params[:password])
+        byebug
+        if player&.authenticate(player_params)
             session[:player_id] = player.id
             byebug
             render json: player, status: :ok
@@ -19,8 +19,8 @@ class SessionsController < ApplicationController
         end
     end
 
-    # private
-    # def player_params
-    #     params.permit(:username, :password, :sessions)
-    # end
+    private
+    def player_params
+        params.permit(:username, :password)
+    end
 end
