@@ -6,7 +6,7 @@ import Other_Player2 from './other_players_hands/Other_Player2'
 import Other_Player3 from './other_players_hands/Other_Player3'
 import Other_Player4 from './other_players_hands/Other_Player4'
 
-const Container = styled.div`
+const Container = styled.div` 
 
 `
 
@@ -152,6 +152,7 @@ function ActiveGame(){
     const [ player2HandState, setPlayer2HandState] = useState([Player2Hand])
     const MyHand = []
     const [myHandState, setMyHandState] = useState(MyHand)
+    const [gameInProgress, setGameInProgress] = useState(false)
     
 
     useEffect( ()=>{
@@ -159,13 +160,18 @@ function ActiveGame(){
         .then(res => res.json())
         .then(data => setCompleteDeck(data))
         
-    
+        
 
     }, [])
 
    console.log("complete deck:", completeDeck)
 
+   function startingTheGame(){
+        // if ( myHandState > 7 && player2HandState > 7 && player3HandState > 7 && player4HandState > 7)
+            return setGameInProgress(true)
+    }
 
+    console.log("gameinSession:", gameInProgress)
 
     // let randomArray = [1, 5, 7, 68, 43, 35, 2, 10]
 
@@ -196,6 +202,8 @@ function ActiveGame(){
         setPlayer2HandState(StartingSevenCards)
         setPlayer3HandState(StartingSevenCards)
         setPlayer4HandState(StartingSevenCards)
+
+        
     }
 
     
@@ -333,7 +341,8 @@ function ActiveGame(){
         <Container>
             <h3> Its my turn: {playerTurn} </h3> 
             <div>
-                <button onClick={startingHands}>Start Game</button>
+                <button onClick={startingTheGame}>Start Game</button>
+                <button onClick={startingHands}> Distribute First Hand </button>
             </div>
             <div >
     

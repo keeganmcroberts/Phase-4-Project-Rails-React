@@ -73,155 +73,172 @@ import illusionist_1 from '../cards/Red_1.png'
 import illusionist_0 from '../cards/Red_0.png'
 
 
-function Card({myHandState, player2HandState, player3HandState, player4HandState, seethecards, card}){
+function Player1Card({ eachCard, myHandState, player2HandState, player3HandState, player4HandState, seethecards, card}){
     
+
+//  for start state 
+// if ( myHandState.length > 7 && player2HandState > 7 && player3HandState > 7 && player4HandState > 7)
+//     return setStartState(true)
+
+
 
     const [testcard, setTestCard] = useState({"emblem": "druid", "number": "5" })
 
     function cardImageAssignment(){
-        if (card.emblem === "thief" && card.value === "0")
+        console.log("THE HAND:", eachCard)
+        
+        // if (myHandState > 1 && player2HandState > 1 && player3HandState > 1 && player4HandState > 1)
+        if (myHandState> 0)  
+  
+        return eachCard.map( eachCard =>{
+            
+        if (eachCard.emblem === "thief" && eachCard.value === "0")
             return <img src={thief_0} height={100} width={75} alt="thief 0"/>
-        else if (card.emblem === "thief" && card.value === "1")
+        else if (eachCard.emblem === "thief" && eachCard.value === "1")
             return <img src={thief_1} height={100} width={75} alt="thief 1"/>
-        else if (card.emblem === "thief" && card.value === "2")
+        else if (eachCard.emblem === "thief" && eachCard.value === "2")
             return <img src={thief_2} height={100} width={75} alt="thief 2"/>
-        else if (card.emblem === "thief" && card.value === "3")
+        else if (eachCard.emblem === "thief" && eachCard.value === "3")
             return <img src={thief_3} height={100} width={75} alt="thief 3"/>
-        else if (card.emblem === "thief" && card.value === "4")
+        else if (eachCard.emblem === "thief" && eachCard.value === "4")
             return <img src={thief_4} height={100} width={75} alt="thief 4"/>
-        else if (card.emblem === "thief" && card.value === "5")
+        else if (eachCard.emblem === "thief" && eachCard.value === "5")
             return <img src={thief_5} height={100} width={75} alt ="thief 5"/>
-        else if (card.emblem === "thief" && card.value === "6")
+        else if (eachCard.emblem === "thief" && eachCard.value === "6")
             return <img src={thief_6} height={100} width={75} alt="thief 6"/>
-        else if (card.emblem === "thief" && card.value === "7")
+        else if (eachCard.emblem === "thief" && eachCard.value === "7")
             return <img src={thief_7} height={100} width={75} alt="thief 7"/>
-        else if (card.emblem === "thief" && card.value === "8")
+        else if (eachCard.emblem === "thief" && eachCard.value === "8")
             return <img src={thief_8} height={100} width={75} alt="thief 8"/>
-        else if (card.emblem === "thief" && card.value === "9")
+        else if (eachCard.emblem === "thief" && eachCard.value === "9")
             return <img src={thief_9} height={100} width={75} alt="thief 9"/>
-        else if (card.emblem === "thief" && card.value === "10")
+        else if (eachCard.emblem === "thief" && eachCard.value === "10")
             return <img src={thief_10} height={100} width={75} alt="thief 10"/>
-        else if (card.emblem === "thief" && card.value === "11")
+        else if (eachCard.emblem === "thief" && eachCard.value === "11")
             return <img src={thief_11} height={100} width={75} alt="thief 11"/>
-        else if (card.emblem === "thief" && card.value === "12")
+        else if (eachCard.emblem === "thief" && eachCard.value === "12")
             return <img src={thief_12} height={100} width={75} alt="thief 12"/>
-        else if (card.emblem === "thief_skip")
+        else if (eachCard.emblem === "thief_skip")
             return <img src={thief_skip} height={100} width={75} alt="thief skip"/>
-        else if (card.emblem === "thief_reverse")
+        else if (eachCard.emblem === "thief_reverse")
             return <img src={thief_reverse} height={100} width={75} alt="thief reverse"/>
-        else if (card.emblem === "thief_add_2")
+        else if (eachCard.emblem === "thief_add_2")
             return <img src={thief_add_2} height={100} width={75} alt="thief add 2"/>
 
         
-        else if (card.emblem === "druid" && card.value === "0")
+        else if (eachCard.emblem === "druid" && eachCard.value === "0")
             return <img src={druid_0} height={100} width={75} alt="druid 0"/>
-        else if (card.emblem === "druid" && card.value === "1")
+        else if (eachCard.emblem === "druid" && eachCard.value === "1")
             return <img src={druid_1} height={100} width={75} alt="druid 1"/>
-        else if (card.emblem === "druid" && card.value === "2")
+        else if (eachCard.emblem === "druid" && eachCard.value === "2")
             return <img src={druid_2} height={100} width={75} alt="druid 2"/>
-        else if (card.emblem === "druid" && card.value === "3")
+        else if (eachCard.emblem === "druid" && eachCard.value === "3")
             return <img src={druid_3} height={100} width={75} alt="druid 3"/>
-        else if (card.emblem === "druid" && card.value === "4")
+        else if (eachCard.emblem === "druid" && eachCard.value === "4")
             return <img src={druid_4} height={100} width={75} alt="druid 4"/>
-        else if (card.emblem === "druid" && card.value === "5")
+        else if (eachCard.emblem === "druid" && eachCard.value === "5")
             return <img src={druid_5} height={100} width={75} alt="druid 5"/>
-        else if (card.emblem === "druid" && card.value === "6")
+        else if (eachCard.emblem === "druid" && eachCard.value === "6")
             return <img src={druid_6} height={100} width={75} alt="druid 6"/>
-        else if (card.emblem === "druid" && card.value === "7")
+        else if (eachCard.emblem === "druid" && eachCard.value === "7")
             return <img src={druid_7} height={100} width={75} alt="druid 7"/>
-        else if (card.emblem === "druid" && card.value === "8")
+        else if (eachCard.emblem === "druid" && eachCard.value === "8")
             return <img src={druid_8} height={100} width={75} alt="druid 8"/>
-        else if (card.emblem === "druid" && card.value === "9")
+        else if (eachCard.emblem === "druid" && eachCard.value === "9")
             return <img src={druid_9} height={100} width={75} alt="druid 9"/>
-        else if (card.emblem === "druid" && card.value === "10")
+        else if (eachCard.emblem === "druid" && eachCard.value === "10")
             return <img src={druid_10} height={100} width={75} alt="druid 10"/>
-        else if (card.emblem === "druid" && card.value === "11")
+        else if (eachCard.emblem === "druid" && eachCard.value === "11")
             return <img src={druid_11} height={100} width={75} alt="druid 11"/>
-        else if (card.emblem === "druid" && card.value === "12")
+        else if (eachCard.emblem === "druid" && eachCard.value === "12")
             return <img src={druid_12} height={100} width={75} alt="druid 12"/>
-        else if (card.emblem === "druid_skip")
+        else if (eachCard.emblem === "druid_skip")
             return <img src={druid_skip} height={100} width={75} alt="druid skip"/>
-        else if (card.emblem === "druid_reverse")
+        else if (eachCard.emblem === "druid_reverse")
             return <img src={druid_reverse} height={100} width={75} alt="druid reverse"/>
-        else if (card.emblem === "druid_add_2")
+        else if (eachCard.emblem === "druid_add_2")
             return <img src={druid_add_2} height={100} width={75} alt="druid add 2" />
 
-        else if (card.emblem === "illusionist" && card.value === "0")
+        else if (eachCard.emblem === "illusionist" && eachCard.value === "0")
             return <img src={illusionist_0} height={100} width={75} alt=" illusionist 0"/>
-        else if (card.emblem === "illusionist" && card.value === "1")
+        else if (eachCard.emblem === "illusionist" && eachCard.value === "1")
             return <img src={illusionist_1} height={100} width={75} alt=" illusionist 1"/>
-        else if (card.emblem === "illusionist" && card.value === "2")
+        else if (eachCard.emblem === "illusionist" && eachCard.value === "2")
             return <img src={illusionist_2} height={100} width={75} alt=" illusionist 2"/>
-        else if (card.emblem === "illusionist" && card.value === "3")
+        else if (eachCard.emblem === "illusionist" && eachCard.value === "3")
             return <img src={illusionist_3} height={100} width={75} alt=" illusionist 3"/>
-        else if (card.emblem === "illusionist" && card.value === "4")
+        else if (eachCard.emblem === "illusionist" && eachCard.value === "4")
             return <img src={illusionist_4} height={100} width={75} alt=" illusionist 4" />
-        else if (card.emblem === "illusionist" && card.value === "5")
+        else if (eachCard.emblem === "illusionist" && eachCard.value === "5")
             return <img src={illusionist_5} height={100} width={75} alt=" illusionist 5"/>
-        else if (card.emblem === "illusionist" && card.value === "6")
+        else if (eachCard.emblem === "illusionist" && eachCard.value === "6")
             return <img src={illusionist_6} height={100} width={75} alt=" illusionist 6"/>
-        else if (card.emblem === "illusionist" && card.value === "7")
+        else if (eachCard.emblem === "illusionist" && eachCard.value === "7")
             return <img src={illusionist_7} height={100} width={75} alt=" illusionist 7"/>
-        else if (card.emblem === "illusionist" && card.value === "8")
+        else if (eachCard.emblem === "illusionist" && eachCard.value === "8")
             return <img src={illusionist_8} height={100} width={75} alt=" illusionist 8"/>
-        else if (card.emblem === "illusionist" && card.value === "9")
+        else if (eachCard.emblem === "illusionist" && eachCard.value === "9")
             return <img src={illusionist_9} height={100} width={75} alt=" illusionist 9"/>
-        else if (card.emblem === "illusionist" && card.value === "10")
+        else if (eachCard.emblem === "illusionist" && eachCard.value === "10")
             return <img src={illusionist_10} height={100} width={75} alt=" illusionist 10"/>
-        else if (card.emblem === "illusionist" && card.value === "11")
+        else if (eachCard.emblem === "illusionist" && eachCard.value === "11")
             return <img src={illusionist_11} height={100} width={75} alt=" illusionist 11"/>
-        else if (card.emblem === "illusionist" && card.value === "12")
+        else if (eachCard.emblem === "illusionist" && eachCard.value === "12")
             return <img src={illusionist_12} height={100} width={75} alt=" illusionist 12"/>
-        else if (card.emblem === "illusionist_skip")
+        else if (eachCard.emblem === "illusionist_skip")
             return <img src={illusionist_skip} height={100} width={75}  alt=" illusionist skip"/>
-        else if (card.emblem === "illusionist_reverse")
+        else if (eachCard.emblem === "illusionist_reverse")
             return <img src={illusionist_reverse} height={100} width={75} alt=" illusionist reverse"/>
-        else if (card.emblem === "illusionist_add_2")
+        else if (eachCard.emblem === "illusionist_add_2")
             return <img src={illusionist_add_2} height={100} width={75} alt=" illusionist add 2"/>
 
-        else if (card.emblem === "bard" && card.value === "0")
+        else if (eachCard.emblem === "bard" && eachCard.value === "0")
             return <img src={bard_0} height={100} width={75} alt=" bard 0"/>
-        else if (card.emblem === "bard" && card.value === "1")
+        else if (eachCard.emblem === "bard" && eachCard.value === "1")
             return <img src={bard_1} height={100} width={75} alt=" bard 1"/>
-        else if (card.emblem === "bard" && card.value === "2")
+        else if (eachCard.emblem === "bard" && eachCard.value === "2")
             return <img src={bard_2} height={100} width={75} alt=" bard 2"/>
-        else if (card.emblem === "bard" && card.value === "3")
+        else if (eachCard.emblem === "bard" && eachCard.value === "3")
             return <img src={bard_3} height={100} width={75} alt=" bard 3"/>
-        else if (card.emblem === "bard" && card.value === "4")
+        else if (eachCard.emblem === "bard" && eachCard.value === "4")
             return <img src={bard_4} height={100} width={75} alt=" bard 4"/>
-        else if (card.emblem === "bard" && card.value === "5")
+        else if (eachCard.emblem === "bard" && eachCard.value === "5")
             return <img src={bard_5} height={100} width={75} alt=" bard 5"/>
-        else if (card.emblem === "bard" && card.value === "6")
+        else if (eachCard.emblem === "bard" && eachCard.value === "6")
             return <img src={bard_6} height={100} width={75}  alt=" bard 6"/>
-        else if (card.emblem === "bard" && card.value === "7")
+        else if (eachCard.emblem === "bard" && eachCard.value === "7")
             return <img src={bard_7} height={100} width={75} alt=" bard 7"/>
-        else if (card.emblem === "bard" && card.value === "8")
+        else if (eachCard.emblem === "bard" && eachCard.value === "8")
             return <img src={bard_8} height={100} width={75} alt=" bard 8"/>
-        else if (card.emblem === "bard" && card.value === "9")
+        else if (eachCard.emblem === "bard" && eachCard.value === "9")
             return <img src={bard_9} height={100} width={75} alt=" bard 9"/>
-        else if (card.emblem === "bard" && card.value === "10")
+        else if (eachCard.emblem === "bard" && eachCard.value === "10")
             return <img src={bard_10} height={100} width={75} alt=" bard 10"/>
-        else if (card.emblem === "bard" && card.value === "11")
+        else if (eachCard.emblem === "bard" && eachCard.value === "11")
             return <img src={bard_11} height={100} width={75} alt=" bard 11"/>
-        else if (card.emblem === "bard" && card.value === "12")
+        else if (eachCard.emblem === "bard" && eachCard.value === "12")
             return <img src={bard_12} height={100} width={75} alt=" bard 12" />
-        else if (card.emblem === "bard_skip")
+        else if (eachCard.emblem === "bard_skip")
             return <img src={bard_skip} height={100} width={75} alt=" bard skip"/>
-        else if (card.emblem === "bard_reverse")
+        else if (eachCard.emblem === "bard_reverse")
             return <img src={bard_reverse} height={100} width={75} alt=" bard reverse" />
-        else if (card.emblem === "bard_add_2")
+        else if (eachCard.emblem === "bard_add_2")
             return <img src={bard_add_2} height={100} width={75} alt="bard add 2"/>
 
-        else if (card.emblem === "draw_4")
+        else if (eachCard.emblem === "draw_4")
             return <img src={wild_draw4} height={100} width={75} alt=" wild draw 4"/>
-        else if (card.emblem === "wild")
+        else if (eachCard.emblem === "wild")
             return <img src={wild} height={100} width={75} alt="wild"/>     
+        })
+        else 
+            return null
+    
     }
 
     function assigningBackofCard(){
         return < img src={backOfCard} height={100} width={75} alt="This is the back" />
     }
-// console.log("my hand state in card component:", myHandState)
+console.log("my hand state in card component:", myHandState)
 // console.log("player 2 state in card component:", player2HandState)
 // console.log("player 3 state in card component:", player3HandState)
 // console.log("player 4 state in card component:", player4HandState)
@@ -231,14 +248,16 @@ function Card({myHandState, player2HandState, player3HandState, player4HandState
     return(
         <>
     { seethecards ? 
-             cardImageAssignment()
+            //  assigningBackofCard()
+            cardImageAssignment() 
         :
+            
+            // cardImageAssignment()
             assigningBackofCard() 
         
-                 
     }    
         </>
     )
 }
-export default Card;
+export default Player1Card;
 

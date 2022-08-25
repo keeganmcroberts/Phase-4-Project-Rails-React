@@ -1,4 +1,4 @@
-import Card from './Card'
+import Player1_Card from "./Player1_Card"
 
 function PlayerHand({ completeDeck={completeDeck}, 
     player1Turn, 
@@ -12,13 +12,22 @@ function PlayerHand({ completeDeck={completeDeck},
 }){
 
     console.log("My hand state in my hand component:", myHandState)
+    
+    
  return(
     <>
         <h2> My Hand </h2>
-            <Card onClick={myHandState} card={completeDeck} seethecards={seethecards} myHandState={myHandState}/>
+        {/* {completeDeck.map( eachHand =>{ */}
+        {myHandState.map( eachCard =>{
+            return (
+            <Player1_Card eachCard={eachCard} onClick={myHandState} card={completeDeck} seethecards={seethecards} myHandState={myHandState} emblem={eachCard.emblem} value={eachCard.value}/>
+        )})}
+            {/* // <Card onClick={myHandState} card={completeDeck} seethecards={seethecards} myHandState={myHandState}/> */}
                 <button onClick={player1Turn}> Next </button>
                 <button onClick={player1Skip}> Skip </button> 
                 <button onClick={handleReverse}> Reverse </button>  
+        
+    
     </>
  )
 }
