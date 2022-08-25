@@ -7,7 +7,8 @@ class PlayersController < ApplicationController
     else
       render json: { error: "Not authorized" }, status: :unauthorized
     end
-    # creates a new pllayer
+
+    # creates a new player
     def create
         player = Player.create(player_params)
         if player.valid?
@@ -22,4 +23,5 @@ class PlayersController < ApplicationController
     def player_params
         params.permit(:username, :password, :password_confirmation )
     end
+end
 end

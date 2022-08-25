@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import React, { useState } from "react";
 
-function SignUp({ onLogin }) {
+function SignUp({ onLogin, setCurrentPlayer }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch("/signup", {
+    fetch("/auth", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -16,11 +16,10 @@ function SignUp({ onLogin }) {
       body: JSON.stringify({
         username,
         password,
-        passwordConfirmation,
       }),
     })
       .then((r) => r.json())
-      .then((data) => console.log("SignUp POST", data));
+      .then((data) => setCurrentPlayer(data));
   }
   return (
     <form onSubmit={handleSubmit}>

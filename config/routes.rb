@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   # Login route
   post "/login", to: "sessions#create"
 
-  # staying logged in
-  get "/me", to: "players#show"
+  # authorized
+  get "/auth", to: "players#show"
+
+  # Signup
+  post "/auth", to: "players#create"
 end
