@@ -8,7 +8,8 @@ function Other_Player2({completeDeck,
     player2Add2, 
     dontSeeTheCards,
     player2HandState,
-    displayCard
+    displayCard,
+    draw4WildPlayer2
      }){
 
         // console.log("player 2 component hand state:", player2HandState)
@@ -23,7 +24,8 @@ function Other_Player2({completeDeck,
                         card={completeDeck} dontseethecards={dontSeeTheCards} 
                         player2HandState={player2HandState}
                         player2Turn={player2Turn} player2Skip={player2Skip}
-                        player2HandleReverse={player2HandleReverse} player2Add2={player2Add2}/>
+                        player2HandleReverse={player2HandleReverse} player2Add2={player2Add2}
+                        draw4WildPlayer2={draw4WildPlayer2}/>
                                                         
         {/* // )})} */}
             {/* <button onClick={player2Turn}> Next </button>

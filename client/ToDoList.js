@@ -1,12 +1,13 @@
 /*
 
 ✅1) set cards in Hand (playerHands) to respective card image with cardImageAssignment and startingHands functions 
-2) create onCLick for the card to do (>>>>have the logic, need the associations with card images)
+✅12) create onCLick for the card to do (>>>>have the logic, need the associations with card images)
     - next player (for all number cards)
     - reverse order (for reverse cards)
     - skip player (for skip cards)
     - add 2 to other player deck (add_2)
     - draw deck pile
+    - add 4 wild card 
 3) create logic for cards played to match emblem or color of card before
 4) create prompts when wild card is played to determine next color
 4.5) create functionality for Um buttom, to announce button  

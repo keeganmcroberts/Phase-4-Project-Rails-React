@@ -73,7 +73,7 @@ import illusionist_1 from '../cards/Red_1.png'
 import illusionist_0 from '../cards/Red_0.png'
 
 
-function Player4Card({player4Add2, player4Turn, player4Skip, player4HandleReverse, displayCard, player4HandState, seethecards, card}){
+function Player4Card({draw4WildPlayer4, player4Add2, player4Turn, player4Skip, player4HandleReverse, displayCard, player4HandState, seethecards, card}){
     
 
 //  for start state 
@@ -123,7 +123,7 @@ function Player4Card({player4Add2, player4Turn, player4Skip, player4HandleRevers
         else if (eachCard.emblem === "thief_reverse")
             return <img onClick={()=>player4HandleReverse(eachCard)} src={thief_reverse} height={100} width={75} alt="thief reverse"/>
         else if (eachCard.emblem === "thief_add_2")
-            return <img onClick={()=> {player4Add2(); player4Turn(eachCard)}} src={thief_add_2} height={100} width={75} alt="thief add 2"/>
+            return <img onClick={()=> {player4Add2(eachCard); player4Turn(eachCard)}} src={thief_add_2} height={100} width={75} alt="thief add 2"/>
 
         
         else if (eachCard.emblem === "druid_0")
@@ -157,7 +157,7 @@ function Player4Card({player4Add2, player4Turn, player4Skip, player4HandleRevers
         else if (eachCard.emblem === "druid_reverse")
             return <img onClick={()=>player4HandleReverse(eachCard)} src={druid_reverse} height={100} width={75} alt="druid reverse"/>
         else if (eachCard.emblem === "druid_add_2")
-            return <img onClick={()=> {player4Add2(); player4Turn(eachCard)}} src={druid_add_2} height={100} width={75} alt="druid add 2" />
+            return <img onClick={()=> {player4Add2(eachCard); player4Turn(eachCard)}} src={druid_add_2} height={100} width={75} alt="druid add 2" />
 
         else if (eachCard.emblem === "illusionist_0")
             return <img onClick={()=>player4Turn(eachCard)} src={illusionist_0} height={100} width={75} alt=" illusionist 0"/>
@@ -190,7 +190,7 @@ function Player4Card({player4Add2, player4Turn, player4Skip, player4HandleRevers
         else if (eachCard.emblem === "illusionist_reverse")
             return <img onClick={()=>player4HandleReverse(eachCard)} src={illusionist_reverse} height={100} width={75} alt=" illusionist reverse"/>
         else if (eachCard.emblem === "illusionist_add_2")
-            return <img onClick={()=> {player4Add2(); player4Turn(eachCard)}} src={illusionist_add_2} height={100} width={75} alt=" illusionist add 2"/>
+            return <img onClick={()=> {player4Add2(eachCard); player4Turn(eachCard)}} src={illusionist_add_2} height={100} width={75} alt=" illusionist add 2"/>
 
         else if (eachCard.emblem === "bard_0")
             return <img onClick={()=>player4Turn(eachCard)} src={bard_0} height={100} width={75} alt=" bard 0"/>
@@ -223,10 +223,10 @@ function Player4Card({player4Add2, player4Turn, player4Skip, player4HandleRevers
         else if (eachCard.emblem === "bard_reverse")
             return <img onClick={()=>player4HandleReverse(eachCard)} src={bard_reverse} height={100} width={75} alt=" bard reverse" />
         else if (eachCard.emblem === "bard_add_2")
-            return <img onClick={()=> {player4Add2(); player4Turn(eachCard)}} src={bard_add_2} height={100} width={75} alt="bard add 2"/>
+            return <img onClick={()=> {player4Add2(eachCard); player4Turn(eachCard)}} src={bard_add_2} height={100} width={75} alt="bard add 2"/>
 
         else if (eachCard.emblem === "draw_4")
-            return <img src={wild_draw4} height={100} width={75} alt=" wild draw 4"/>
+            return <img onClick={()=> {draw4WildPlayer4(eachCard); player4Turn(eachCard)} } src={wild_draw4} height={100} width={75} alt=" wild draw 4"/>
         else if (eachCard.emblem === "wild")
             return <img src={wild} height={100} width={75} alt="wild"/>     
         // })
