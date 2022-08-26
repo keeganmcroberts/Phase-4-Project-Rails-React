@@ -1,14 +1,16 @@
 /*
 
-1) set cards in Hand (playerHands) to respective card image with cardImageAssignment and startingHands functions 
-2) create onCLick for the card to do (>>>>have the logic, need the associations with card images)
+✅1) set cards in Hand (playerHands) to respective card image with cardImageAssignment and startingHands functions 
+✅12) create onCLick for the card to do (>>>>have the logic, need the associations with card images)
     - next player (for all number cards)
     - reverse order (for reverse cards)
     - skip player (for skip cards)
     - add 2 to other player deck (add_2)
     - draw deck pile
+    - add 4 wild card 
 3) create logic for cards played to match emblem or color of card before
 4) create prompts when wild card is played to determine next color
+4.5) create functionality for Um buttom, to announce button  
 5) create state for the starting color/emblem/value of the top of played deck card
 6) assign players location in player array sequentially as they sign in
 7) create a winner state and an game over state
@@ -19,4 +21,11 @@ Super Stretch Goal
     if more than one add 2 is playedin order
 2) have background image on table tell which direction play is happening (clockwise/!clockwise)
 3) have players choose an avatar 
+
+
+To see the cards 
+- to display card
+    - 
+
+
 */
