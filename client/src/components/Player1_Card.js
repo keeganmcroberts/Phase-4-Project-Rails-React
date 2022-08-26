@@ -73,7 +73,7 @@ import illusionist_1 from '../cards/Red_1.png'
 import illusionist_0 from '../cards/Red_0.png'
 
 
-function Player1Card({draw4WildPlayer1, player1Turn, player1Skip, player1HandleReverse, player1Add2, emblem, value, eachCard, myHandState, displayCard, card}){
+function Player1Card({puttingDownCardsP1,player1WildCard, draw4WildPlayer1, player1Turn, player1Skip, player1HandleReverse, player1Add2, emblem, value, eachCard, myHandState, displayCard, card}){
     
 
     // const [testcard, setTestCard] = useState({"emblem": "druid", "number": "5" })
@@ -217,12 +217,12 @@ console.log("player 1 ADD 2:", player1Add2)
         else if (eachCard.emblem === "bard_reverse")
             return <img onClick={()=>player1HandleReverse(eachCard)} src={bard_reverse} height={100} width={75} alt=" bard reverse" />
         else if (eachCard.emblem === "bard_add_2")
-            return <img onClick={()=> {player1Add2(eachCard)}} src={bard_add_2} height={100} width={75} alt="bard add 2"/>
+            return <img onClick={()=> {player1Add2(eachCard); player1Turn(eachCard)}} src={bard_add_2} height={100} width={75} alt="bard add 2"/>
 
         else if (eachCard.emblem === "draw_4")
-            return <img onClick={()=> {draw4WildPlayer1(eachCard); ; player1Turn(eachCard)}} src={wild_draw4} height={100} width={75} alt=" wild draw 4"/>
+            return <img onClick={()=> {draw4WildPlayer1(eachCard); player1Turn(eachCard)}} src={wild_draw4} height={100} width={75} alt=" wild draw 4"/>
         else if (eachCard.emblem === "wild")
-            return <img src={wild} height={100} width={75} alt="wild"/>     
+            return <img onClick={()=>{player1WildCard(eachCard)}} src={wild} height={100} width={75} alt="wild"/>     
         // })
         else 
             console.log("Player 1 messed up card:", eachCard)

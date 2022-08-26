@@ -8,12 +8,12 @@
     - add 2 to other player deck (add_2)
     - draw deck pile
     - add 4 wild card 
-3) create logic for cards played to match emblem or color of card before
-4) create prompts when wild card is played to determine next color
+✅13) create logic for cards played to match emblem or color of card before
+✅14) create prompts when wild card is played to determine next color
  
 ✅5) create state for the starting color/emblem/value of the top of played deck card
 6) assign players location in player array sequentially as they sign in
-7) create a winner state and an game over state
+7) create a winner state and a game over state
 8) use winner state to add player name to leaderboard 
 9) figure out the plus 2 undefined error (.unshift adds card and undefined object to deck => [deletedCard, ...playedCards does not add played +2 to playedDeck])
 10.) highlight which players turn it is 
