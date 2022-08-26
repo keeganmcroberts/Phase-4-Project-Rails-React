@@ -217,7 +217,7 @@ console.log("player 1 ADD 2:", player1Add2)
         else if (eachCard.emblem === "bard_reverse")
             return <img onClick={()=>player1HandleReverse(eachCard)} src={bard_reverse} height={100} width={75} alt=" bard reverse" />
         else if (eachCard.emblem === "bard_add_2")
-            return <img onClick={()=> {player1Add2(eachCard); player1Turn(eachCard)}} src={bard_add_2} height={100} width={75} alt="bard add 2"/>
+            return <img onClick={()=> {player1Add2(eachCard)}} src={bard_add_2} height={100} width={75} alt="bard add 2"/>
 
         else if (eachCard.emblem === "draw_4")
             return <img onClick={()=> {draw4WildPlayer1(eachCard); ; player1Turn(eachCard)}} src={wild_draw4} height={100} width={75} alt=" wild draw 4"/>

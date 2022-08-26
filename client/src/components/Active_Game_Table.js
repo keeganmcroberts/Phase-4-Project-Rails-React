@@ -5,6 +5,9 @@ import My_Hand from "./My_Hand";
 import Other_Player2 from './other_players_hands/Other_Player2'
 import Other_Player3 from './other_players_hands/Other_Player3'
 import Other_Player4 from './other_players_hands/Other_Player4'
+import PlayedCardPile from './PlayedCardPile'
+
+
 
 const Container = styled.div`
 
@@ -357,10 +360,10 @@ function ActiveGame(){
         const card2 = getARandomCard(drawingDeckState)
         
         if ("player_1" === playerTurn && clockWise === true)
-           
-            return setPlayer2HandState([card1, card2, ...player2HandState])
+            setPlayerTurn("player_2")
+            setPlayer2HandState([card1, card2, ...player2HandState])
         if ("player_1" === playerTurn && clockWise === false)
-          
+            setPlayerTurn("player_4")
             return setPlayer4HandState ([card1, card2, ...player4HandState])
     }
 
@@ -631,7 +634,7 @@ function ActiveGame(){
             </div>
             <div> 
                 <h6> Played Cards</h6>
-                
+                    <PlayedCardPile playedCardsState={playedCards} displayCard={displayCard} completeDeck={completeDeck}/>
             </div>
 
 
