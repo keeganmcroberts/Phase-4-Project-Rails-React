@@ -4,6 +4,7 @@ const Container = styled.div`
 `
 
 function GameTablesList(){
+    
     return (
         <Container>
 

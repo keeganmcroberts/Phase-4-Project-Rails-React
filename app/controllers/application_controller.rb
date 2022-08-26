@@ -10,4 +10,5 @@ class ApplicationController < ActionController::API
   def current_player
     @_current_player ||= session[:player_id] && Player.find_by(id: session[:player_id])
   end
+
 end

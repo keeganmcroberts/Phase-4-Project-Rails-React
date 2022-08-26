@@ -10,7 +10,7 @@ backend together, and easily deploy them to Heroku.
 - Ruby 2.7.4
 - NodeJS (v16), and npm
 - Heroku CLI
-- Postgresql
+- Postgresql 
 
 See Environment Setup below for instructions on installing these tools if you
 don't already have them.

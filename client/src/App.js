@@ -65,16 +65,16 @@ function App() {
     <Container>
       <h1>Welcome back to Um,{currentPlayer.user_name} </h1>
       <NavBar onLogOut={onLogOut} />
+      {/* <Card/> */}
       <Routes>
         <Route path="/home" element={<HomePage />}></Route>
 
         <Route path="/games" element={<GameTablesList />}></Route>
 
-        <Route path="/leaderboard" element={<Leaderboard />}></Route>
 
-        <Route path="/:user_name" element={<UserInfo />}></Route>
+        <Route path="/user" element={<UserInfo />}></Route>
 
-        <Route path="/games/:name" element={<ActiveGame />}></Route>
+        <Route path="/game" element={<ActiveGame />}></Route>
         <Route
           path="/"
           element={<LandingPage setCurrentPlayer={setCurrentPlayer} />}
@@ -88,6 +88,8 @@ function App() {
           path="/auth"
           element={<SignUp setCurrentPlayer={setCurrentPlayer} />}
         ></Route>
+
+
       </Routes>
     </Container>
   );
