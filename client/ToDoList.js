@@ -8,19 +8,23 @@
     - add 2 to other player deck (add_2)
     - draw deck pile
     - add 4 wild card 
-3) create logic for cards played to match emblem or color of card before
-4) create prompts when wild card is played to determine next color
-4.5) create functionality for Um buttom, to announce button  
-5) create state for the starting color/emblem/value of the top of played deck card
+✅13) create logic for cards played to match emblem or color of card before
+✅14) create prompts when wild card is played to determine next color
+ 
+✅5) create state for the starting color/emblem/value of the top of played deck card
 6) assign players location in player array sequentially as they sign in
-7) create a winner state and an game over state
+7) create a winner state and a game over state
 8) use winner state to add player name to leaderboard 
+9) figure out the plus 2 undefined error (.unshift adds card and undefined object to deck => [deletedCard, ...playedCards does not add played +2 to playedDeck])
+10.) highlight which players turn it is 
+11.) when 4 players are logged in, only display fronts of your own cards 
 
 Super Stretch Goal 
  1) daisy chain add 2 to make cards exist in vacume to add more than two 
     if more than one add 2 is playedin order
 2) have background image on table tell which direction play is happening (clockwise/!clockwise)
 3) have players choose an avatar 
+4.5) create functionality for Um buttom, to announce button  ************
 
 
 To see the cards 

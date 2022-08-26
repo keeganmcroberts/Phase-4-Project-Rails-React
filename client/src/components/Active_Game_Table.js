@@ -5,7 +5,8 @@ import My_Hand from "./My_Hand";
 import Other_Player2 from './other_players_hands/Other_Player2'
 import Other_Player3 from './other_players_hands/Other_Player3'
 import Other_Player4 from './other_players_hands/Other_Player4'
-import PlayedCardPile from './PlayedCardPile'
+import PlayedCardPile from './PlayedCardPile' 
+import WildCardPopUp from './WildCardComponent'
 
 
 
@@ -16,122 +17,7 @@ const Container = styled.div`
 
 function ActiveGame(){
 
-    //  in each componenet of player hands each player starts with seven cards
-    //  update request to add and delete cards from each hand as theyre picked up and played
- /*
-    )
-    // shuffle cards DONE 
-    // 7 random cards for each player to start DONE
-    // 1 random card for the playedDeck pile (this starts this game ) DONE
-    // add remaining cards to the drawingDeck (i dont think we need to do this, as we've set the drawing deck
-        //  to infinitely shuffle through all the fetched cards)
-    // set currentColor and currentNumber states to the card played in the playedDeck 
-    // set playerTurn state to player 1 DONE 
-   */
-    
-    // const [activeGame, setActiveGame] = useState(false)
-    // const [drawingDeck, setDrawingDeck] = useState([])
-    // const [playedDeck, setPlayedDeck] = useState([])
-    // // const [playerTurn, setPlayerTurn] = useState('')
-    // //  this is going to be a part of the reverse and the skip cards 
-    // const [currentEmblem, setCurrentEmblem] = useState('')
-    // const [currentValue, setCurrentValue] = useState('')
-    //  this is going to be for played cards, if card - state next player, otherwise error  
-    
-    //  the suffled deck is the drawing deck, the shuffle deck function is current just giving a random card
-    // nned two function one to shuffle the deck, and one to dish out a single card 
-    /*
-
-    function playedDeckStartCard(){ //setPlayedDeck to this card
-        const firstCard = getArandomCard()
-        return firstCard
-    }
-    
-    //  i think this goes on the onclick function for the drawing deck
-    //  still need an update request here to add it to the hand 
-
-    //  figure out how not to shuffle every time  (might need to do reverse then pop)
-    function pickUpACard(){
-        const topCardOfDrawingDeck = getArandomCard()
-        return topCardOfDrawingDeck
-    }
-    
-    function putDownACard(){
-            const cardToPlay = "selected card"
-            //  hands aren't being persisted so im not 
-                // sure for the url or the updated date
-            function patchtoUpdateNextPlayerHand(){
-                fetch("url/${player.id}", {
-                    method: "PATCH", 
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify("next player hand state")
-                })
-                .then( res =>res.json)
-                .then()
-            }
-            function adding2s(){
-                if (cardToPlay === "thief_add_2")
-                    return patchtoUpdateNextPlayerHand()
-                else if (cardToPlay === "bard_add_2")
-                    return patchtoUpdateNextPlayerHand()
-                else if (cardToPlay === "illusionist_add_2")
-                    return patchtoUpdateNextPlayerHand()
-                else if (cardToPlay === "druid_add_2")
-                    return patchtoUpdateNextPlayerHand()
-            }
-            function skipping(){
-            //  need to look at last card played and current player turn 
-            }
-            function reversing(){
-            //  need to look at last card played and current player turn 
-            }
-            function wild_add4(){
-            //  not stackable so just needs to know current player turn to add cards to next player 
-            }
-        if (currentEmblem === cardToPlay.emblem)
-            return cardToPlay
-        else if(currentValue === cardToPlay.vlaue)
-            return cardToPlay
-        else if (currentEmblem === "thief_reverse")
-            return reversing()
-        else if (currentEmblem === "bard_reverse")
-            return reversing()
-        else if (currentEmblem === "illusionist_reverse")
-            return reversing()
-        else if (currentEmblem === "druid_reverse")
-        return reversing()
-        else if (currentEmblem === "thief_add_2")
-            return adding2s()
-        else if (currentEmblem === "bard_add_2")
-            return adding2s()
-        else if (currentEmblem === "illusionist_add_2")
-            return adding2s()
-        else if (currentEmblem === "druid_add_2")
-        return adding2s()
-        else if (currentEmblem === "thief_skip")
-            return skipping()
-        else if (currentEmblem === "bard_skip")
-            return skipping()
-        else if (currentEmblem === "illusionist_skip")
-            return skipping()
-        else if (currentEmblem === "druid_skip")
-        return skipping()
-        else if(selectedCard.emblem === "wild" )
-            return cardToPlay, "something that announces the new emblem"
-        else if (selectedCard.emblem === "draw 4")
-            return wild_add4()
-        else if (selectedCard != currentEmblem)
-            return "A card must match in color or value. Otherwise play a wild card."
-        else if (selectedCard != currentValue)
-            return "A card must match in color or value. Otherwise play a wild card."
-    }
- 
-    */
-
-    /* 
-    moving between players 
-    - 
-    */ 
+    /* moving between players */
 
     const players = ["player_1", "player_2", "player_3", "player_4"]
 
@@ -154,6 +40,8 @@ function ActiveGame(){
     const [ player2HandState, setPlayer2HandState] = useState([Player2Hand])
     const MyHand = []
     const [myHandState, setMyHandState] = useState(MyHand)
+    const [gameInProgress, setGameInProgress] = useState(false)
+    const [displayWildCard, setDisplayWildCard] = useState(false)
     
 
     useEffect( ()=>{
@@ -167,6 +55,15 @@ function ActiveGame(){
 
    console.log("complete deck:", completeDeck)
 
+   function startingTheGame(){
+             setGameInProgress(true)
+             const newCard = getARandomCard(drawingDeckState)
+             const deckToDrawFrom = drawingDeckState.indexOf(newCard)
+             console.log("decktoDrawFrom:", deckToDrawFrom)
+             drawingDeckState.splice(deckToDrawFrom, 1)
+             setPlayedCards([newCard])
+            
+    }
 
 
     // let randomArray = [1, 5, 7, 68, 43, 35, 2, 10]
@@ -177,8 +74,177 @@ function ActiveGame(){
         return randomCard
     }
 
-    console.log("The random card:", getARandomCard(completeDeck))
+    function firstPlayedCard(arrayOfCards){
+        const randomIndex = Math.floor(Math.random()* arrayOfCards.length)
+        const randomCard = arrayOfCards[randomIndex]
+        setPlayedCards( randomCard )
+    }
+
+
+        function whenDrawingDeckisZero(){
+            if (drawingDeckState < 80)
+            setDrawingDeckState([completeDeck])
+        }
+
+
+        function player1WildCard(eachCard){
+            setDisplayWildCard(true)
+            const cardToDelete = myHandState.find(cardToDelete=>{
+                return eachCard.emblem === cardToDelete.emblem 
+            })
+             const deleteSpecificIndex = myHandState.indexOf(cardToDelete)
+                myHandState.splice(deleteSpecificIndex, 1)
+                playedCards.unshift(cardToDelete)
+           
+           if ("player_1" === playerTurn && clockWise === true)
+                return setPlayerTurn("player_2") 
+            else if ("player_1" === playerTurn && clockWise === false)
+                return setPlayerTurn("player_4")
+            
+        }
+        
+        function player2WildCard(eachCard){
+            setDisplayWildCard(true)
+            const cardToDelete = player2HandState.find(cardToDelete=>{
+                return eachCard.emblem === cardToDelete.emblem 
+            })
+             const deleteSpecificIndex = player2HandState.indexOf(cardToDelete)
+                player2HandState.splice(deleteSpecificIndex, 1)
+                playedCards.unshift(cardToDelete)
+           
+           if ("player_2" === playerTurn && clockWise === true)
+                return setPlayerTurn("player_3") 
+            else if ("player_2" === playerTurn && clockWise === false)
+                return setPlayerTurn("player_1")
+            
+        }
+
+        function player3WildCard(eachCard){
+            setDisplayWildCard(true)
+            const cardToDelete = player3HandState.find(cardToDelete=>{
+                return eachCard.emblem === cardToDelete.emblem 
+            })
+             const deleteSpecificIndex = player3HandState.indexOf(cardToDelete)
+                player3HandState.splice(deleteSpecificIndex, 1)
+                playedCards.unshift(cardToDelete)
+           
+           if ("player_3" === playerTurn && clockWise === true)
+                return setPlayerTurn("player_4") 
+            else if ("player_3" === playerTurn && clockWise === false)
+                return setPlayerTurn("player_2")
+            
+        }
+
+        function player4WildCard(eachCard){
+            setDisplayWildCard(true)
+            const cardToDelete = player4HandState.find(cardToDelete=>{
+                return eachCard.emblem === cardToDelete.emblem 
+            })
+             const deleteSpecificIndex = player2HandState.indexOf(cardToDelete)
+                player4HandState.splice(deleteSpecificIndex, 1)
+                playedCards.unshift(cardToDelete)
+           
+           if ("player_4" === playerTurn && clockWise === true)
+                return setPlayerTurn("player_1") 
+            else if ("player_4" === playerTurn && clockWise === false)
+                return setPlayerTurn("player_3")
+            
+        }
+
+
+
+
     
+    function draw4WildPlayer1(card){
+        setDisplayWildCard(true)
+        const Card1=getARandomCard(drawingDeckState)
+        const Card2=getARandomCard(drawingDeckState)
+        const Card3=getARandomCard(drawingDeckState)
+        const Card4=getARandomCard(drawingDeckState)
+        const cardToDelete = myHandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+        })
+         const deleteSpecificIndex = myHandState.indexOf(cardToDelete)
+            myHandState.splice(deleteSpecificIndex, 1)
+            playedCards.unshift(cardToDelete)
+        
+         if ("player_1" === playerTurn && clockWise === true)
+           
+            return setPlayer2HandState([Card1, Card2, Card3, Card4, ...player2HandState])
+        if ("player_1" === playerTurn && clockWise === false)
+          
+            return setPlayer4HandState ([Card1, Card2, Card3, Card4, ...player4HandState])
+    }
+
+    function draw4WildPlayer2(card){
+        setDisplayWildCard(true)
+        const Card1=getARandomCard(drawingDeckState)
+        const Card2=getARandomCard(drawingDeckState)
+        const Card3=getARandomCard(drawingDeckState)
+        const Card4=getARandomCard(drawingDeckState)
+         
+        // puttingDownCardsP4(card) 
+        //     if (puttingDownCardsP4)
+        const cardToDelete = player2HandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+        })
+         const deleteSpecificIndex = player2HandState.indexOf(cardToDelete)
+            player2HandState.splice(deleteSpecificIndex, 1)
+            playedCards.unshift(cardToDelete) 
+            // setPlayedCards([cardToDelete, ...playedCards]) 
+        
+         if ("player_2" === playerTurn && clockWise === true)
+           
+            return setPlayer3HandState([Card1, Card2, Card3, Card4, ...player3HandState])
+        if ("player_2" === playerTurn && clockWise === false)
+          
+            return setMyHandState ([Card1, Card2, Card3, Card4, ...myHandState])
+    }
+
+    function draw4WildPlayer3(card){
+        setDisplayWildCard(true)
+        const Card1=getARandomCard(drawingDeckState)
+        const Card2=getARandomCard(drawingDeckState)
+        const Card3=getARandomCard(drawingDeckState)
+        const Card4=getARandomCard(drawingDeckState)
+        
+        const cardToDelete = player3HandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+        })
+         const deleteSpecificIndex = player3HandState.indexOf(cardToDelete)
+            player3HandState.splice(deleteSpecificIndex, 1)
+            playedCards.unshift(cardToDelete)
+        
+         if ("player_3" === playerTurn && clockWise === true)
+           
+            return setPlayer4HandState([Card1, Card2, Card3, Card4, ...player4HandState])
+        if ("player_2" === playerTurn && clockWise === false)
+          
+            return setPlayer2HandState ([Card1, Card2, Card3, Card4, ...player2HandState])
+    }
+
+    function draw4WildPlayer4(card){
+        setDisplayWildCard(true)
+        const Card1=getARandomCard(drawingDeckState)
+        const Card2=getARandomCard(drawingDeckState)
+        const Card3=getARandomCard(drawingDeckState)
+        const Card4=getARandomCard(drawingDeckState)
+
+        const cardToDelete = player4HandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+        })
+         const deleteSpecificIndex = player4HandState.indexOf(cardToDelete)
+            player4HandState.splice(deleteSpecificIndex, 1)
+            playedCards.unshift(cardToDelete)
+        
+         if ("player_4" === playerTurn && clockWise === true)
+           
+            return setMyHandState([Card1, Card2, Card3, Card4, ...myHandState])
+        if ("player_4" === playerTurn && clockWise === false)
+          
+            return setPlayer3HandState ([Card1, Card2, Card3, Card4, ...player3HandState])
+    }
+        
     
     function StartingSevenCards(){ // setMyHand state to this array
      const card1 = getARandomCard(completeDeck)
@@ -191,7 +257,7 @@ function ActiveGame(){
     
      return([card1, card2, card3, card4, card5, card6, card7])     
     }
-    console.log("Starting Hand:", StartingSevenCards())
+   
 
     function startingHands(){
         setMyHandState(StartingSevenCards)
@@ -202,10 +268,7 @@ function ActiveGame(){
 
     
 
-    console.log("my hand:", myHandState)
-    console.log("player 2 hand:", player2HandState)
-    console.log("player 3 hand:", player3HandState)
-    console.log("player 4 hand:", player4HandState)
+   
 
 
     function addsCardToHand(){
@@ -225,27 +288,60 @@ function ActiveGame(){
     }
     // console.log("adding card to hand:", addsCardToHand)
     console.log("New Hand For My Player:", myHandState)
-    console.log("New Hand For Playerc 3:", player3HandState)
     console.log("NewHand For Player2", player2HandState)
-    console.log("New Hand For Playerc 4:", player4HandState)
+    console.log("New Hand For Player 3:", player3HandState)
+    
+    console.log("New Hand For Player 4:", player4HandState)
+
+    console.log("The drawing Deck:", drawingDeckState)
     
 
    
 //     TO Determine Player Turn 
-    console.log("playerTurn:", playerTurn)
-    console.log("first player:", players[0])
-
+    console.log("PLAYER TURN:", playerTurn)
+    console.log("played cards pile:", playedCards)
     
-    function player1Turn(){
-        console.log("click")
+
+
+    function player1Turn(card){
+        const lastCardPlayed = playedCards[0]
+        const cardEmblem = lastCardPlayed.emblem.split("_")[0]
+        const cardValue = lastCardPlayed.emblem.split("_")[1]
+
+        const newCardEmblem = card.emblem.split("_")[0]
+        const newCardValue = card.emblem.split("_")[1]
+        if (cardEmblem === newCardEmblem || cardValue === newCardValue){
+        
+        
+        console.log("last card played", lastCardPlayed)
+        const cardToDelete = myHandState.find(cardToDelete=>{
+            return card.emblem === cardToDelete.emblem 
+        })
+         const deleteSpecificIndex = myHandState.indexOf(cardToDelete)
+            myHandState.splice(deleteSpecificIndex, 1)
+            playedCards.unshift(cardToDelete)
+            //  the delete and unshift logic needs to go inside of puttingDownCardP1()
+            //  if all the conditions of the function are met then it splices and adds to played cards array
+
         setInitialTurn(false)
         if ("player_1" === playerTurn && clockWise === true)
             return setPlayerTurn("player_2") 
         else if ("player_1" ===playerTurn && clockWise === false)
             return setPlayerTurn("player_4")
         
-    }
-    function player2Turn(card){
+        } else alert("illegal move")}
+    
+    
+        function player2Turn(card){
+
+            const lastCardPlayed = playedCards[0]
+            const cardEmblem = lastCardPlayed.emblem.split("_")[0]
+            const cardValue = lastCardPlayed.emblem.split("_")[1]
+    
+            const newCardEmblem = card.emblem.split("_")[0]
+            const newCardValue = card.emblem.split("_")[1]
+            if (cardEmblem === newCardEmblem || cardValue === newCardValue){ 
+
         const cardToDelete = player2HandState.find(cardToDelete=>{
             return card.emblem === cardToDelete.emblem 
         })
@@ -258,8 +354,19 @@ function ActiveGame(){
         else if ("player_2" === playerTurn && clockWise === false)
             return setPlayerTurn("player_1")
         
+        } else alert("Illegal move")
     }
+    
     function player3Turn(card){
+
+        const lastCardPlayed = playedCards[0]
+        const cardEmblem = lastCardPlayed.emblem.split("_")[0]
+        const cardValue = lastCardPlayed.emblem.split("_")[1]
+
+        const newCardEmblem = card.emblem.split("_")[0]
+        const newCardValue = card.emblem.split("_")[1]
+        if (cardEmblem === newCardEmblem || cardValue === newCardValue){
+        
         const cardToDelete = player3HandState.find(cardToDelete=>{
             return card.emblem === cardToDelete.emblem 
         })
@@ -271,10 +378,20 @@ function ActiveGame(){
             return setPlayerTurn("player_4")
         else if ("player_3" === playerTurn && clockWise === false)
             return setPlayerTurn("player_2")
-   }
-
+            
+        } else alert("Illegal move")
+    }      
     function player4Turn(card){
-        const cardToDelete = player4HandState.find(cardToDelete=>{
+        const lastCardPlayed = playedCards[0]
+            const cardEmblem = lastCardPlayed.emblem.split("_")[0]
+            const cardValue = lastCardPlayed.emblem.split("_")[1]
+    
+            const newCardEmblem = card.emblem.split("_")[0]
+            const newCardValue = card.emblem.split("_")[1]
+            
+            if (cardEmblem === newCardEmblem || cardValue === newCardValue){ 
+        
+                const cardToDelete = player4HandState.find(cardToDelete=>{
             return card.emblem === cardToDelete.emblem 
         })
          const deleteSpecificIndex = player4HandState.indexOf(cardToDelete)
@@ -285,9 +402,16 @@ function ActiveGame(){
             return setPlayerTurn("player_1")  
         else if ("player_4" === playerTurn && clockWise === false)
             return setPlayerTurn("player_3")      
-}
+            } else alert("illegal move")}
 
     function player1Add2(card){
+        const lastCardPlayed = playedCards[0]
+            const cardEmblem = lastCardPlayed.emblem.split("_")[0]
+            const cardValue = lastCardPlayed.emblem.split("_")[1]
+    
+            const newCardEmblem = card.emblem.split("_")[0]
+            const newCardValue = card.emblem.split("_")[0]
+            if (cardEmblem === newCardEmblem || cardValue === newCardValue){
         const cardToDelete = myHandState.find(cardToDelete=>{
             return card.emblem === cardToDelete.emblem 
         })
@@ -304,10 +428,18 @@ function ActiveGame(){
         if ("player_1" === playerTurn && clockWise === false)
             setPlayerTurn("player_4")
             return setPlayer4HandState ([card1, card2, ...player4HandState])
-    }
+    } else alert("Illegal Move")
+    } 
 
     
     function player2Add2(card){
+        const lastCardPlayed = playedCards[0]
+            const cardEmblem = lastCardPlayed.emblem.split("_")[0]
+            const cardValue = lastCardPlayed.emblem.split("_")[1]
+    
+            const newCardEmblem = card.emblem.split("_")[0]
+            const newCardValue = card.emblem.split("_")[0]
+            if (cardEmblem === newCardEmblem || cardValue === newCardValue){
         const cardToDelete = player2HandState.find(cardToDelete=>{
             return card.emblem === cardToDelete.emblem 
         })
@@ -324,10 +456,18 @@ function ActiveGame(){
         if ("player_2" === playerTurn && clockWise === false)
           
             return setMyHandState ([card1, card2, ...myHandState])
+        } else alert("Illegal Move")
     }
     
 
     function player3Add2(card){
+        const lastCardPlayed = playedCards[0]
+            const cardEmblem = lastCardPlayed.emblem.split("_")[0]
+            const cardValue = lastCardPlayed.emblem.split("_")[1]
+    
+            const newCardEmblem = card.emblem.split("_")[0]
+            const newCardValue = card.emblem.split("_")[0]
+            if (cardEmblem === newCardEmblem || cardValue === newCardValue){
         const cardToDelete = player3HandState.find(cardToDelete=>{
             return card.emblem === cardToDelete.emblem 
         })
@@ -344,9 +484,17 @@ function ActiveGame(){
         if ("player_3" === playerTurn && clockWise === false)
           
             return setPlayer2HandState ([card1, card2, ...player2HandState])
+        } else alert("Illegal Move")
     }
 
     function player4Add2(card){
+        const lastCardPlayed = playedCards[0]
+            const cardEmblem = lastCardPlayed.emblem.split("_")[0]
+            const cardValue = lastCardPlayed.emblem.split("_")[1]
+    
+            const newCardEmblem = card.emblem.split("_")[0]
+            const newCardValue = card.emblem.split("_")[0]
+            if (cardEmblem === newCardEmblem || cardValue === newCardValue){
         const cardToDelete = player4HandState.find(cardToDelete=>{
             return card.emblem === cardToDelete.emblem 
             
@@ -364,6 +512,8 @@ function ActiveGame(){
         if ("player_4" === playerTurn && clockWise === false)
           
             return setPlayer3HandState ([card1, card2, ...player3HandState])
+    
+        } else alert("Illegal Move")
     }
     
     
@@ -395,6 +545,14 @@ function ActiveGame(){
     }, [clockWise]) 
 
     function player1HandleReverse(card){
+        const lastCardPlayed = playedCards[0]
+        const cardEmblem = lastCardPlayed.emblem.split("_")[0]
+        const cardValue = lastCardPlayed.emblem.split("_")[1]
+
+        const newCardEmblem = card.emblem.split("_")[0]
+        const newCardValue = card.emblem.split("_")[1]
+        if (cardEmblem === newCardEmblem || cardValue === newCardValue){
+        
         const cardToDelete = myHandState.find(cardToDelete=>{
             return card.emblem === cardToDelete.emblem 
         })
@@ -404,9 +562,17 @@ function ActiveGame(){
         
         setClockwise(!clockWise)
         setInitialTurn(false)
-    }
+        } else alert("illegal move")}
     
     function player2HandleReverse(card){
+        const lastCardPlayed = playedCards[0]
+        const cardEmblem = lastCardPlayed.emblem.split("_")[0]
+        const cardValue = lastCardPlayed.emblem.split("_")[1]
+
+        const newCardEmblem = card.emblem.split("_")[0]
+        const newCardValue = card.emblem.split("_")[1]
+        if (cardEmblem === newCardEmblem || cardValue === newCardValue){
+
         const cardToDelete = player2HandState.find(cardToDelete=>{
             return card.emblem === cardToDelete.emblem 
     })
@@ -416,9 +582,17 @@ function ActiveGame(){
         
         setClockwise(!clockWise)
         setInitialTurn(false)
-    }
+        }else alert("illegal move")}
     
     function player3HandleReverse(card){
+        const lastCardPlayed = playedCards[0]
+        const cardEmblem = lastCardPlayed.emblem.split("_")[0]
+        const cardValue = lastCardPlayed.emblem.split("_")[1]
+
+        const newCardEmblem = card.emblem.split("_")[0]
+        const newCardValue = card.emblem.split("_")[1]
+        if (cardEmblem === newCardEmblem || cardValue === newCardValue){
+        
         const cardToDelete = player3HandState.find(cardToDelete=>{
             return card.emblem === cardToDelete.emblem 
 })
@@ -428,9 +602,17 @@ function ActiveGame(){
         
         setClockwise(!clockWise)
         setInitialTurn(false)
-    }
+        }else alert("illegal move")}
 
     function player4HandleReverse(card){
+        const lastCardPlayed = playedCards[0]
+        const cardEmblem = lastCardPlayed.emblem.split("_")[0]
+        const cardValue = lastCardPlayed.emblem.split("_")[1]
+
+        const newCardEmblem = card.emblem.split("_")[0]
+        const newCardValue = card.emblem.split("_")[1]
+        if (cardEmblem === newCardEmblem || cardValue === newCardValue){
+        
         const cardToDelete = player4HandState.find(cardToDelete=>{
             return card.emblem === cardToDelete.emblem 
 })
@@ -440,11 +622,19 @@ function ActiveGame(){
         
         setClockwise(!clockWise)
         setInitialTurn(false)
-    }
+        }else alert("illegal move")}
 
         
 
     function player1Skip(card){
+        const lastCardPlayed = playedCards[0]
+        const cardEmblem = lastCardPlayed.emblem.split("_")[0]
+        const cardValue = lastCardPlayed.emblem.split("_")[1]
+
+        const newCardEmblem = card.emblem.split("_")[0]
+        const newCardValue = card.emblem.split("_")[1]
+        if (cardEmblem === newCardEmblem || cardValue === newCardValue){
+        
         const cardToDelete = myHandState.find(cardToDelete=>{
             return card.emblem === cardToDelete.emblem 
         })
@@ -457,9 +647,18 @@ function ActiveGame(){
            return setPlayerTurn("player_3") 
         else if ("player_1" === playerTurn && clockWise === false)    
             return setPlayerTurn("player_3")   
-   }
+        }else alert("illegal move")}
+    
     function player2Skip(card){
-        const cardToDelete = player2HandState.find(cardToDelete=>{
+        const lastCardPlayed = playedCards[0]
+        const cardEmblem = lastCardPlayed.emblem.split("_")[0]
+        const cardValue = lastCardPlayed.emblem.split("_")[1]
+
+        const newCardEmblem = card.emblem.split("_")[0]
+        const newCardValue = card.emblem.split("_")[1]
+        if (cardEmblem === newCardEmblem || cardValue === newCardValue){
+        
+            const cardToDelete = player2HandState.find(cardToDelete=>{
             return card.emblem === cardToDelete.emblem 
     })
         const deleteSpecificIndex = player2HandState.indexOf(cardToDelete)
@@ -470,8 +669,17 @@ function ActiveGame(){
            return setPlayerTurn("player_4") 
         else if ("player_2" === playerTurn && clockWise === false)
             return setPlayerTurn("player_4") 
-   }
+        }else alert("illegal move")}
+    
     function player3Skip(card){
+        const lastCardPlayed = playedCards[0]
+        const cardEmblem = lastCardPlayed.emblem.split("_")[0]
+        const cardValue = lastCardPlayed.emblem.split("_")[1]
+
+        const newCardEmblem = card.emblem.split("_")[0]
+        const newCardValue = card.emblem.split("_")[1]
+        if (cardEmblem === newCardEmblem || cardValue === newCardValue){
+        
         const cardToDelete = player3HandState.find(cardToDelete=>{
             return card.emblem === cardToDelete.emblem 
 })
@@ -483,9 +691,16 @@ function ActiveGame(){
             return setPlayerTurn("player_1") 
         else if ("player_3" === playerTurn && clockWise === false)
             return setPlayerTurn("player_1") 
-   }
+         }else alert("illegal move") }
   
    function player4Skip(card){
+        const lastCardPlayed = playedCards[0]
+            const cardEmblem = lastCardPlayed.emblem.split("_")[0]
+            const cardValue = lastCardPlayed.emblem.split("_")[1]
+    
+            const newCardEmblem = card.emblem.split("_")[0]
+            const newCardValue = card.emblem.split("_")[0]
+            if (cardEmblem === newCardEmblem || cardValue === newCardValue){
         const cardToDelete = player4HandState.find(cardToDelete=>{
             return card.emblem === cardToDelete.emblem 
 })
@@ -497,7 +712,8 @@ function ActiveGame(){
            return setPlayerTurn("player_2")
         else if ("player_4" === playerTurn && clockWise === false)
             return setPlayerTurn("player_2")
-  }
+    } else alert("Illegal Move")
+    }
 
     
 
@@ -510,18 +726,25 @@ function ActiveGame(){
             <div >
     
                     <My_Hand 
+                    player1WildCard={player1WildCard}
                     completeDeck={completeDeck}
                     seethecards={displayCard} 
                     player1Turn={player1Turn} 
                     player1Skip={player1Skip} 
-                    handleReverse={handleReverse} 
-                    myHandState={myHandState}/>
+                    player1HandleReverse={player1HandleReverse} 
+                    myHandState={myHandState}
+                    player1Add2={player1Add2}
+                    draw4WildPlayer1={draw4WildPlayer1}
+                    // puttingDownCardsP1={puttingDownCardsP1}
+                    />
+                    
         
             </div> 
 
             <div>
                 
                     <Other_Player2 
+                    player2WildCard={player2WildCard}
                     displayCard={displayCard} 
                     completeDeck={completeDeck}
                     player2Turn={player2Turn} 
@@ -534,6 +757,7 @@ function ActiveGame(){
             <div>
                 
                     <Other_Player3 
+                    player3WildCard={player3WildCard}
                     displayCard={displayCard} 
                     completeDeck={completeDeck}
                     player3Turn={player3Turn} 
@@ -548,6 +772,7 @@ function ActiveGame(){
             <div>
                 
                     <Other_Player4 
+                    player4WildCard={player4WildCard}
                     displayCard={displayCard} 
                     completeDeck={completeDeck}
                     player4Turn={player4Turn} 
@@ -560,12 +785,17 @@ function ActiveGame(){
             </div> 
             <br></br>
             <div>
-                {/* <button onClick={addsCardToHand}>Draw Card</button> */}
+        
                 <button onClick={ addsCardToHand}> Draw Card</button>
+
             </div>
             <div> 
                 <h6> Played Cards</h6>
-                    <PlayedCardPile playedCardsState={playedCards} displayCard={displayCard} completeDeck={completeDeck}/>
+                    <PlayedCardPile 
+                    playedCardsState={playedCards} 
+                    displayCard={displayCard} c
+                    ompleteDeck={completeDeck}/>
+                    {displayWildCard? <WildCardPopUp playedCardsState={playedCards} displayWildCard={setDisplayWildCard}/> : null}
             </div>
 
 

@@ -73,15 +73,10 @@ import illusionist_1 from '../cards/Red_1.png'
 import illusionist_0 from '../cards/Red_0.png'
 
 
-function Player2Card({draw4WildPlayer2, player2Turn, player2Skip, player2HandleReverse, player2Add2, displayCard, player2HandState, seethecards, card}){
+function Player2Card({player2WildCard, draw4WildPlayer2, player2Turn, player2Skip, player2HandleReverse, player2Add2, displayCard, player2HandState, seethecards, card}){
     
 
-//  for start state 
-// if ( myHandState.length > 7 && player2HandState > 7 && player3HandState > 7 && player4HandState > 7)
-//     return setStartState(true)
 
-console.log("player 2 card component hand:", player2HandState)
-console.log("player 2 add2:", player2Add2)
     const [testcard, setTestCard] = useState({"emblem": "druid", "number": "5" })
 
     function cardImageAssignment(){
@@ -228,7 +223,7 @@ console.log("player 2 add2:", player2Add2)
         else if (eachCard.emblem === "draw_4")
             return <img onClick={()=> {draw4WildPlayer2(eachCard); ; player2Turn(eachCard)}} src={wild_draw4} height={100} width={75} alt=" wild draw 4"/>
         else if (eachCard.emblem === "wild")
-            return <img src={wild} height={100} width={75} alt="wild"/>     
+            return <img onClick={()=>{player2WildCard(eachCard)}} src={wild} height={100} width={75} alt="wild"/>     
         // })
         else 
             console.log("Player 2 messed up card:", eachCard)
