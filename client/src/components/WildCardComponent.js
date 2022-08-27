@@ -21,7 +21,7 @@ color: 181D2B
 
 `
 
-function WildCardPopUp({displayWildCard, playedCardsState}){
+function WildCardPopUp({playerTurn, setPlayerTurn, clockWise, displayWildCard, playedCardsState}){
     
     function resetWildCardPopUp(){
         displayWildCard(false)
@@ -36,16 +36,117 @@ function WildCardPopUp({displayWildCard, playedCardsState}){
     function setPlayedCardGreen(){
         playedCardsState.unshift(GreenCard)
 
+        if ("player_1" === playerTurn && clockWise === true){
+            setPlayerTurn("player_2")
+            return}
+        if ("player_1" === playerTurn && clockWise === false){
+            setPlayerTurn("player_4")
+            return}
+        if ("player_2" === playerTurn && clockWise === true){
+            setPlayerTurn("player_3")
+            return}
+        if ("player_2" === playerTurn && clockWise === false){
+            setPlayerTurn("player_1")
+            return}
+        if ("player_3" === playerTurn && clockWise === true){
+            setPlayerTurn("player_4")
+            return}
+        if ("player_3" === playerTurn && clockWise === false){
+            setPlayerTurn("player_2")
+            return}
+        if ("player_4" === playerTurn && clockWise === true){
+            setPlayerTurn("player_1")
+            return}
+        if ("player_4" === playerTurn && clockWise === false){
+            setPlayerTurn("player_3")
+            return}
+        
+
     }
     function setPlayedCardStateRed(){
         playedCardsState.unshift(RedCard)
+
+        if ("player_1" === playerTurn && clockWise === true){
+            setPlayerTurn("player_2")
+            return}
+        if ("player_1" === playerTurn && clockWise === false){
+            setPlayerTurn("player_4")
+            return}
+        if ("player_2" === playerTurn && clockWise === true){
+            setPlayerTurn("player_3")
+            return}
+        if ("player_2" === playerTurn && clockWise === false){
+            setPlayerTurn("player_1")
+            return}
+        if ("player_3" === playerTurn && clockWise === true){
+            setPlayerTurn("player_4")
+            return}
+        if ("player_3" === playerTurn && clockWise === false){
+            setPlayerTurn("player_2")
+            return}
+        if ("player_4" === playerTurn && clockWise === true){
+            setPlayerTurn("player_1")
+            return}
+        if ("player_4" === playerTurn && clockWise === false){
+            setPlayerTurn("player_3")
+            return}
     }
 
     function setPlayedCardStateBlue(){
         playedCardsState.unshift(BlueCard)
+
+        if ("player_1" === playerTurn && clockWise === true){
+            setPlayerTurn("player_2")
+            return}
+        if ("player_1" === playerTurn && clockWise === false){
+            setPlayerTurn("player_4")
+            return}
+        if ("player_2" === playerTurn && clockWise === true){
+            setPlayerTurn("player_3")
+            return}
+        if ("player_2" === playerTurn && clockWise === false){
+            setPlayerTurn("player_1")
+            return}
+        if ("player_3" === playerTurn && clockWise === true){
+            setPlayerTurn("player_4")
+            return}
+        if ("player_3" === playerTurn && clockWise === false){
+            setPlayerTurn("player_2")
+            return}
+        if ("player_4" === playerTurn && clockWise === true){
+            setPlayerTurn("player_1")
+            return}
+        if ("player_4" === playerTurn && clockWise === false){
+            setPlayerTurn("player_3")
+            return}
     }
     function setPlayedCardStatePink(){
         playedCardsState.unshift(PinkCard)
+
+        if ("player_1" === playerTurn && clockWise === true){
+            setPlayerTurn("player_2")
+            return}
+        if ("player_1" === playerTurn && clockWise === false){
+            setPlayerTurn("player_4")
+            return}
+        if ("player_2" === playerTurn && clockWise === true){
+            setPlayerTurn("player_3")
+            return}
+        if ("player_2" === playerTurn && clockWise === false){
+            setPlayerTurn("player_1")
+            return}
+        if ("player_3" === playerTurn && clockWise === true){
+            setPlayerTurn("player_4")
+            return}
+        if ("player_3" === playerTurn && clockWise === false){
+            setPlayerTurn("player_2")
+            return}
+        if ("player_4" === playerTurn && clockWise === true){
+            setPlayerTurn("player_1")
+            return}
+        if ("player_4" === playerTurn && clockWise === false){
+            setPlayerTurn("player_3")
+            return}
 
     }
     

@@ -15,7 +15,7 @@
 6) assign players location in player array sequentially as they sign in
 7) create a winner state and a game over state
 8) use winner state to add player name to leaderboard 
-9) figure out the plus 2 undefined error (.unshift adds card and undefined object to deck => [deletedCard, ...playedCards does not add played +2 to playedDeck])
+✅9) figure out the plus 2 undefined error (.unshift adds card and undefined object to deck => [deletedCard, ...playedCards does not add played +2 to playedDeck])
 10.) highlight which players turn it is 
 11.) when 4 players are logged in, only display fronts of your own cards 
 
@@ -33,3 +33,14 @@ To see the cards
 
 
 */
+
+
+
+
+
+
+//not working:
+    //✅player 2 add 2 (giving player 3 2 cards but setting turn to player 1)
+    //✅ +2s cant be played on top of each other 
+    //✅add 4 undefined object (know how to fix)
+        //✅leads to new error of multiple players getting the 4 cards

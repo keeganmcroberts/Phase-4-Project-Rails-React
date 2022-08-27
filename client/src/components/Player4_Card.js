@@ -226,7 +226,7 @@ function Player4Card({player4WildCard, draw4WildPlayer4, player4Add2, player4Tur
             return <img onClick={()=> {player4Add2(eachCard)}} src={bard_add_2} height={100} width={75} alt="bard add 2"/>
 
         else if (eachCard.emblem === "draw_4")
-            return <img onClick={()=> {draw4WildPlayer4(eachCard); player4Turn(eachCard)} } src={wild_draw4} height={100} width={75} alt=" wild draw 4"/>
+            return <img onClick={()=> {draw4WildPlayer4(eachCard)} } src={wild_draw4} height={100} width={75} alt=" wild draw 4"/>
         else if (eachCard.emblem === "wild")
             return <img onClick={()=>{player4WildCard(eachCard)}} src={wild} height={100} width={75} alt="wild"/>     
         // })
