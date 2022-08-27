@@ -11,7 +11,7 @@ function NavBar(){
             <Link to='/home'>
                 Home
             </Link>
-            <Link to="/${Username interpotalion}">
+            <Link to="/user">
                 User Info
             </Link>
             <Link to="games">

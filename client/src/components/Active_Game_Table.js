@@ -7,6 +7,7 @@ import Other_Player3 from './other_players_hands/Other_Player3'
 import Other_Player4 from './other_players_hands/Other_Player4'
 import PlayedCardPile from './PlayedCardPile' 
 import WildCardPopUp from './WildCardComponent'
+import backOfCard from '../cards/Back_of_Card.png'
 
 
 
@@ -18,14 +19,21 @@ const Container = styled.div`
 function ActiveGame(){
 
     /* moving between players */
+    /*  sets players state to index in players array*/
+    // const players = [{"player": "player_1", user_name: null}, 
+    //                  {"player": "player_2", user_name : null},
+    //                  { "player": "player_3", user_name: null}, 
+    //                  {"player": "player_4", user_name: null }]
+
 
     const players = ["player_1", "player_2", "player_3", "player_4"]
+
 
     const [playerTurn, setPlayerTurn] = useState(players[0]) 
     const [clockWise, setClockwise]= useState(true)
     const [initialTurn, setInitialTurn] = useState(true)
     const [displayCard, setDisplayCard] = useState(false)
-    
+    const [playerState, setPlayerState] = useState(players)
 
 //     
     const [completeDeck, setCompleteDeck] = useState([])
@@ -42,8 +50,27 @@ function ActiveGame(){
     let MyHand = []
     const [myHandState, setMyHandState] = useState(MyHand)
     const [gameInProgress, setGameInProgress] = useState(false)
+    const [gameEnd, setGameEnds] = useState(false)
+    const [winner,setWinner] = useState("")
     const [displayWildCard, setDisplayWildCard] = useState(false)
     
+    function gameisOver(){
+        if (myHandState === 0)
+            setGameEnds(true)
+            setWinner("player_1")
+            alert("Player 1 WINS")
+        if (player2HandState === 0)
+            setGameEnds(true)
+            setWinner("player_2")
+            alert("Player 2 WINs")
+        if (player3HandState === 0)
+            setGameEnds(true)
+            setWinner("player_3")
+            alert("")
+        if (player4HandState === 0)
+            setGameEnds(true)
+            setWinner("player_4")
+     }
 
     useEffect( ()=>{
         fetch("http://localhost:3000/cards")
@@ -169,11 +196,14 @@ function ActiveGame(){
             playedCards.unshift(cardToDelete)
         
          if ("player_1" === playerTurn && clockWise === true)
-           
-            return setPlayer2HandState([Card1, Card2, Card3, Card4, ...player2HandState])
+            
+            setPlayer2HandState([Card1, Card2, Card3, Card4, ...player2HandState])
+            // setPlayerTurn("player_2")
+        
         if ("player_1" === playerTurn && clockWise === false)
-          
-            return setPlayer4HandState ([Card1, Card2, Card3, Card4, ...player4HandState])
+            
+            setPlayer4HandState ([Card1, Card2, Card3, Card4, ...player4HandState])
+            // setPlayerTurn("player_4")
     }
 
     function draw4WildPlayer2(card){
@@ -194,11 +224,13 @@ function ActiveGame(){
             // setPlayedCards([cardToDelete, ...playedCards]) 
         
          if ("player_2" === playerTurn && clockWise === true)
-           
-            return setPlayer3HandState([Card1, Card2, Card3, Card4, ...player3HandState])
+            
+            setPlayer3HandState([Card1, Card2, Card3, Card4, ...player3HandState])
+            // setPlayerTurn("player_3")
         if ("player_2" === playerTurn && clockWise === false)
-          
-            return setMyHandState ([Card1, Card2, Card3, Card4, ...myHandState])
+            
+            setMyHandState ([Card1, Card2, Card3, Card4, ...myHandState])
+            // setPlayerTurn("player_1")
     }
 
     function draw4WildPlayer3(card){
@@ -216,11 +248,13 @@ function ActiveGame(){
             playedCards.unshift(cardToDelete)
         
          if ("player_3" === playerTurn && clockWise === true)
-           
-            return setPlayer4HandState([Card1, Card2, Card3, Card4, ...player4HandState])
-        if ("player_2" === playerTurn && clockWise === false)
-          
-            return setPlayer2HandState ([Card1, Card2, Card3, Card4, ...player2HandState])
+            
+            setPlayer4HandState([Card1, Card2, Card3, Card4, ...player4HandState])
+            // setPlayerTurn("player_4")
+        if ("player_3" === playerTurn && clockWise === false)
+            
+            setPlayer2HandState ([Card1, Card2, Card3, Card4, ...player2HandState])
+            // setPlayerTurn("player_2")
     }
 
     function draw4WildPlayer4(card){
@@ -238,11 +272,13 @@ function ActiveGame(){
             playedCards.unshift(cardToDelete)
         
          if ("player_4" === playerTurn && clockWise === true)
-           
-            return setMyHandState([Card1, Card2, Card3, Card4, ...myHandState])
+            
+            setMyHandState([Card1, Card2, Card3, Card4, ...myHandState])
+            // setPlayerTurn("player_1")
         if ("player_4" === playerTurn && clockWise === false)
-          
-            return setPlayer3HandState ([Card1, Card2, Card3, Card4, ...player3HandState])
+            
+            setPlayer3HandState ([Card1, Card2, Card3, Card4, ...player3HandState])
+            // setPlayerTurn("player_3")
     }
         
     
@@ -316,9 +352,14 @@ function ActiveGame(){
 
     function player1Turn(card){
         const lastCardPlayed = playedCards[0]
+            if (typeof(card) === "undefined")
+            {lastCardPlayed = playedCards[1]}
+        if (lastCardPlayed) {
+        
+        
         const cardEmblem = lastCardPlayed.emblem.split("_")[0]
         const cardValue = lastCardPlayed.emblem.split("_")[1]
-
+       
         const newCardEmblem = card.emblem.split("_")[0]
         const newCardValue = card.emblem.split("_")[1]
         if (cardEmblem === newCardEmblem || cardValue === newCardValue){
@@ -340,12 +381,16 @@ function ActiveGame(){
         else if ("player_1" ===playerTurn && clockWise === false)
             return setPlayerTurn("player_4")
         
-        } else alert("illegal move")}
+        }else alert("illegal move")} }
     
     
         function player2Turn(card){
-
             const lastCardPlayed = playedCards[0]
+                if (typeof(card) === "undefined")
+                {lastCardPlayed = playedCards[1]}
+            if (lastCardPlayed) {
+           
+            
             const cardEmblem = lastCardPlayed.emblem.split("_")[0]
             const cardValue = lastCardPlayed.emblem.split("_")[1]
     
@@ -365,12 +410,16 @@ function ActiveGame(){
         else if ("player_2" === playerTurn && clockWise === false)
             return setPlayerTurn("player_1")
         
-        } else alert("Illegal move")
+        }else alert("Illegal move")} 
     }
     
     function player3Turn(card){
-
         const lastCardPlayed = playedCards[0]
+            if (typeof(card) === "undefined")
+            {lastCardPlayed = playedCards[1]}
+        if (lastCardPlayed) {
+        
+        
         const cardEmblem = lastCardPlayed.emblem.split("_")[0]
         const cardValue = lastCardPlayed.emblem.split("_")[1]
 
@@ -390,10 +439,15 @@ function ActiveGame(){
         else if ("player_3" === playerTurn && clockWise === false)
             return setPlayerTurn("player_2")
             
-        } else alert("Illegal move")
+        }else alert("Illegal move")} 
     }      
     function player4Turn(card){
         const lastCardPlayed = playedCards[0]
+            if (typeof(card) === "undefined")
+            {lastCardPlayed = playedCards[1]}
+        if (lastCardPlayed) {
+        
+            
             const cardEmblem = lastCardPlayed.emblem.split("_")[0]
             const cardValue = lastCardPlayed.emblem.split("_")[1]
     
@@ -413,10 +467,15 @@ function ActiveGame(){
             return setPlayerTurn("player_1")  
         else if ("player_4" === playerTurn && clockWise === false)
             return setPlayerTurn("player_3")      
-            } else alert("illegal move")}
+            }else alert("illegal move")} }
 
     function player1Add2(card){
         const lastCardPlayed = playedCards[0]
+            if (typeof(card) === "undefined")
+            {lastCardPlayed = playedCards[1]}
+        if (lastCardPlayed) {
+        
+            const lastCardPlayed = playedCards[0]
             const cardEmblem = lastCardPlayed.emblem.split("_")[0]
             const cardValue = lastCardPlayed.emblem.split("_")[1]
     
@@ -434,24 +493,32 @@ function ActiveGame(){
         const card2 = getARandomCard(drawingDeckState)
         
         if ("player_1" === playerTurn && clockWise === true)
-            setPlayerTurn("player_2")
+            
             setPlayer2HandState([card1, card2, ...player2HandState])
+            setPlayerTurn("player_2")
         if ("player_1" === playerTurn && clockWise === false)
+            
+            setPlayer4HandState ([card1, card2, ...player4HandState])
             setPlayerTurn("player_4")
-            return setPlayer4HandState ([card1, card2, ...player4HandState])
-    } else alert("Illegal Move")
+    }else alert("Illegal Move")} 
     } 
 
     
     function player2Add2(card){
         const lastCardPlayed = playedCards[0]
+            if (typeof(card) === "undefined")
+            {lastCardPlayed = playedCards[1]}
+        if (lastCardPlayed) {
+        
+            const lastCardPlayed = playedCards[0]
             const cardEmblem = lastCardPlayed.emblem.split("_")[0]
             const cardValue = lastCardPlayed.emblem.split("_")[1]
     
             const newCardEmblem = card.emblem.split("_")[0]
             const newCardValue = card.emblem.split("_")[0]
             if (cardEmblem === newCardEmblem || cardValue === newCardValue){
-        const cardToDelete = player2HandState.find(cardToDelete=>{
+        
+            const cardToDelete = player2HandState.find(cardToDelete=>{
             return card.emblem === cardToDelete.emblem 
         })
          const deleteSpecificIndex = player2HandState.indexOf(cardToDelete)
@@ -462,23 +529,34 @@ function ActiveGame(){
         const card2 = getARandomCard(drawingDeckState)
         
         if ("player_2" === playerTurn && clockWise === true)
-           
-            return setPlayer3HandState([card1, card2, ...player3HandState])
+            
+            setPlayer3HandState([card1, card2, ...player3HandState])
+            setPlayerTurn("player_3")
         if ("player_2" === playerTurn && clockWise === false)
-          
-            return setMyHandState ([card1, card2, ...myHandState])
-        } else alert("Illegal Move")
+            
+             setMyHandState ([card1, card2, ...myHandState])
+             setPlayerTurn("player_1")
+        }else alert("Illegal Move")} 
     }
     
 
+
+    
+
     function player3Add2(card){
+        
         const lastCardPlayed = playedCards[0]
+                if (typeof(card) === "undefined")
+                {lastCardPlayed = playedCards[1]}
+        if (lastCardPlayed) {
+
             const cardEmblem = lastCardPlayed.emblem.split("_")[0]
             const cardValue = lastCardPlayed.emblem.split("_")[1]
     
             const newCardEmblem = card.emblem.split("_")[0]
             const newCardValue = card.emblem.split("_")[0]
             if (cardEmblem === newCardEmblem || cardValue === newCardValue){
+        
         const cardToDelete = player3HandState.find(cardToDelete=>{
             return card.emblem === cardToDelete.emblem 
         })
@@ -491,14 +569,20 @@ function ActiveGame(){
         
         if ("player_3" === playerTurn && clockWise === true)
            
-            return setPlayer4HandState([card1, card2, ...player4HandState])
+            setPlayer4HandState([card1, card2, ...player4HandState])
+            setPlayerTurn("player_4")
         if ("player_3" === playerTurn && clockWise === false)
-          
-            return setPlayer2HandState ([card1, card2, ...player2HandState])
-        } else alert("Illegal Move")
+            
+            setPlayer2HandState ([card1, card2, ...player2HandState])
+            setPlayerTurn("player_2")
+        }else alert("Illegal Move")} 
     }
 
     function player4Add2(card){
+        const lastCardPlayed = playedCards[0]
+            if (typeof(card) === "undefined")
+            {lastCardPlayed = playedCards[1]}
+            if (lastCardPlayed) {
         const lastCardPlayed = playedCards[0]
             const cardEmblem = lastCardPlayed.emblem.split("_")[0]
             const cardValue = lastCardPlayed.emblem.split("_")[1]
@@ -518,13 +602,15 @@ function ActiveGame(){
         const card2 = getARandomCard(drawingDeckState)
         
         if ("player_4" === playerTurn && clockWise === true)
-           
-            return setMyHandState([card1, card2, ...myHandState])
+            
+            setMyHandState([card1, card2, ...myHandState])
+            setPlayerTurn("player_1")
         if ("player_4" === playerTurn && clockWise === false)
-          
-            return setPlayer3HandState ([card1, card2, ...player3HandState])
+            
+            setPlayer3HandState ([card1, card2, ...player3HandState])
+            setPlayerTurn("player_3")
     
-        } else alert("Illegal Move")
+        }else alert("Illegal Move")} 
     }
     
     
@@ -536,7 +622,7 @@ function ActiveGame(){
     useEffect(()=>{
         console.log("useEffect happening")
         if (initialTurn)
-            return "hi"
+            return 
         else if ("player_4" === playerTurn && clockWise === false)
             return setPlayerTurn("player_3") 
         else if ("player_4" === playerTurn && clockWise === true)
@@ -553,9 +639,14 @@ function ActiveGame(){
             return setPlayerTurn("player_4")   
         else if ("player_1" === playerTurn && clockWise === true)     
             return setPlayerTurn("player_2")
-    }, [clockWise]) 
+    }, [clockWise])
 
     function player1HandleReverse(card){
+        const lastCardPlayed = playedCards[0]
+            if (typeof(card) === "undefined")
+            {lastCardPlayed = playedCards[1]}
+        if (lastCardPlayed) {
+        
         const lastCardPlayed = playedCards[0]
         const cardEmblem = lastCardPlayed.emblem.split("_")[0]
         const cardValue = lastCardPlayed.emblem.split("_")[1]
@@ -573,9 +664,15 @@ function ActiveGame(){
         
         setClockwise(!clockWise)
         setInitialTurn(false)
-        } else alert("illegal move")}
+        }else alert("illegal move")} }
+    
     
     function player2HandleReverse(card){
+        const lastCardPlayed = playedCards[0]
+            if (typeof(card) === "undefined")
+            {lastCardPlayed = playedCards[1]}
+        if (lastCardPlayed) {
+        
         const lastCardPlayed = playedCards[0]
         const cardEmblem = lastCardPlayed.emblem.split("_")[0]
         const cardValue = lastCardPlayed.emblem.split("_")[1]
@@ -593,9 +690,14 @@ function ActiveGame(){
         
         setClockwise(!clockWise)
         setInitialTurn(false)
-        }else alert("illegal move")}
+        }else alert("illegal move")}}
     
     function player3HandleReverse(card){
+        const lastCardPlayed = playedCards[0]
+            if (typeof(card) === "undefined")
+            {lastCardPlayed = playedCards[1]}
+        if (lastCardPlayed) {
+        
         const lastCardPlayed = playedCards[0]
         const cardEmblem = lastCardPlayed.emblem.split("_")[0]
         const cardValue = lastCardPlayed.emblem.split("_")[1]
@@ -613,9 +715,14 @@ function ActiveGame(){
         
         setClockwise(!clockWise)
         setInitialTurn(false)
-        }else alert("illegal move")}
+        }else alert("illegal move")}}
 
     function player4HandleReverse(card){
+        const lastCardPlayed = playedCards[0]
+            if (typeof(card) === "undefined")
+            {lastCardPlayed = playedCards[1]}
+        if (lastCardPlayed) {
+        
         const lastCardPlayed = playedCards[0]
         const cardEmblem = lastCardPlayed.emblem.split("_")[0]
         const cardValue = lastCardPlayed.emblem.split("_")[1]
@@ -633,11 +740,16 @@ function ActiveGame(){
         
         setClockwise(!clockWise)
         setInitialTurn(false)
-        }else alert("illegal move")}
+        }else alert("illegal move")}}
 
         
 
     function player1Skip(card){
+        const lastCardPlayed = playedCards[0]
+            if (typeof(card) === "undefined")
+            {lastCardPlayed = playedCards[1]}
+        if (lastCardPlayed) {
+        
         const lastCardPlayed = playedCards[0]
         const cardEmblem = lastCardPlayed.emblem.split("_")[0]
         const cardValue = lastCardPlayed.emblem.split("_")[1]
@@ -658,9 +770,14 @@ function ActiveGame(){
            return setPlayerTurn("player_3") 
         else if ("player_1" === playerTurn && clockWise === false)    
             return setPlayerTurn("player_3")   
-        }else alert("illegal move")}
+        }else alert("illegal move")}}
     
     function player2Skip(card){
+        const lastCardPlayed = playedCards[0]
+            if (typeof(card) === "undefined")
+            {lastCardPlayed = playedCards[1]}
+        if (lastCardPlayed) {
+        
         const lastCardPlayed = playedCards[0]
         const cardEmblem = lastCardPlayed.emblem.split("_")[0]
         const cardValue = lastCardPlayed.emblem.split("_")[1]
@@ -680,9 +797,14 @@ function ActiveGame(){
            return setPlayerTurn("player_4") 
         else if ("player_2" === playerTurn && clockWise === false)
             return setPlayerTurn("player_4") 
-        }else alert("illegal move")}
+        }else alert("illegal move")}}
     
     function player3Skip(card){
+        const lastCardPlayed = playedCards[0]
+            if (typeof(card) === "undefined")
+            {lastCardPlayed = playedCards[1]}
+        if (lastCardPlayed) {
+        
         const lastCardPlayed = playedCards[0]
         const cardEmblem = lastCardPlayed.emblem.split("_")[0]
         const cardValue = lastCardPlayed.emblem.split("_")[1]
@@ -702,9 +824,13 @@ function ActiveGame(){
             return setPlayerTurn("player_1") 
         else if ("player_3" === playerTurn && clockWise === false)
             return setPlayerTurn("player_1") 
-         }else alert("illegal move") }
+         }else alert("illegal move")} }
   
    function player4Skip(card){
+        const lastCardPlayed = playedCards[0]
+                if (typeof(card) === "undefined")
+                {lastCardPlayed = playedCards[1]}
+        if (lastCardPlayed) {
         const lastCardPlayed = playedCards[0]
             const cardEmblem = lastCardPlayed.emblem.split("_")[0]
             const cardValue = lastCardPlayed.emblem.split("_")[1]
@@ -723,7 +849,7 @@ function ActiveGame(){
            return setPlayerTurn("player_2")
         else if ("player_4" === playerTurn && clockWise === false)
             return setPlayerTurn("player_2")
-    } else alert("Illegal Move")
+    }else alert("Illegal Move")} 
     }
 
     
@@ -800,8 +926,8 @@ function ActiveGame(){
             </div> 
             <br></br>
             <div>
-        
-                <button onClick={ addsCardToHand}> Draw Card</button>
+            <h6>Draw Card</h6>
+             <img onClick={ addsCardToHand} src={backOfCard} alt="the back the cards" height={100} width={75}/>
 
             </div>
             <div> 

@@ -4,7 +4,7 @@ const Container =styled.div`
 color: 181D2B
 
     .green_button{
-        background-color: #3BE43B
+        background-color: #00FF00
     }
     .red_button{
         background-color: #F00B1C
@@ -14,6 +14,9 @@ color: 181D2B
     }
     .pink_button{
         background-color: #D659E5
+    }
+    .why_button{
+        background-color: #00FF00
     }
 
 `
@@ -49,10 +52,11 @@ function WildCardPopUp({displayWildCard, playedCardsState}){
     return (
         <Container>
                 <h4> Choose the Next Color: </h4>
-                <button className="green_button" onClick={()=> {resetWildCardPopUp(); setPlayedCardGreen()} }> GREEN </button>
+                <button className="why_button" onClick={()=> {resetWildCardPopUp(); setPlayedCardGreen()} }> GREEN </button>
                 <button className="red_button" onClick={()=> {resetWildCardPopUp(); setPlayedCardStateRed() } }> RED </button> 
                 <button className="blue_button" onClick={()=> {resetWildCardPopUp(); setPlayedCardStateBlue() } }> BLUE </button> 
-                <button className="pink_button" onClick={()=> {resetWildCardPopUp(); setPlayedCardStatePink() } }> PINK </button>   
+                <button className="pink_button" onClick={()=> {resetWildCardPopUp(); setPlayedCardStatePink() } }> PINK </button> 
+                {/* <button className="why_butto" onClick={()=> {resetWildCardPopUp() } }> WHY </button>   */}
         </Container>
     )
 }
