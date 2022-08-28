@@ -22,6 +22,8 @@ function SignUp({ onLogin, setCurrentPlayer }) {
       .then((data) => setCurrentPlayer(data));
   }
   return (
+    <div className="toggle-login-and-sign-up"> 
+    <div className="sign-up">
     <form onSubmit={handleSubmit}>
       <label htmlFor="username">Username:</label>
       <input
@@ -44,8 +46,10 @@ function SignUp({ onLogin, setCurrentPlayer }) {
         value={passwordConfirmation}
         onChange={(e) => setPasswordConfirmation(e.target.value)}
       />
-      <button type="submit">Submit</button>
+      <button className="submit-button" type="submit">Submit</button>
     </form>
+    </div>
+    </div>
   );
 }
 

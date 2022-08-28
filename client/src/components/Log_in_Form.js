@@ -24,6 +24,7 @@ function LoginForm({ onLogin, setCurrentPlayer }) {
 
   return (
     <Container>
+      <div className="toggle-login-and-sign-up">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -35,8 +36,9 @@ function LoginForm({ onLogin, setCurrentPlayer }) {
           onChange={(e) => setPassword(e.target.value)}
           placeholder=" enter password/here"
         />
-        <button> Submit </button>
+        <button className="submit-button"> Submit </button>
       </form>
+      </div>
     </Container>
   );
 }

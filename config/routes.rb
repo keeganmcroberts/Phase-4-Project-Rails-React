@@ -10,15 +10,15 @@ Rails.application.routes.draw do
   
 #custom routes
   # Login route
-  post "/login", to: "sessions#create"
+  # post "/login", to: "sessions#create"
 
-  # authorized/stay logged in
-  get "/auth", to: "players#show"
+  # # authorized/stay logged in
+  # get "/auth", to: "players#show"
 
-  # Signup
-  post "/auth", to: "players#create"
+  # # Signup
+  # post "/auth", to: "players#create"
 
-  # Log-out
-  delete "/logout", to: "sessions#destroy"
+  # # Log-out
+  # delete "/logout", to: "sessions#destroy"
 
 end
