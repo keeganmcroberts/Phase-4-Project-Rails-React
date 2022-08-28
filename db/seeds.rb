@@ -125,7 +125,7 @@ player1 = Player.create(
     user_name: "Poop",
     # password: ManuallyWrite,
     # password_digest: "123",
-    password: "123",
+    # password: "123",
     rounds_won: Faker::Number.number(digits: 1),
     rounds_lost: Faker::Number.number(digits: 1),
     # card_id: Card.all.sample.id,

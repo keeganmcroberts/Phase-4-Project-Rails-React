@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Switch } from "react-dom";
 import "./App.css";
+import "./index.css"
 import styled from "styled-components";
 
 import LoginForm from "./components/Log_in_Form";
@@ -52,18 +53,19 @@ function App() {
   if (!currentPlayer)
     return (
       <>
-        <h1>Welcome to Um!</h1>
+      
+        <h1 className="main-title">Welcome to Um!</h1>
         <LandingPage />
-        <h2>Login:</h2>
+        <h2 className="toggle-login-and-sign-up">Login:</h2>
         <LoginForm error={"please login"} setCurrentPlayer={setCurrentPlayer} />
-        <h2>Sign-up:</h2>
+        <h2 className="toggle-login-and-sign-up">Sign-up:</h2>
         <SignUp setCurrentPlayer={setCurrentPlayer} />
       </>
     );
 
   return (
     <Container>
-      <h1>Welcome back to Um,{currentPlayer.user_name} </h1>
+      <h1 className="main-title">Welcome back to Um,{currentPlayer.user_name} </h1>
       <NavBar onLogOut={onLogOut} />
       {/* <Card/> */}
       <Routes>

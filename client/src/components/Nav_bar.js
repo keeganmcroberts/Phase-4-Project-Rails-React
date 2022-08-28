@@ -11,10 +11,12 @@ function NavBar({ onLogOut }) {
   }
   return (
     <Container>
+      <div className="below-title">
       {/* <Link to="/home">Home</Link> */}
       <Link to="/${player_id}">User Info</Link>
       <Link to="/games">Games List</Link>
       <button onClick={handleLogOut}>Logout</button>
+      </div>
     </Container>
   );
 }
