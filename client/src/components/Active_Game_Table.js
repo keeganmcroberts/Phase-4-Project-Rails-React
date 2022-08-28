@@ -83,8 +83,7 @@ function ActiveGame(){
         .then(res => res.json())
         .then(data => {setCompleteDeck(data)
                         setDrawingDeckState(data)    
-        
-        
+           
         })
     }, [])
 
