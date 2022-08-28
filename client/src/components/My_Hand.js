@@ -9,7 +9,8 @@ function PlayerHand({ completeDeck={completeDeck},
     player1Add2, 
     draw4WildPlayer1,
     puttingDownCardsP1,
-    player1WildCard
+    player1WildCard,
+    playerTurn
 }){
 
     // console.log("My hand state in my hand component:", myHandState)
@@ -32,7 +33,8 @@ function PlayerHand({ completeDeck={completeDeck},
             player1Add2={player1Add2}
             draw4WildPlayer1={draw4WildPlayer1}
             puttingDownCardsP1={puttingDownCardsP1}
-            player1WildCard={player1WildCard} /> 
+            player1WildCard={player1WildCard} 
+            playerTurn={playerTurn}/> 
             
         :null}   
 

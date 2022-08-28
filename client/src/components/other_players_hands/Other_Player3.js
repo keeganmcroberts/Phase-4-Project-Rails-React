@@ -9,13 +9,16 @@ function Other_Player3({player3HandState,
     displayCard,
     player3Add2,
     draw4WildPlayer3,
-    player3WildCard
+    player3WildCard,
+    playerTurn
+
 }){
 
     return( <>
         <h2> Player 3 Hand </h2> 
        
             <Player3_Card 
+              
                 draw4WildPlayer3={draw4WildPlayer3}
                 player3Add2={player3Add2} 
                 player3Turn={player3Turn} 
@@ -26,6 +29,7 @@ function Other_Player3({player3HandState,
                 dontseethecards={dontSeeTheCards} 
                 player3HandState={player3HandState}
                 player3WildCard={player3WildCard}
+                playerTurn={playerTurn}
             />
         
     </>

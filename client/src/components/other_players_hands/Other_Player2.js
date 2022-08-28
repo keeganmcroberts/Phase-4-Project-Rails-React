@@ -10,7 +10,8 @@ function Other_Player2({completeDeck,
     player2HandState,
     displayCard,
     draw4WildPlayer2,
-    player2WildCard
+    player2WildCard,
+    playerTurn
      }){
 
 
@@ -31,6 +32,7 @@ function Other_Player2({completeDeck,
                 player2Add2={player2Add2}
                 draw4WildPlayer2={draw4WildPlayer2}
                 player2WildCard={player2WildCard}
+                playerTurn={playerTurn}
             />
     </>
     )

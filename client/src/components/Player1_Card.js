@@ -73,11 +73,11 @@ import illusionist_1 from '../cards/Red_1.png'
 import illusionist_0 from '../cards/Red_0.png'
 
 
-function Player1Card({puttingDownCardsP1,player1WildCard, draw4WildPlayer1, player1Turn, player1Skip, player1HandleReverse, player1Add2, emblem, value, eachCard, myHandState, displayCard, card}){
+function Player1Card({ playerTurn, puttingDownCardsP1,player1WildCard, draw4WildPlayer1, player1Turn, player1Skip, player1HandleReverse, player1Add2, emblem, value, eachCard, myHandState, displayCard, card}){
     
 
     // const [testcard, setTestCard] = useState({"emblem": "druid", "number": "5" })
-console.log("player 1 ADD 2:", player1Add2)
+
     function cardImageAssignment(){
         // console.log("THE HAND:", eachCard)
         
@@ -228,24 +228,27 @@ console.log("player 1 ADD 2:", player1Add2)
             console.log("Player 1 messed up card:", eachCard)
         
     })}
-    // function toSeeCard(){
-    //     if (myHandState > 0)
-    //     return cardImageAssignment()
-    // }
+    
 
     function assigningBackofCard(){
+        
+             return < img src={backOfCard} height={100} width={75} alt="This is the back" /> }
     
-        return < img src={backOfCard} height={100} width={75} alt="This is the back" /> }
+    function backofCardsForState(){
+        return myHandState.map((eachCard)=> assigningBackofCard(eachCard))
+    }
     // }
-// console.log("my hand state in card component:", myHandState)
-// console.log("player 2 state in card component:", player2HandState)
-// console.log("player 3 state in card component:", player3HandState)
-// console.log("player 4 state in card component:", player4HandState)
 
-   console.log("displayCard:", displayCard)
-     
+    function playingStateWithCard(){
+        if (playerTurn === "player_1")
+            return cardImageAssignment()
+        else 
+            return backofCardsForState()
+    }
+
+  
      return(
-         <>{displayCard ? cardImageAssignment() : assigningBackofCard} </>
+         <>{displayCard ? playingStateWithCard() : assigningBackofCard} </>
          
 
      )

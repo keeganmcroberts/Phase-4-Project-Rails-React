@@ -73,7 +73,7 @@ import illusionist_1 from '../cards/Red_1.png'
 import illusionist_0 from '../cards/Red_0.png'
 
 
-function Player4Card({player4WildCard, draw4WildPlayer4, player4Add2, player4Turn, player4Skip, player4HandleReverse, displayCard, player4HandState, seethecards, card}){
+function Player4Card({playerTurn, player4WildCard, draw4WildPlayer4, player4Add2, player4Turn, player4Skip, player4HandleReverse, displayCard, player4HandState, seethecards, card}){
     
 
 //  for start state 
@@ -238,6 +238,18 @@ function Player4Card({player4WildCard, draw4WildPlayer4, player4Add2, player4Tur
     function assigningBackofCard(){
         return < img src={backOfCard} height={100} width={75} alt="This is the back" />
     }
+
+    function backofCardsForState(){
+        return player4HandState.map((eachCard)=> assigningBackofCard(eachCard)) 
+    }
+// }
+
+    function playingStateWithCard(){
+        if (playerTurn === "player_4")
+            return cardImageAssignment()
+        else 
+            return backofCardsForState()
+}
 // console.log("Player4 hand state in card component:", player4HandState)
 // console.log("player 2 state in card component:", player2HandState)
 // console.log("player 3 state in card component:", player3HandState)
@@ -246,7 +258,7 @@ function Player4Card({player4WildCard, draw4WildPlayer4, player4Add2, player4Tur
     // if card.name === number 
     //     return nextturn()
     return(
-        <>{displayCard ? cardImageAssignment() : assigningBackofCard} </>
+        <>{displayCard ? playingStateWithCard() : assigningBackofCard} </>
         
 
     )

@@ -73,7 +73,7 @@ import illusionist_1 from '../cards/Red_1.png'
 import illusionist_0 from '../cards/Red_0.png'
 
 
-function Player3Card({player3WildCard, draw4WildPlayer3, player3Add2, player3Turn, player3Skip, player3HandleReverse, displayCard, player3HandState,  seethecards, card}){
+function Player3Card({playerTurn, player3WildCard, draw4WildPlayer3, player3Add2, player3Turn, player3Skip, player3HandleReverse, displayCard, player3HandState,  seethecards, card}){
     
 
 //  for start state 
@@ -236,18 +236,22 @@ function Player3Card({player3WildCard, draw4WildPlayer3, player3Add2, player3Tur
     })}
 
     function assigningBackofCard(){
-        if (player3HandState > 1 )
-        return < img src={backOfCard} height={100} width={75} alt="This is the back" />
-    }
-// console.log("my hand state in card component:", myHandState)
-// console.log("player 2 state in card component:", player2HandState)
-// console.log("player 3 state in card component:", player3HandState)
-// console.log("player 4 state in card component:", player4HandState)
+        
+        return < img src={backOfCard} height={100} width={75} alt="This is the back" /> }
 
-    // if card.name === number 
-    //     return nextturn()
+    function backofCardsForState(){
+        return player3HandState.map((eachCard)=> assigningBackofCard(eachCard))
+    }
+// }
+
+    function playingStateWithCard(){
+        if (playerTurn === "player_3")
+            return cardImageAssignment()
+        else 
+            return backofCardsForState()
+        }
     return(
-        <>{displayCard ? cardImageAssignment() : assigningBackofCard} </>
+        <>{displayCard ? playingStateWithCard() : assigningBackofCard} </>
         
 
     )
