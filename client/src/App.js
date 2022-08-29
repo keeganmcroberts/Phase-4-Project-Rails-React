@@ -4,6 +4,7 @@ import "./App.css";
 import "./index.css"
 import styled from "styled-components";
 
+import Footer from "./components/Footer";
 import LoginForm from "./components/Log_in_Form";
 import HomePage from "./components/Home_page";
 import SignUp from "./components/Sign_up_Form";
@@ -16,7 +17,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import NavBar from "./components/Nav_bar";
 
-const Container = styled.div``;
+// const Container = styled.div``;
 
 function App() {
   const [currentPlayer, setCurrentPlayer] = useState(null);
@@ -53,19 +54,26 @@ function App() {
   if (!currentPlayer)
     return (
       <>
-      
+        <div className="header-first">
+        <img
+          // src="https://cdn.discordapp.com/attachments/975808758880018463/1011674130824822815/Group_1.png"
+          src="https://media.istockphoto.com/vectors/abstract-vaporwave-cube-background-vector-id1011629528?k=20&m=1011629528&s=612x612&w=0&h=oZg2mmr_wVTxBdkVeVrHfYNbyiyUpSnu6OvyjQmIYVQ="
+          alt="LOGO"
+        />
+      </div>
         <h1 className="main-title">Welcome to Um!</h1>
         <LandingPage />
         <h2 className="toggle-login-and-sign-up">Login:</h2>
         <LoginForm error={"please login"} setCurrentPlayer={setCurrentPlayer} />
         <h2 className="toggle-login-and-sign-up">Sign-up:</h2>
         <SignUp setCurrentPlayer={setCurrentPlayer} />
+      <Footer/>
       </>
     );
 
   return (
-    <Container>
-      <h1 className="main-title">Welcome back to Um,{currentPlayer.user_name} </h1>
+    <>
+      <h1 className="main-title">Welcome back to Um,{currentPlayer.user_name}! </h1>
       <NavBar onLogOut={onLogOut} />
       {/* <Card/> */}
       <Routes>
@@ -93,7 +101,8 @@ function App() {
 
 
       </Routes>
-    </Container>
+      <Footer/>
+    </>
   );
 }
 

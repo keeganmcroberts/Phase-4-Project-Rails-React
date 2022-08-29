@@ -17,9 +17,10 @@ function PlayerHand({ completeDeck={completeDeck},
     
  return(
     <>
-        <h2> My Hand </h2>
+        <h2 className="player-distinction"> My Hand </h2>
         
         {displayCard ? 
+        <div className="player-left">
         
         <Player1_Card 
             onClick={myHandState} 
@@ -33,10 +34,13 @@ function PlayerHand({ completeDeck={completeDeck},
             draw4WildPlayer1={draw4WildPlayer1}
             puttingDownCardsP1={puttingDownCardsP1}
             player1WildCard={player1WildCard} /> 
+
+        </div>
             
         :null}   
 
     </>
+
  )
 }
 

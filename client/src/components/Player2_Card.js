@@ -212,7 +212,7 @@ function Player2Card({player2WildCard, draw4WildPlayer2, player2Turn, player2Ski
         else if (eachCard.emblem === "bard_11")
             return <img onClick={()=>player2Turn(eachCard)} src={bard_11} height={100} width={75} alt=" bard 11"/>
         else if (eachCard.emblem === "bard_12")
-            return <img onClick={()=>player2Turn(eachCard)} src={bard_12} height={100} width={75} alt=" bard 12" />
+            return <img className="green-skip" onClick={()=>player2Turn(eachCard)} src={bard_12} height={100} width={75} alt=" bard 12" />
         else if (eachCard.emblem === "bard_skip")
             return <img onClick={()=>player2Skip(eachCard)} src={bard_skip} height={100} width={75} alt=" bard skip"/>
         else if (eachCard.emblem === "bard_reverse")

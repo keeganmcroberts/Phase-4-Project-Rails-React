@@ -698,14 +698,13 @@ function ActiveGame() {
   return (
     <>
     <div className="container" >
-      <h3> Its my turn: {playerTurn} </h3>
+      <h3 className="text"> Its my turn: {playerTurn} </h3>
     
-        <button onClick={startingTheGame}>Start Game</button>
-        <button onClick={startingHands}> Distribute First Hand </button>
+        <button className="game-buttons" onClick={startingTheGame}>Start Game</button>
+        <button className="game-buttons" onClick={startingHands}> Distribute First Hand </button>
       
     <div className="player-hands">
 
-        <div className="player-left">
         <My_Hand
           player1WildCard={player1WildCard}
           completeDeck={completeDeck}
@@ -718,10 +717,9 @@ function ActiveGame() {
           draw4WildPlayer1={draw4WildPlayer1}
           // puttingDownCardsP1={puttingDownCardsP1}
         />
-    </div>
 
 <div className="hand-middle">
-        <div className="player-top">
+        
         <Other_Player2
           player2WildCard={player2WildCard}
           displayCard={displayCard}
@@ -733,15 +731,24 @@ function ActiveGame() {
           player2Add2={player2Add2}
           draw4WildPlayer2={draw4WildPlayer2}
         />
-        </div>
+     
     
-    <h6> Played Cards</h6>
+    <h6 className="player-distinction"> Played Cards</h6>
         <PlayedCardPile
           playedCardsState={playedCards}
           displayCard={displayCard}
           completeDeck={completeDeck}
         />
-        <div className="player-bottom">
+
+    <div className="to-move-center-right">
+    {/* <h6 className="player-distinction">Draw Card</h6> */}
+    <button className="game-buttons" onClick={addsCardToHand}> Draw Card</button>
+        {/* <img onClick={ addsCardToHand} src={backOfCard} alt="the back the cards" height={100} width={75}/> */}
+        <img src="https://media.istockphoto.com/vectors/abstract-vaporwave-cube-background-vector-id1011629528?k=20&m=1011629528&s=612x612&w=0&h=oZg2mmr_wVTxBdkVeVrHfYNbyiyUpSnu6OvyjQmIYVQ="/>
+        </div>
+
+
+        
         <Other_Player3
           player3WildCard={player3WildCard}
           displayCard={displayCard}
@@ -753,10 +760,10 @@ function ActiveGame() {
           player3Add2={player3Add2}
           draw4WildPlayer3={draw4WildPlayer3}
         />
-        </div>
-    </div>
+       
+</div>
 
-<div className="player-right">
+
         <Other_Player4
           player4WildCard={player4WildCard}
           displayCard={displayCard}
@@ -769,10 +776,10 @@ function ActiveGame() {
           draw4WildPlayer4={draw4WildPlayer4}
         />
 
-</div>
+
     </div>
-      <br></br>
-        <button onClick={addsCardToHand}> Draw Card</button>
+      {/* <br></br> */}
+      
 
        
         {displayWildCard ? (

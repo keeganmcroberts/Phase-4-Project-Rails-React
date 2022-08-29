@@ -15,8 +15,8 @@ function Other_Player4({displayCard,
 //    console.log("Player 4 hand in player 4 hand component:", player4HandState)
     return(
     <>
-    <h2> Player 4 Hand </h2> 
-  
+    
+    <div className="player-right">
             <Player4Card 
                 draw4WildPlayer4={draw4WildPlayer4}
                 player4Add2={player4Add2} 
@@ -29,7 +29,8 @@ function Other_Player4({displayCard,
                 dontseethecards={dontSeeTheCards}
                 player4WildCard={player4WildCard} 
             />
-
+    </div>
+    <h2 className="player-distinction"> Player 4 Hand </h2> 
     
     </>
     )

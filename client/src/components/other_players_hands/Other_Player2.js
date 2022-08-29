@@ -17,8 +17,9 @@ function Other_Player2({completeDeck,
       
     return( <>
 
-        <h2> Player 2 Hand</h2>
-        
+        <h2 className="player-distinction"> Player 2 Hand</h2>
+        <div className="player-top">
+         
             <Player2Card 
                 displayCard={displayCard} 
                 onClick={player2HandState} 
@@ -32,6 +33,8 @@ function Other_Player2({completeDeck,
                 draw4WildPlayer2={draw4WildPlayer2}
                 player2WildCard={player2WildCard}
             />
+
+        </div>
     </>
     )
 }

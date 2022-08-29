@@ -26,13 +26,15 @@ function LoginForm({ onLogin, setCurrentPlayer }) {
     <Container>
       <div className="toggle-login-and-sign-up">
       <form onSubmit={handleSubmit}>
-        <input
+        <input 
           type="text"
+          id="enter-username"
           onChange={(e) => setUsername(e.target.value)}
           placeholder="enter Username/email here"
         />
-        <input
+        <input 
           type="password"
+          id="enter-password"
           onChange={(e) => setPassword(e.target.value)}
           placeholder=" enter password/here"
         />
