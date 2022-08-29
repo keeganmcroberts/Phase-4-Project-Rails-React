@@ -1,18 +1,15 @@
 import styled from "styled-components";
+// import SignUp from "./Sign_up_Form";
+// import LoginForm from "./Log_in_Form";
+import NavBar from "./Nav_bar";
 
-import LoginForm from "./Log_in_Form";
+const Container = styled.div``;
 
-const Container = styled.div`
-`
-
-
-function LandingPage({onLogin}){
-    return(
-        <Container>
-            <h4> UM a Game of Skill, Luck, and endless Patience </h4>
-            < LoginForm className="log-in"/>
-
-        </Container>
-    )
+function LandingPage({ setCurrentPlayer }) {
+  return (
+    <Container>
+      <h4 className="below-title"> UM a Game of Skill, Luck, and endless Patience </h4>
+    </Container>
+  );
 }
-export default LandingPage
+export default LandingPage;

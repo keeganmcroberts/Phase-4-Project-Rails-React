@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 import My_Hand from "./My_Hand";
 import Other_Player2 from './other_players_hands/Other_Player2'
@@ -864,7 +864,7 @@ function ActiveGame(){
     
 
     return(
-        <Container>
+        <div className="container">
             <h3> Its my turn: {playerTurn} </h3> 
             <div>
                 <button onClick={startingTheGame}>Start Game</button>
@@ -872,60 +872,64 @@ function ActiveGame(){
                 <button onClick={startingHands}> Distribute First Hand </button>
                 {/* {gameisOver()} */} 
             </div>
-            <div >
-    
-                    <My_Hand 
-                    playerTurn={playerTurn}
-                    player1WildCard={player1WildCard}
-                    completeDeck={completeDeck}
-                    displayCard={displayCard} 
-                    player1Turn={player1Turn} 
-                    player1Skip={player1Skip} 
-                    player1HandleReverse={player1HandleReverse} 
-                    myHandState={myHandState}
-                    player1Add2={player1Add2}
-                    draw4WildPlayer1={draw4WildPlayer1}
-                    // puttingDownCardsP1={puttingDownCardsP1}
-                    />
+        
+            
+            <div className="player-hands">
+                    
+                    <div className="player-left">
+                        <My_Hand 
+                        playerTurn={playerTurn}
+                        player1WildCard={player1WildCard}
+                        completeDeck={completeDeck}
+                        displayCard={displayCard} 
+                        player1Turn={player1Turn} 
+                        player1Skip={player1Skip} 
+                        player1HandleReverse={player1HandleReverse} 
+                        myHandState={myHandState}
+                        player1Add2={player1Add2}
+                        draw4WildPlayer1={draw4WildPlayer1}
+                        // puttingDownCardsP1={puttingDownCardsP1}
+                        />
+                    </div>
                     
         
-            </div> 
+            
 
-            <div>
+                <div className="hand-middle">
+                    <div className="player-top">
+                        <Other_Player2 
+                        playerTurn={playerTurn}
+                        player2WildCard={player2WildCard}
+                        displayCard={displayCard} 
+                        completeDeck={completeDeck}
+                        player2Turn={player2Turn} 
+                        player2Skip={player2Skip} 
+                        player2HandleReverse={player2HandleReverse} 
+                        player2HandState={player2HandState}
+                        player2Add2={player2Add2}
+                        draw4WildPlayer2={draw4WildPlayer2}/>
+                    </div>
+                </div>
+                    
                 
-                    <Other_Player2 
-                    playerTurn={playerTurn}
-                    player2WildCard={player2WildCard}
-                    displayCard={displayCard} 
-                    completeDeck={completeDeck}
-                    player2Turn={player2Turn} 
-                    player2Skip={player2Skip} 
-                    player2HandleReverse={player2HandleReverse} 
-                    player2HandState={player2HandState}
-                    player2Add2={player2Add2}
-                    draw4WildPlayer2={draw4WildPlayer2}/>
-                    
-                    
-            </div> 
 
-            <div>
-                
-                    <Other_Player3 
-                    playerTurn={playerTurn}
-                    player3WildCard={player3WildCard}
-                    displayCard={displayCard} 
-                    completeDeck={completeDeck}
-                    player3Turn={player3Turn} 
-                    player3Skip={player3Skip} 
-                    player3HandleReverse={player3HandleReverse} 
-                    player3HandState={player3HandState}
-                    player3Add2={player3Add2}
-                    draw4WildPlayer3={draw4WildPlayer3}/>
-                    
-            </div> 
-
-            <div>
-                
+                <div className="hand-middle">
+                    <div className="player-bottom">
+                        <Other_Player3 
+                        playerTurn={playerTurn}
+                        player3WildCard={player3WildCard}
+                        displayCard={displayCard} 
+                        completeDeck={completeDeck}
+                        player3Turn={player3Turn} 
+                        player3Skip={player3Skip} 
+                        player3HandleReverse={player3HandleReverse} 
+                        player3HandState={player3HandState}
+                        player3Add2={player3Add2}
+                        draw4WildPlayer3={draw4WildPlayer3}/>
+                    </div> 
+                </div>
+            
+                <div className="player-right">
                     <Other_Player4 
                     playerTurn={playerTurn}
                     player4WildCard={player4WildCard}
@@ -938,24 +942,27 @@ function ActiveGame(){
                     player4Add2={player4Add2} 
                     draw4WildPlayer4={draw4WildPlayer4}/>
                     
-            </div> 
-            <br></br>
-            <div>
-            <h6>Draw Card</h6>
-             <img onClick={ addsCardToHand} src={backOfCard} alt="the back the cards" height={100} width={75}/>
+                </div> 
+            {/* <br></br> */}
+            
+                <div>
+                    <h6>Draw Card</h6>
+                    <img onClick={ addsCardToHand} src={backOfCard} alt="the back the cards" height={100} width={75}/>
+                </div>
+                
+                <div className="hand-middle"> 
+                    <h6> Played Cards</h6>
+                        <PlayedCardPile 
+                        playedCardsState={playedCards} 
+                        displayCard={displayCard} c
+                        ompleteDeck={completeDeck}/>
+                        {displayWildCard? <WildCardPopUp playerTurn={playerTurn} setPlayerTurn={setPlayerTurn} clockWise={clockWise} playedCardsState={playedCards} displayWildCard={setDisplayWildCard}/> : null}
+                </div>
 
             </div>
-            <div> 
-                <h6> Played Cards</h6>
-                    <PlayedCardPile 
-                    playedCardsState={playedCards} 
-                    displayCard={displayCard} c
-                    ompleteDeck={completeDeck}/>
-                    {displayWildCard? <WildCardPopUp playerTurn={playerTurn} setPlayerTurn={setPlayerTurn} clockWise={clockWise} playedCardsState={playedCards} displayWildCard={setDisplayWildCard}/> : null}
-            </div>
 
-
-            </Container>
+            
+        </div>
     )
 }
-export default ActiveGame
+export default ActiveGame;

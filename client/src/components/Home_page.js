@@ -2,13 +2,9 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { useNavigate } from 'react-router';
 
-import NavBar from './Nav_bar'
+import NavBar from "./Nav_bar";
 
-const Container = styled.div`
-
-`
-
-
+const Container = styled.div``;
 
 
 function HomePage (){
@@ -26,4 +22,4 @@ function HomePage (){
         </Container>
     )
 }
-export default HomePage
+export default HomePage;
