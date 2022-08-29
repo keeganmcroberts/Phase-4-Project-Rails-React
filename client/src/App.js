@@ -24,7 +24,7 @@ function App() {
 
   // stay logged in function
   useEffect(() => {
-    fetch("/auth").then((res) => {
+    fetch("/me").then((res) => {
       if (res.ok) {
         res
           .json()

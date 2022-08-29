@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
 
   # authorized/stay logged in
-  get "/auth", to: "players#show"
+  get "/me", to: "players#show"
 
   # Signup
   post "/auth", to: "players#create"
