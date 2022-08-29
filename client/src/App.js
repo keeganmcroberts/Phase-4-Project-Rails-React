@@ -3,7 +3,7 @@ import { Switch } from "react-dom";
 import "./App.css";
 import "./index.css"
 import styled from "styled-components";
-
+import Footer from "./components/footer";
 import LoginForm from "./components/Log_in_Form";
 import HomePage from "./components/Home_page";
 import SignUp from "./components/Sign_up_Form";
@@ -53,23 +53,29 @@ function App() {
   if (!currentPlayer)
     return (
       <>
-      
+      <div className="header-first">
+      <img
+          src="https://media.istockphoto.com/vectors/abstract-vaporwave-cube-background-vector-id1011629528?k=20&m=1011629528&s=612x612&w=0&h=oZg2mmr_wVTxBdkVeVrHfYNbyiyUpSnu6OvyjQmIYVQ="
+          alt="LOGO"
+        />
+      </div>
         <h1 className="main-title">Welcome to Um!</h1>
         <LandingPage />
         <h2 className="toggle-login-and-sign-up">Login:</h2>
         <LoginForm error={"please login"} setCurrentPlayer={setCurrentPlayer} />
         <h2 className="toggle-login-and-sign-up">Sign-up:</h2>
         <SignUp setCurrentPlayer={setCurrentPlayer} />
+        <Footer/>
       </>
     );
 
   return (
     <Container>
-      <h1 className="main-title">Welcome back to Um,{currentPlayer.user_name} </h1>
+      <h1 className="main-title">Welcome back to Um,{currentPlayer.user_name }! </h1>
       <NavBar onLogOut={onLogOut} />
       {/* <Card/> */}
       <Routes>
-        <Route path="/home" element={<HomePage />}></Route>
+        {/* <Route path="/home" element={<HomePage />}></Route> */}
 
         <Route path="/games" element={<GameTablesList />}></Route>
 
@@ -93,6 +99,7 @@ function App() {
 
 
       </Routes>
+      <Footer/>
     </Container>
   );
 }

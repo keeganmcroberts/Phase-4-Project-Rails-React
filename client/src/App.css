@@ -1,5 +1,3 @@
-
-
 html, body, #root {
   height: 100%;
   width:100%;
@@ -12,12 +10,13 @@ html, body, #root {
   background-image: radial-gradient( circle 1224px at 10.6% 8.8%,  rgba(255,255,255,1) 0%, rgba(153,202,251,1) 100.2% );
  }
 
-.main-title {
+ .main-title {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding-top:4em;
+  padding-top:1em;
   text-shadow: 1.3px 1px #1f3063; 
+  font-size: 90px;
 }
 
 .below-title {
@@ -25,35 +24,21 @@ html, body, #root {
   justify-content: space-around;
   align-items: center;
   padding-top:2em;
-  /* text-shadow: 1.3px 1px #1f3063;  */
-
+  font-size: 60px;
 }
 
- .container {
+.player-hands {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+ }
+
+ .player-left {
   display: flex;
   flex-direction: column;
  }
 
- /* *{
-  box-sizing: border-box;
- } */
- .player-hands {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  /* background-image: radial-gradient( circle 827px at 47.3% 48%,  rgba(255,255,255,1) 0%, rgba(138,192,216,1) 90% ); */
-  /* background-image: radial-gradient( circle 827px at 47.3% 48%,  rgba(107,158,205,1) 28.3%, rgba(50,73,101,1) 100.2% ); */
-  /* background-image: linear-gradient( 67.6deg,  rgba(225,242,254,1) -2.8%, rgba(193,224,250,1) 44.6%, rgba(19,116,197,1) 102.4% ); */
-  background: radial-gradient(closest-side, #E1F2FE, #C1E0FA, #1374C5);
-
-  /* overflow-x: scroll;
-  padding: 24px;
-  width: 300px;
-  scroll-snap-type: x mandatory;
-  scroll-padding: 24px;
-  border-radius: 8px;
-  gap: 12px; */
- }
+ 
 
  .hand-middle {
   display: flex;
@@ -62,77 +47,145 @@ html, body, #root {
   row-gap: 8em;
  }
 
-
- .player-left {
-  display: flex;
-  flex-direction: column;
- }
-
- /* .player-hands .player-left {
-  flex: 0 0 100%;
-  padding: 24px;
-  border-radius: 8px;
-  scroll-snap-align: start;
- } */
-
+ 
  .player-right {
   display: flex;
   flex-direction: column;
  }
 
- /* .player-hands .player-right {
-  flex: 0 0 100%;
-  padding: 24px;
-  border-radius: 8px;
-  scroll-snap-align: start;
- } */
-
  .player-top {
   display: flex;
-  /* flex-direction: column; */
+  flex-grow: 1;
+  
  }
-
-/* .player-hands .hand-middle {
-  flex: 0 0 100%;
-  padding: 24px;
-  border-radius: 8px;
-  scroll-snap-align: start;
- } */
 
  .player-bottom {
   display: flex;
-  /* flex-direction: column; */
  }
-
- /* .player-hands .player-bottom {
-  flex: 0 0 100%;
-  padding: 24px;
-  border-radius: 8px;
-  scroll-snap-align: start;
- } */
 
  img {
   width: 80px;
-  height: 200px;
-  /* background-image: url('https://wallpaperaccess.com/full/439822.jpg'); */
+  height: 120px;
+
 
  }
 
  .sign-up {
   display: flex;
   flex-direction: column;
-  /* grid-template-columns: auto auto auto; */
- } 
-
- .toggle-login-and-sign-up {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+ 
  }
 
+ .toggle-login-and-sign-up {
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 60px;
+
+
+ }
+
+ 
  .submit-button {
   color: green;
   border-bottom: 5px ridge #ae9;
+  font-size: 30px;
 
  }
+
+ .game-buttons {
+  font-size: 30px;
+  color: green;
+  border-bottom: 10px ridge #ae9;
+  max-width: 200px;
+  padding: 10px 7px 10px 7px;
+  margin-top: 15px;
+}
+
+
+.logout-button {
+  font-size: 30px;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  font-weight: 600;
+  width: 200px;
+  padding: 10px 0;
+  box-shadow: 0 0 20px rgba(104, 85, 224, 0.2);
+  transition: 0.4s;
+  color: white;
+  background-color: rgba(104, 85, 224, 1);
+}
+
+.logout-button:hover {
+  color: white;
+  box-shadow: 0 0 20px rgba(104, 85, 224, 0.6);
+  background-color: rgba(104, 85, 224, 1);
+}
+
+#password {
+  font-size: 40px;
+}
+
+#username {
+  font-size: 40px;
+}
+
+#enter-username {
+  font-size: 40px;
+}
+
+#enter-password {
+  font-size: 40px;
+}
+
+#password-confirmation {
+  font-size: 40px;
+}
+
+.footer {
+  margin-top: auto;
+  padding:  2.9em;
+  background: #f0f0f0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-image:url(https://media.istockphoto.com/vectors/abstract-vaporwave-cube-background-vector-id1011629528?k=20&m=1011629528&s=612x612&w=0&h=oZg2mmr_wVTxBdkVeVrHfYNbyiyUpSnu6OvyjQmIYVQ=);
+}
+
+.header-first img{
+  height: 250px;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  /* padding: 15px 50px; */
+  /* position: sticky; */
+  background-color: #f0f0f0;
+
+}
+
+.header-first {
+  display: flex;
+  background-color: #f0f0f0;
+}
+
+.player-distinction {
+  font-size: 40px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 30px;
+}
+
+
+
+
+ 
+
+

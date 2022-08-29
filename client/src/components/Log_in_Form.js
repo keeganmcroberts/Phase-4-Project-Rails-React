@@ -28,11 +28,13 @@ function LoginForm({ onLogin, setCurrentPlayer }) {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
+          id="enter-username"
           onChange={(e) => setUsername(e.target.value)}
           placeholder="enter Username/email here"
         />
         <input
           type="password"
+          id="enter-paassword"
           onChange={(e) => setPassword(e.target.value)}
           placeholder=" enter password/here"
         />

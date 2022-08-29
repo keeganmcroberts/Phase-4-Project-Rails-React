@@ -176,7 +176,7 @@ function ActiveGame(){
             const cardToDelete = player4HandState.find(cardToDelete=>{
                 return eachCard.emblem === cardToDelete.emblem 
             })
-             const deleteSpecificIndex = player2HandState.indexOf(cardToDelete)
+             const deleteSpecificIndex = player4HandState.indexOf(cardToDelete)
                 player4HandState.splice(deleteSpecificIndex, 1)
                 playedCards.unshift(cardToDelete)
         
@@ -865,18 +865,18 @@ function ActiveGame(){
 
     return(
         <div className="container">
-            <h3> Its my turn: {playerTurn} </h3> 
-            <div>
-                <button onClick={startingTheGame}>Start Game</button>
+            <h3 className="text"> Its my turn: {playerTurn} </h3> 
+           
+                <button className="game-buttons" onClick={startingTheGame}>Start Game</button>
                 {/* <button onClick={startingCardDeck} > Start Game </button> */}
-                <button onClick={startingHands}> Distribute First Hand </button>
+                <button className="game-buttons" onClick={startingHands}> Distribute First Hand </button>
                 {/* {gameisOver()} */} 
-            </div>
+           
         
             
             <div className="player-hands">
                     
-                    <div className="player-left">
+                   
                         <My_Hand 
                         playerTurn={playerTurn}
                         player1WildCard={player1WildCard}
@@ -890,13 +890,13 @@ function ActiveGame(){
                         draw4WildPlayer1={draw4WildPlayer1}
                         // puttingDownCardsP1={puttingDownCardsP1}
                         />
-                    </div>
+                   
                     
         
             
 
                 <div className="hand-middle">
-                    <div className="player-top">
+                    
                         <Other_Player2 
                         playerTurn={playerTurn}
                         player2WildCard={player2WildCard}
@@ -908,13 +908,28 @@ function ActiveGame(){
                         player2HandState={player2HandState}
                         player2Add2={player2Add2}
                         draw4WildPlayer2={draw4WildPlayer2}/>
+                    
+
+                    <h6 className="player-distinction"> Played Cards</h6>
+                        <PlayedCardPile 
+                        playedCardsState={playedCards} 
+                        displayCard={displayCard} 
+                        completeDeck={completeDeck}/>
+                        {displayWildCard? <WildCardPopUp playerTurn={playerTurn} setPlayerTurn={setPlayerTurn} clockWise={clockWise} playedCardsState={playedCards} displayWildCard={setDisplayWildCard}/> : null}
+
+
+                    <div>
+                        <img className="game-buttons" onClick={ addsCardToHand} src={backOfCard} alt="the back the cards" height={100} width={75}/>
                     </div>
+
                 </div>
+
+
                     
                 
 
                 <div className="hand-middle">
-                    <div className="player-bottom">
+                   
                         <Other_Player3 
                         playerTurn={playerTurn}
                         player3WildCard={player3WildCard}
@@ -926,10 +941,10 @@ function ActiveGame(){
                         player3HandState={player3HandState}
                         player3Add2={player3Add2}
                         draw4WildPlayer3={draw4WildPlayer3}/>
-                    </div> 
+                   
                 </div>
             
-                <div className="player-right">
+                
                     <Other_Player4 
                     playerTurn={playerTurn}
                     player4WildCard={player4WildCard}
@@ -941,24 +956,7 @@ function ActiveGame(){
                     player4HandState={player4HandState}
                     player4Add2={player4Add2} 
                     draw4WildPlayer4={draw4WildPlayer4}/>
-                    
-                </div> 
-            {/* <br></br> */}
-            
-                <div>
-                    <h6>Draw Card</h6>
-                    <img onClick={ addsCardToHand} src={backOfCard} alt="the back the cards" height={100} width={75}/>
-                </div>
-                
-                <div className="hand-middle"> 
-                    <h6> Played Cards</h6>
-                        <PlayedCardPile 
-                        playedCardsState={playedCards} 
-                        displayCard={displayCard} c
-                        ompleteDeck={completeDeck}/>
-                        {displayWildCard? <WildCardPopUp playerTurn={playerTurn} setPlayerTurn={setPlayerTurn} clockWise={clockWise} playedCardsState={playedCards} displayWildCard={setDisplayWildCard}/> : null}
-                </div>
-
+                     
             </div>
 
             

@@ -18,10 +18,10 @@ function PlayerHand({ completeDeck={completeDeck},
     
  return(
     <>
-        <h2> My Hand </h2>
-        
-        {displayCard ? 
-        
+        <h2 className="player-distinction"> My Hand </h2>
+        <div className="player-left">
+        {/* {displayCard ?  */}
+       
         <Player1_Card 
             onClick={myHandState} 
             card={completeDeck} 
@@ -36,8 +36,8 @@ function PlayerHand({ completeDeck={completeDeck},
             player1WildCard={player1WildCard} 
             playerTurn={playerTurn}/> 
             
-        :null}   
-
+        {/* :null}    */}
+        </div>
     </>
  )
 }

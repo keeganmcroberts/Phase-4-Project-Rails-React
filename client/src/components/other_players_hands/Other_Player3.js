@@ -15,8 +15,9 @@ function Other_Player3({player3HandState,
 }){
 
     return( <>
-        <h2> Player 3 Hand </h2> 
+        
        
+        <div className="player-bottom">
             <Player3_Card 
               
                 draw4WildPlayer3={draw4WildPlayer3}
@@ -31,7 +32,8 @@ function Other_Player3({player3HandState,
                 player3WildCard={player3WildCard}
                 playerTurn={playerTurn}
             />
-        
+        </div>
+        <h2> Player 3 Hand </h2> 
     </>
     )
 }

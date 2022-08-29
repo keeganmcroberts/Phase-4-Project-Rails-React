@@ -17,8 +17,8 @@ function Other_Player4({displayCard,
 //    console.log("Player 4 hand in player 4 hand component:", player4HandState)
     return(
     <>
-    <h2> Player 4 Hand </h2> 
-  
+    
+        <div className="player-right">
             <Player4Card 
               
                 draw4WildPlayer4={draw4WildPlayer4}
@@ -33,7 +33,8 @@ function Other_Player4({displayCard,
                 player4WildCard={player4WildCard} 
                 playerTurn={playerTurn}
             />
-
+        </div>
+        <h2> Player 4 Hand </h2> 
     
     </>
     )
